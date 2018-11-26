@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:BW="http://xsd.tns.tibco.com/amf/models/sca/implementationtype/BW" xmlns:JsonSchema="/T1542684608558Converted/JsonSchema" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:rest="http://xsd.tns.tibco.com/bw/models/binding/rest" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmlns:scact="http://xsd.tns.tibco.com/amf/models/sca/componentType" xmlns:scaext="http://xsd.tns.tibco.com/amf/models/sca/extensions" xmi:id="_iSa3oORREeiBvbYKYc906Q" targetNamespace="http://tns.tibco.com/bw/composite/MultiFamilyAPIPoF.module" name="MultiFamilyAPIPoF.module" compositeext:version="1.0.0" compositeext:formatVersion="2">
+  <sca:service xmi:id="_rVxHcORREeiBvbYKYc906Q" name="loanoption" promote="ComponentProcess/loanoption">
+    <sca:interface.wsdl xmi:id="_rV64cORREeiBvbYKYc906Q" interface="http://xmlns.example.com/20181109135910PLT#wsdl.interface(loanoption)" scaext:wsdlLocation="../Processes/multifamilyapipof/module/Process.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_rWECYORREeiBvbYKYc906Q" name="RestService" path="/loanoption" docBasePath="http://localhost:7777/MultiFamilyAPIPoF.module" docResourcePath="Loanoption" basePath="/" connector="multifamilyapipof.module.loanoption" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/loanoptions_latest.json">
+      <operation xmi:id="_rWNzYeRREeiBvbYKYc906Q" operationName="post" nickname="addLoanOption" httpMethod="POST" notes="Creates a new Loan Option" responseStyle="element" requestStyle="element">
+        <responseStatus xmi:id="_rXJngORREeiBvbYKYc906Q" statusCode="201" reasonPhrase="Created" dataType="object"/>
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_rXKOkORREeiBvbYKYc906Q"/>
+      <advancedConfig xmi:id="_rWNzYORREeiBvbYKYc906Q" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_rWNzYuRREeiBvbYKYc906Q" bindingName="RestService"/>
+  </sca:service>
+  <sca:service xmi:id="_g3UuUu0zEei7gaduVQ3VGA" name="deal1" promote="ComponentProcess1/deal">
+    <sca:interface.wsdl xmi:id="_g3UuVu0zEei7gaduVQ3VGA" interface="http://xmlns.example.com/20181120211641PLT#wsdl.interface(deal)"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_g3UuV-0zEei7gaduVQ3VGA" name="RestService2" path="/deal" docBasePath="http://localhost:7777/MultiFamilyAPIPoF.module" docResourcePath="Deal" basePath="/" connector="multifamilyapipof.module.loanoption" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/Deals Pre-Reg API_1.0.0.json">
+      <operation xmi:id="_g3UuWe0zEei7gaduVQ3VGA" operationName="post" nickname="addDeal" httpMethod="POST" notes="Creates a new Deal" responseStyle="element" requestStyle="element">
+        <responseStatus xmi:id="_g3d4QO0zEei7gaduVQ3VGA" statusCode="201" reasonPhrase="Created" elementQName="JsonSchema:dealResponse"/>
+        <responseStatus xmi:id="_g3d4Qu0zEei7gaduVQ3VGA" statusCode="400" reasonPhrase="Bad Request" elementQName="JsonSchema:dealErrorResponse"/>
+        <responseStatus xmi:id="_g3d4Q-0zEei7gaduVQ3VGA" statusCode="500" reasonPhrase="Internal Server Error" elementQName="JsonSchema:dealErrorResponse"/>
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_g3d4RO0zEei7gaduVQ3VGA"/>
+      <import xmi:id="_g3d4Qe0zEei7gaduVQ3VGA" importType="http://www.w3.org/2001/XMLSchema" namespace="/T1542684608558Converted/JsonSchema"/>
+      <advancedConfig xmi:id="_g3UuWO0zEei7gaduVQ3VGA" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_g3UuWu0zEei7gaduVQ3VGA" bindingName="RestService2"/>
+  </sca:service>
+  <sca:property xmi:id="_jXQ_0ORREeiBvbYKYc906Q" name="BW.APPNODE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_jXj6wORREeiBvbYKYc906Q" name="BW.DEPLOYMENTUNIT.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_jXj6weRREeiBvbYKYc906Q" name="BW.HOST.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_jXtrwORREeiBvbYKYc906Q" name="BW.DEPLOYMENTUNIT.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_jXtrweRREeiBvbYKYc906Q" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_jX21sORREeiBvbYKYc906Q" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_z8fFoORREeiBvbYKYc906Q" name="salesforce.wsdl" type="XMLSchema:string" scaext:simpleValue="" publicAccess="true" scalable="true"/>
+  <sca:component xmi:id="_i8V-YORREeiBvbYKYc906Q" name="ComponentProcess" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_i8XzkORREeiBvbYKYc906Q" processName="multifamilyapipof.module.Process"/>
+    <sca:service xmi:id="_rVn9gORREeiBvbYKYc906Q" name="loanoption">
+      <sca:interface.wsdl xmi:id="_rVn9geRREeiBvbYKYc906Q" interface="http://xmlns.example.com/20181109135910PLT#wsdl.interface(loanoption)"/>
+    </sca:service>
+  </sca:component>
+  <sca:component xmi:id="_nTjIsOhCEeiQ1IVtTsjnWA" name="ComponentSampleOpportunity" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_nTjIsehCEeiQ1IVtTsjnWA" processName="multifamilyapipof.module.SampleOpportunity"/>
+  </sca:component>
+  <sca:component xmi:id="_fDpKMO0zEei7gaduVQ3VGA" name="ComponentProcess1" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_fDpKMe0zEei7gaduVQ3VGA" processName="multifamilyapipof.module.PreRegistrationPostImpl"/>
+    <sca:service xmi:id="_g3UuUO0zEei7gaduVQ3VGA" name="deal">
+      <sca:interface.wsdl xmi:id="_g3UuUe0zEei7gaduVQ3VGA" interface="http://xmlns.example.com/20181120211641PLT#wsdl.interface(deal)"/>
+    </sca:service>
+  </sca:component>
+</sca:composite>

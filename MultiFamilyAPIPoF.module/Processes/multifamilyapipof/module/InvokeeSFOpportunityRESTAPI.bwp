@@ -1,0 +1,1572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpws:process exitOnStandardFault="no"
+    name="multifamilyapipof.module.InvokeeSFOpportunityRESTAPI"
+    suppressJoinFailure="yes"
+    targetNamespace="http://xmlns.example.com/20181119230232"
+    xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:info="http://www.tibco.com/bw/process/info"
+    xmlns:ns="http://www.tibco.com/pe/EngineTypes"
+    xmlns:ns0="http://tns.tibco.com/bw/json/1542686650609"
+    xmlns:ns1="activity.jsonRender.output+a7708434-3032-427a-b10e-b2f646306b9a+ActivityOutputType"
+    xmlns:ns10="http://www.example.com/namespaces/tns/1542685390266"
+    xmlns:ns11="activity.jsonParser.input+8a8ec53a-80d2-4c86-a8a3-8531e12eb096+ActivityInputType"
+    xmlns:ns12="http://tns.tibco.com/bw/palette/internal/activityerror+bw.restjson.JsonParser"
+    xmlns:ns13="activity.jsonParser.input+3eff77af-46ac-42cb-945e-c2e98b7be7ec+ActivityInputType"
+    xmlns:ns14="http://tns.tibco.com/bw/json/1542749952029"
+    xmlns:ns15="urn:enterprise.soap.sforce.com_queryAllInput+e675f524-4b03-425f-a925-cb47bfe9a6fb+input"
+    xmlns:ns16="urn:enterprise.soap.sforce.com_queryAllOutput"
+    xmlns:ns17="http://tns.tibco.com/bw/palette/internal/activityerror+bw.bwsalesforce.SalesforceQuery"
+    xmlns:ns2="http://tns.tibco.com/bw/palette/internal/activityerror+bw.restjson.JsonRender"
+    xmlns:ns3="urn:enterprise.soap.sforce.com_getSessionInput"
+    xmlns:ns4="urn:enterprise.soap.sforce.com_getSessionOutput"
+    xmlns:ns5="http://tns.tibco.com/bw/palette/internal/activityerror+bw.bwsalesforce.SalesforceGetSession"
+    xmlns:ns6="http://www.tibco.com/namespaces/tnt/plugins/restinvoke+359cf6e2-c4ed-459b-a068-a8ac39e7a66a+RestInvokeInput"
+    xmlns:ns7="http://www.tibco.com/namespaces/tnt/plugins/restinvoke+359cf6e2-c4ed-459b-a068-a8ac39e7a66a+RestInvokeOutput"
+    xmlns:ns8="http://tns.tibco.com/bw/palette/internal/activityerror+bw.restjson.Rest"
+    xmlns:ns9="/T1542684608558Converted/JsonSchema"
+    xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+    xmlns:sca-bpel="http://docs.oasis-open.org/ns/opencsa/sca-bpel/200801"
+    xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"
+    xmlns:tibprop="http://ns.tibco.com/bw/property" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <tibex:Types>
+        <xs:schema attributeFormDefault="unqualified"
+            elementFormDefault="qualified"
+            targetNamespace="http://www.tibco.com/pe/EngineTypes"
+            xmlns:tns="http://www.tibco.com/pe/EngineTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:complexType block="extension restriction"
+                final="extension restriction" name="ErrorReport">
+                <xs:sequence>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="StackTrace" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="Msg" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="FullClass" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="Class" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="ProcessStack" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" minOccurs="0" name="MsgCode" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" minOccurs="0" name="Data" type="tns:anydata"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType block="extension restriction"
+                final="extension restriction" name="OptionalErrorReport">
+                <xs:sequence>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" minOccurs="0"
+                        name="StackTrace" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" minOccurs="0" name="Msg" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" minOccurs="0"
+                        name="FullClass" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" minOccurs="0" name="Class" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" minOccurs="0"
+                        name="ProcessStack" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" minOccurs="0" name="MsgCode" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" minOccurs="0" name="Data" type="tns:anydata"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType block="extension restriction"
+                final="extension restriction" name="FaultDetail">
+                <xs:sequence>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="ActivityName" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" minOccurs="0" name="Data" type="tns:anydata"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="Msg" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="MsgCode" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="ProcessStack" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="StackTrace" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="FullClass" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="Class" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType block="extension restriction"
+                final="extension restriction" name="ProcessContext">
+                <xs:sequence>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="JobId" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="ApplicationName" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="EngineName" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" name="ProcessInstanceId" type="xs:string"/>
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" minOccurs="0"
+                        name="CustomJobId" type="xs:string"/>
+                    <!--xs:element name="RestartedFromCheckpoint" form="unqualified" block="extension restriction substitution" type="xs:boolean"/-->
+                    <xs:element
+                        block="extension restriction substitution"
+                        form="unqualified" maxOccurs="unbounded"
+                        minOccurs="0" name="TrackingInfo" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType block="extension restriction"
+                final="extension restriction" name="anydata">
+                <xs:sequence>
+                    <xs:any namespace="##any" processContents="lax"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element block="extension restriction substitution"
+                final="extension restriction" name="OptionalErrorReport" type="tns:OptionalErrorReport"/>
+            <xs:element block="extension restriction substitution"
+                final="extension restriction" name="ErrorReport" type="tns:ErrorReport"/>
+            <xs:element block="extension restriction substitution"
+                final="extension restriction" name="FaultDetail" type="tns:FaultDetail"/>
+            <xs:element block="extension restriction substitution"
+                final="extension restriction" name="ProcessContext" type="tns:ProcessContext"/>
+            <xs:element block="extension restriction substitution"
+                final="extension restriction" name="CorrelationValue" type="xs:string"/>
+        </xs:schema>
+        <schema attributeFormDefault="unqualified"
+            elementFormDefault="unqualified"
+            targetNamespace="http://schemas.tibco.com/bw/pe/plugin/5.0/exceptions"
+            version="" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.tibco.com/bw/pe/plugin/5.0/exceptions">
+            <complexType name="ActivityExceptionType">
+                <sequence>
+                    <element name="msg" type="string"/>
+                    <element minOccurs="0" name="msgCode" type="string"/>
+                </sequence>
+            </complexType>
+            <element name="ActivityException" type="tns:ActivityExceptionType"/>
+            <complexType name="ActivityTimedOutExceptionType">
+                <complexContent>
+                    <extension base="tns:ActivityExceptionType"/>
+                </complexContent>
+            </complexType>
+            <element name="ActivityTimedOutException" type="tns:ActivityTimedOutExceptionType"/>
+            <complexType name="DuplicateKeyExceptionType">
+                <complexContent>
+                    <extension base="tns:ActivityExceptionType">
+                        <sequence>
+                            <element name="duplicateKey" type="string"/>
+                            <element minOccurs="0" name="previousJobID" type="string"/>
+                        </sequence>
+                    </extension>
+                </complexContent>
+            </complexType>
+            <element name="DuplicateKeyException" type="tns:DuplicateKeyExceptionType"/>
+        </schema>
+        <schema
+            targetNamespace="activity.jsonRender.output+a7708434-3032-427a-b10e-b2f646306b9a+ActivityOutputType"
+            xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="activity.jsonRender.output+a7708434-3032-427a-b10e-b2f646306b9a+ActivityOutputType">
+            <complexType name="ActivityOutputClassType">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="1"
+                        name="jsonString" type="string"/>
+                </sequence>
+            </complexType>
+            <element name="ActivityOutputClass" type="tns:ActivityOutputClassType"/>
+        </schema>
+        <schema elementFormDefault="unqualified"
+            targetNamespace="http://schemas.tibco.com/bw/plugins/xml/5.0/JSONActivitiesExceptions"
+            xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.tibco.com/bw/plugins/xml/5.0/JSONActivitiesExceptions">
+            <element name="JSONActivityException" type="tns:JSONActivityException"/>
+            <complexType name="JSONActivityException">
+                <sequence>
+                    <element name="msg" type="string"/>
+                    <element minOccurs="0" name="msgCode" type="string"/>
+                </sequence>
+            </complexType>
+            <element name="UnsupportedEncodingException" type="tns:UnsupportedEncodingExceptionType"/>
+            <complexType name="UnsupportedEncodingExceptionType">
+                <complexContent>
+                    <extension base="tns:JSONActivityException">
+                        <sequence>
+                            <element name="encoding" type="string"/>
+                        </sequence>
+                    </extension>
+                </complexContent>
+            </complexType>
+            <complexType name="JSONParserExceptionType">
+                <complexContent>
+                    <extension base="tns:JSONActivityException"/>
+                </complexContent>
+            </complexType>
+            <element name="JSONParserException" type="tns:JSONParserExceptionType"/>
+            <complexType name="JSONTransformExceptionType">
+                <complexContent>
+                    <extension base="tns:JSONActivityException"/>
+                </complexContent>
+            </complexType>
+            <element name="JSONTransformException" type="tns:JSONTransformExceptionType"/>
+            <complexType name="JSONRenderExceptionType">
+                <complexContent>
+                    <extension base="tns:JSONActivityException"/>
+                </complexContent>
+            </complexType>
+            <element name="JSONRenderException" type="tns:JSONRenderExceptionType"/>
+            <complexType name="JSONRestExceptionType">
+                <complexContent>
+                    <extension base="tns:JSONActivityException"/>
+                </complexContent>
+            </complexType>
+            <element name="JSONRestException" type="tns:JSONRestExceptionType"/>
+            <complexType name="ValidationExceptionType">
+                <complexContent>
+                    <extension base="tns:JSONActivityException"/>
+                </complexContent>
+            </complexType>
+            <element name="ValidationException" type="tns:ValidationExceptionType"/>
+        </schema>
+        <schema
+            targetNamespace="urn:enterprise.soap.sforce.com_getSessionInput"
+            xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:enterprise.soap.sforce.com_getSessionInput">
+            <complexType name="getSessionInputType">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="0" ref="tns:login"/>
+                </sequence>
+            </complexType>
+            <element name="getSessionInput" type="tns:getSessionInputType"/>
+            <element name="login" nillable="false" type="tns:loginType"/>
+            <complexType name="loginType">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="0"
+                        name="salesforceConnection" type="string"/>
+                    <element maxOccurs="1" minOccurs="0"
+                        name="refreshSession" type="boolean"/>
+                </sequence>
+            </complexType>
+        </schema>
+        <schema
+            targetNamespace="urn:enterprise.soap.sforce.com_getSessionOutput"
+            xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:enterprise.soap.sforce.com_getSessionOutput">
+            <complexType name="getSessionOutputType">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="1"
+                        name="salesforceConnection" type="string"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:loginResponse"/>
+                </sequence>
+            </complexType>
+            <element name="getSessionOutput" type="tns:getSessionOutputType"/>
+            <element name="loginResponse" nillable="false" type="tns:loginResponseType"/>
+            <complexType name="loginResponseType">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:result"/>
+                </sequence>
+            </complexType>
+            <element name="result" nillable="false" type="tns:LoginResult"/>
+            <complexType name="LoginResult">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:metadataServerUrl"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:passwordExpired"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:sandbox"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:serverUrl"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:sessionId"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:userId"/>
+                    <element maxOccurs="1" minOccurs="0" ref="tns:userInfo"/>
+                </sequence>
+            </complexType>
+            <element name="metadataServerUrl" nillable="true" type="string"/>
+            <element name="passwordExpired" nillable="false" type="boolean"/>
+            <element name="sandbox" nillable="false" type="boolean"/>
+            <element name="serverUrl" nillable="true" type="string"/>
+            <element name="sessionId" nillable="true" type="string"/>
+            <element name="userId" nillable="true" type="string"/>
+            <element name="userInfo" nillable="false" type="tns:GetUserInfoResult"/>
+            <complexType name="GetUserInfoResult">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:accessibilityMode"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:chatterExternal"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:currencySymbol"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:orgAttachmentFileSizeLimit"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:orgDefaultCurrencyIsoCode"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:orgDefaultCurrencyLocale"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:orgDisallowHtmlAttachments"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:orgHasPersonAccounts"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:organizationId"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:organizationMultiCurrency"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:organizationName"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:profileId"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:roleId"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:sessionSecondsValid"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:userDefaultCurrencyIsoCode"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:userEmail"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:userFullName"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:userId"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:userLanguage"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:userLocale"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:userName"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:userTimeZone"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:userType"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:userUiSkin"/>
+                </sequence>
+            </complexType>
+            <element name="accessibilityMode" nillable="false" type="boolean"/>
+            <element name="chatterExternal" nillable="false" type="boolean"/>
+            <element name="currencySymbol" nillable="true" type="string"/>
+            <element name="orgAttachmentFileSizeLimit" nillable="false" type="integer"/>
+            <element name="orgDefaultCurrencyIsoCode" nillable="true" type="string"/>
+            <element name="orgDefaultCurrencyLocale" nillable="true" type="string"/>
+            <element name="orgDisallowHtmlAttachments" nillable="false" type="boolean"/>
+            <element name="orgHasPersonAccounts" nillable="false" type="boolean"/>
+            <element name="organizationId" nillable="false" type="string"/>
+            <element name="organizationMultiCurrency" nillable="false" type="boolean"/>
+            <element name="organizationName" nillable="false" type="string"/>
+            <element name="profileId" nillable="false" type="string"/>
+            <element name="roleId" nillable="true" type="string"/>
+            <element name="sessionSecondsValid" nillable="false" type="integer"/>
+            <element name="userDefaultCurrencyIsoCode" nillable="true" type="string"/>
+            <element name="userEmail" nillable="false" type="string"/>
+            <element name="userFullName" nillable="false" type="string"/>
+            <element name="userLanguage" nillable="false" type="string"/>
+            <element name="userLocale" nillable="false" type="string"/>
+            <element name="userName" nillable="false" type="string"/>
+            <element name="userTimeZone" nillable="false" type="string"/>
+            <element name="userType" nillable="false" type="string"/>
+            <element name="userUiSkin" nillable="false" type="string"/>
+        </schema>
+        <schema elementFormDefault="unqualified"
+            targetNamespace="http://schemas.tibco.com/bw/plugins/salesforce/2.0/salesforceExceptions"
+            version="" xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns2="http://schemas.tibco.com/bw/plugins/salesforce/2.0/salesforceExceptions" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <element name="SalesforcePluginException" type="tns2:SalesforcePluginExceptionType"/>
+            <complexType name="SalesforcePluginExceptionType">
+                <complexContent>
+                    <extension base="tns2:PluginExceptionType"/>
+                </complexContent>
+            </complexType>
+            <element name="SalesforceConnectionNotFoundException" type="tns2:SalesforceConnectionNotFoundExceptionType"/>
+            <complexType name="SalesforceConnectionNotFoundExceptionType">
+                <complexContent>
+                    <extension base="tns2:SalesforcePluginExceptionType">
+                        <sequence>
+                            <element name="salesforceConnection" type="string"/>
+                        </sequence>
+                    </extension>
+                </complexContent>
+            </complexType>
+            <element name="SalesforceLoginException" type="tns2:SalesforceLoginExceptionType"/>
+            <complexType name="SalesforceLoginExceptionType">
+                <complexContent>
+                    <extension base="tns2:SalesforcePluginExceptionType">
+                        <sequence>
+                            <element name="details" type="string"/>
+                        </sequence>
+                    </extension>
+                </complexContent>
+            </complexType>
+            <element name="SalesforceTimeoutException" type="tns2:SalesforceTimeoutExceptionType"/>
+            <complexType name="SalesforceTimeoutExceptionType">
+                <complexContent>
+                    <extension base="tns2:SalesforcePluginExceptionType"/>
+                </complexContent>
+            </complexType>
+            <!-- add by huqi -->
+            <element name="SalesforceExecuteSOAPMethodException" type="tns2:SalesforceExecuteSOAPMethodExceptionType"/>
+            <complexType name="SalesforceExecuteSOAPMethodExceptionType">
+                <complexContent>
+                    <extension base="tns2:SalesforcePluginExceptionType">
+                        <sequence>
+                            <element name="methodName" type="string"/>
+                            <element name="details" type="string"/>
+                            <element maxOccurs="unbounded" minOccurs="0"
+                                name="statusErrors" type="tns2:StatusError"/>
+                        </sequence>
+                    </extension>
+                </complexContent>
+            </complexType>
+            <complexType name="StatusError">
+                <sequence>
+                    <element minOccurs="0" name="recordIndex" type="xsd:int"/>
+                    <element minOccurs="0" name="statusCode" type="xsd:string"/>
+                    <element minOccurs="0" name="message" type="xsd:string"/>
+                    <element maxOccurs="unbounded" minOccurs="0"
+                        name="fields" nillable="true" type="xsd:string"/>
+                </sequence>
+            </complexType>
+            <element name="OutboundListenerException" type="tns2:OutboundListenerExceptionType"/>
+            <complexType name="OutboundListenerExceptionType">
+                <complexContent>
+                    <extension base="tns2:SalesforcePluginExceptionType">
+                        <sequence>
+                            <element name="details" type="string"/>
+                        </sequence>
+                    </extension>
+                </complexContent>
+            </complexType>
+            <complexType name="ActivityExceptionType">
+                <sequence>
+                    <element name="msg" type="string"/>
+                    <element minOccurs="0" name="msgCode" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="PluginExceptionType">
+                <complexContent>
+                    <extension base="tns2:ActivityExceptionType"/>
+                </complexContent>
+            </complexType>
+        </schema>
+        <schema elementFormDefault="unqualified"
+            targetNamespace="http://tns.tibco.com/bw/palette/internal/activityerror+bw.restjson.JsonRender"
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:Q1="http://schemas.tibco.com/bw/plugins/xml/5.0/JSONActivitiesExceptions" xmlns:tns="http://tns.tibco.com/bw/palette/internal/activityerror+bw.restjson.JsonRender">
+            <import namespace="http://schemas.tibco.com/bw/plugins/xml/5.0/JSONActivitiesExceptions"/>
+            <element name="ActivityErrorData" type="tns:ActivityErrorDataType"/>
+            <complexType name="ActivityErrorDataType">
+                <choice>
+                    <element maxOccurs="1" minOccurs="0" ref="Q1:JSONRenderException"/>
+                </choice>
+            </complexType>
+        </schema>
+        <schema elementFormDefault="unqualified"
+            targetNamespace="http://tns.tibco.com/bw/palette/internal/activityerror+bw.bwsalesforce.SalesforceGetSession"
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:Q1="http://schemas.tibco.com/bw/plugins/salesforce/2.0/salesforceExceptions" xmlns:tns="http://tns.tibco.com/bw/palette/internal/activityerror+bw.bwsalesforce.SalesforceGetSession">
+            <import namespace="http://schemas.tibco.com/bw/plugins/salesforce/2.0/salesforceExceptions"/>
+            <element name="ActivityErrorData" type="tns:ActivityErrorDataType"/>
+            <complexType name="ActivityErrorDataType">
+                <choice>
+                    <element maxOccurs="1" minOccurs="0" ref="Q1:SalesforceLoginException"/>
+                    <element maxOccurs="1" minOccurs="0" ref="Q1:SalesforceConnectionNotFoundException"/>
+                </choice>
+            </complexType>
+        </schema>
+        <xsd:schema
+            targetNamespace="http://www.tibco.com/namespaces/tnt/plugins/restinvoke+359cf6e2-c4ed-459b-a068-a8ac39e7a66a+RestInvokeInput"
+            xmlns:tns="http://www.tibco.com/namespaces/tnt/plugins/restinvoke+359cf6e2-c4ed-459b-a068-a8ac39e7a66a+RestInvokeInput" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:complexType name="RestInvokeInputType">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="0"
+                        name="MessageBody" type="tns:MessageBodyType"/>
+                    <xsd:element maxOccurs="1" minOccurs="0"
+                        name="HttpHeaders" type="tns:httpTransportHeaders"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="RestActivityInput" type="tns:RestInvokeInputType"/>
+            <xsd:complexType name="RestInvokeOutputType">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="1"
+                        name="statusCode" type="xsd:int"/>
+                    <xsd:element maxOccurs="1" minOccurs="0"
+                        name="reasonPhrase" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0"
+                        name="MessageBody" type="tns:MessageBodyType"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="RestActivityOutput" type="tns:RestInvokeOutputType"/>
+            <xsd:complexType name="MessageBodyType">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="1"
+                        name="asciiContent" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="httpTransportHeaders">
+                <xsd:sequence>
+                    <xsd:element form="unqualified" minOccurs="0"
+                        name="Accept" type="xsd:string"/>
+                    <xsd:element form="unqualified" minOccurs="0"
+                        name="Accept-Charset" type="xsd:string"/>
+                    <xsd:element form="unqualified" minOccurs="0"
+                        name="Accept-Encoding" type="xsd:string"/>
+                    <xsd:element form="unqualified" minOccurs="0"
+                        name="Content-Type" type="xsd:string"/>
+                    <xsd:element form="unqualified" minOccurs="0"
+                        name="Content-Length" type="xsd:string"/>
+                    <xsd:element form="unqualified" minOccurs="0"
+                        name="Connection" type="xsd:string"/>
+                    <xsd:element form="unqualified" minOccurs="0"
+                        name="Cookie" type="xsd:string"/>
+                    <xsd:element form="unqualified" minOccurs="0"
+                        name="Pragma" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0"
+                        name="DynamicHeaders" type="tns:dynamicHeadersType"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="HttpHeaders" type="tns:httpTransportHeaders"/>
+            <xsd:complexType name="dynamicHeadersTypeDetails">
+                <xsd:sequence>
+                    <xsd:element form="unqualified" maxOccurs="1"
+                        minOccurs="1" name="Name" type="xsd:string"/>
+                    <xsd:element form="unqualified" maxOccurs="1"
+                        minOccurs="1" name="Value" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="dynamicHeadersType">
+                <xsd:sequence>
+                    <xsd:element form="unqualified"
+                        maxOccurs="unbounded" minOccurs="0"
+                        name="Header" type="tns:dynamicHeadersTypeDetails"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+        <xsd:schema
+            targetNamespace="http://www.tibco.com/namespaces/tnt/plugins/restinvoke+359cf6e2-c4ed-459b-a068-a8ac39e7a66a+RestInvokeOutput"
+            xmlns:tns="http://www.tibco.com/namespaces/tnt/plugins/restinvoke+359cf6e2-c4ed-459b-a068-a8ac39e7a66a+RestInvokeOutput" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:complexType name="RestInvokeInputType">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="0"
+                        name="MessageBody" type="tns:MessageBodyType"/>
+                    <xsd:element maxOccurs="1" minOccurs="0"
+                        name="HttpHeaders" type="tns:httpTransportHeaders"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="RestActivityInput" type="tns:RestInvokeInputType"/>
+            <xsd:complexType name="RestInvokeOutputType">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="1"
+                        name="statusCode" type="xsd:int"/>
+                    <xsd:element maxOccurs="1" minOccurs="0"
+                        name="reasonPhrase" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0"
+                        name="MessageBody" type="tns:MessageBodyType"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="RestActivityOutput" type="tns:RestInvokeOutputType"/>
+            <xsd:complexType name="MessageBodyType">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="1"
+                        name="asciiContent" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="httpTransportHeaders">
+                <xsd:sequence>
+                    <xsd:element form="unqualified" minOccurs="0"
+                        name="Accept" type="xsd:string"/>
+                    <xsd:element form="unqualified" minOccurs="0"
+                        name="Accept-Charset" type="xsd:string"/>
+                    <xsd:element form="unqualified" minOccurs="0"
+                        name="Accept-Encoding" type="xsd:string"/>
+                    <xsd:element form="unqualified" minOccurs="0"
+                        name="Content-Type" type="xsd:string"/>
+                    <xsd:element form="unqualified" minOccurs="0"
+                        name="Content-Length" type="xsd:string"/>
+                    <xsd:element form="unqualified" minOccurs="0"
+                        name="Connection" type="xsd:string"/>
+                    <xsd:element form="unqualified" minOccurs="0"
+                        name="Cookie" type="xsd:string"/>
+                    <xsd:element form="unqualified" minOccurs="0"
+                        name="Pragma" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0"
+                        name="DynamicHeaders" type="tns:dynamicHeadersType"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="HttpHeaders" type="tns:httpTransportHeaders"/>
+            <xsd:complexType name="dynamicHeadersTypeDetails">
+                <xsd:sequence>
+                    <xsd:element form="unqualified" maxOccurs="1"
+                        minOccurs="1" name="Name" type="xsd:string"/>
+                    <xsd:element form="unqualified" maxOccurs="1"
+                        minOccurs="1" name="Value" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="dynamicHeadersType">
+                <xsd:sequence>
+                    <xsd:element form="unqualified"
+                        maxOccurs="unbounded" minOccurs="0"
+                        name="Header" type="tns:dynamicHeadersTypeDetails"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+        <schema attributeFormDefault="unqualified"
+            elementFormDefault="unqualified"
+            targetNamespace="http://schemas.tibco.com/bw/plugins/http/5.0/httpExceptions"
+            xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.tibco.com/bw/plugins/http/5.0/httpExceptions">
+            <complexType name="StatusLineType">
+                <sequence>
+                    <element name="httpVersion" type="string"/>
+                    <element name="statusCode" type="integer"/>
+                    <element name="reasonPhrase" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="HeadersType">
+                <sequence>
+                    <any maxOccurs="unbounded" minOccurs="0" processContents="lax"/>
+                </sequence>
+            </complexType>
+            <complexType name="HttpMessageType">
+                <sequence>
+                    <element name="headers" type="tns:HeadersType"/>
+                    <element minOccurs="0" name="binaryContent" type="base64Binary"/>
+                    <element minOccurs="0" name="asciiContent" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="BaseExceptionType">
+                <sequence>
+                    <element form="unqualified" name="msg" type="string"/>
+                    <element form="unqualified" name="msgCode" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="HttpExceptionType">
+                <complexContent>
+                    <extension base="tns:BaseExceptionType"/>
+                </complexContent>
+            </complexType>
+            <complexType name="HttpClientExceptionType">
+                <complexContent>
+                    <extension base="tns:HttpResponseExceptionType"/>
+                </complexContent>
+            </complexType>
+            <complexType name="HttpCommunicationExceptionType">
+                <complexContent>
+                    <extension base="tns:BaseExceptionType"/>
+                </complexContent>
+            </complexType>
+            <complexType name="HttpResponseExceptionType">
+                <complexContent>
+                    <extension base="tns:BaseExceptionType">
+                        <sequence>
+                            <element name="statusLine" type="tns:StatusLineType"/>
+                            <element minOccurs="0" name="httpMessage" type="tns:HttpMessageType"/>
+                        </sequence>
+                    </extension>
+                </complexContent>
+            </complexType>
+            <complexType name="HttpServerExceptionType">
+                <complexContent>
+                    <extension base="tns:HttpResponseExceptionType"/>
+                </complexContent>
+            </complexType>
+            <element name="HttpClientException" type="tns:HttpClientExceptionType"/>
+            <element name="HttpCommunicationException" type="tns:HttpCommunicationExceptionType"/>
+            <element name="HttpException" type="tns:HttpExceptionType"/>
+            <element name="HttpResponseException" type="tns:HttpResponseExceptionType"/>
+            <element name="HttpServerException" type="tns:HttpServerExceptionType"/>
+        </schema>
+        <schema elementFormDefault="unqualified"
+            targetNamespace="http://tns.tibco.com/bw/palette/internal/activityerror+bw.restjson.Rest"
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:Q1="http://schemas.tibco.com/bw/plugins/http/5.0/httpExceptions" xmlns:tns="http://tns.tibco.com/bw/palette/internal/activityerror+bw.restjson.Rest">
+            <import namespace="http://schemas.tibco.com/bw/plugins/http/5.0/httpExceptions"/>
+            <import namespace="http://schemas.tibco.com/bw/plugins/http/5.0/httpExceptions"/>
+            <import namespace="http://schemas.tibco.com/bw/plugins/http/5.0/httpExceptions"/>
+            <element name="ActivityErrorData" type="tns:ActivityErrorDataType"/>
+            <complexType name="ActivityErrorDataType">
+                <choice>
+                    <element maxOccurs="1" minOccurs="0" ref="Q1:HttpCommunicationException"/>
+                    <element maxOccurs="1" minOccurs="0" ref="Q1:HttpClientException"/>
+                    <element maxOccurs="1" minOccurs="0" ref="Q1:HttpServerException"/>
+                </choice>
+            </complexType>
+        </schema>
+        <schema elementFormDefault="unqualified"
+            targetNamespace="activity.jsonParser.input+3eff77af-46ac-42cb-945e-c2e98b7be7ec+ActivityInputType"
+            xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="activity.jsonParser.input+3eff77af-46ac-42cb-945e-c2e98b7be7ec+ActivityInputType">
+            <complexType name="ActivityInputClassType">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="1"
+                        name="jsonString" type="string"/>
+                </sequence>
+            </complexType>
+            <element name="ActivityInputClass" type="tns:ActivityInputClassType"/>
+        </schema>
+        <schema elementFormDefault="unqualified"
+            targetNamespace="http://tns.tibco.com/bw/palette/internal/activityerror+bw.restjson.JsonParser"
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:Q1="http://schemas.tibco.com/bw/plugins/xml/5.0/JSONActivitiesExceptions" xmlns:tns="http://tns.tibco.com/bw/palette/internal/activityerror+bw.restjson.JsonParser">
+            <import namespace="http://schemas.tibco.com/bw/plugins/xml/5.0/JSONActivitiesExceptions"/>
+            <element name="ActivityErrorData" type="tns:ActivityErrorDataType"/>
+            <complexType name="ActivityErrorDataType">
+                <choice>
+                    <element maxOccurs="1" minOccurs="0" ref="Q1:JSONParserException"/>
+                </choice>
+            </complexType>
+        </schema>
+        <schema
+            targetNamespace="urn:enterprise.soap.sforce.com_queryAllInput+e675f524-4b03-425f-a925-cb47bfe9a6fb+input"
+            xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:enterprise.soap.sforce.com_queryAllInput+e675f524-4b03-425f-a925-cb47bfe9a6fb+input">
+            <complexType name="queryAllInputType">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="0" ref="tns:connectionInfo"/>
+                    <element maxOccurs="1" minOccurs="0" name="query" type="tns:queryType"/>
+                    <element maxOccurs="1" minOccurs="0"
+                        name="query_Optional" type="tns:queryOptionalType"/>
+                </sequence>
+            </complexType>
+            <element name="queryAllInput" type="tns:queryAllInputType"/>
+            <element name="connectionInfo" nillable="false" type="tns:connectionInfoType"/>
+            <complexType name="connectionInfoType">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="0"
+                        name="serverUrl" type="string"/>
+                    <element maxOccurs="1" minOccurs="0"
+                        name="sessionId" type="string"/>
+                    <element maxOccurs="1" minOccurs="0"
+                        name="externalSessionIdUsed" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="queryType">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="0"
+                        name="batchSize" type="integer"/>
+                    <element maxOccurs="1" minOccurs="0"
+                        name="queryMain" type="tns:queryMain"/>
+                    <element maxOccurs="1" minOccurs="0" name="fields" type="tns:queryField"/>
+                </sequence>
+            </complexType>
+            <complexType name="queryMain">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:queryString"/>
+                </sequence>
+            </complexType>
+            <element name="queryString" nillable="false" type="string"/>
+            <complexType name="queryField">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="1" name="DealId"
+                        nillable="true" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="queryOptionalType">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="0" ref="tns:_configData"/>
+                    <element maxOccurs="1" minOccurs="0" ref="tns:headers"/>
+                    <element maxOccurs="1" minOccurs="0" ref="tns:SubsetSetting"/>
+                </sequence>
+            </complexType>
+            <element name="_configData" nillable="false" type="tns:_configDataType"/>
+            <complexType name="_configDataType">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="0" name="timeout" type="integer"/>
+                </sequence>
+            </complexType>
+            <element name="headers" nillable="false" type="tns:headersType"/>
+            <complexType name="headersType">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="0"
+                        name="MruHeader" type="tns:MruHeaderType"/>
+                    <element maxOccurs="1" minOccurs="0"
+                        name="PackageVersionHeader" type="tns:PackageVersionHeaderType"/>
+                </sequence>
+            </complexType>
+            <complexType name="MruHeaderType">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="1"
+                        name="updateMru" nillable="false" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="PackageVersionHeaderType">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0"
+                        name="PackageVersion" type="tns:PackageVersion"/>
+                </sequence>
+            </complexType>
+            <complexType name="PackageVersion">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:majorNumber"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:minorNumber"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:namespace"/>
+                </sequence>
+            </complexType>
+            <element name="majorNumber" nillable="false" type="integer"/>
+            <element name="minorNumber" nillable="false" type="integer"/>
+            <element name="namespace" nillable="false" type="string"/>
+            <element name="SubsetSetting" nillable="false" type="tns:SubsetSettingType"/>
+            <complexType name="SubsetSettingType">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="0"
+                        name="ProcessInSubsets" type="boolean"/>
+                    <element maxOccurs="1" minOccurs="0"
+                        name="subsetSize" type="integer"/>
+                </sequence>
+            </complexType>
+        </schema>
+        <schema attributeFormDefault="unqualified"
+            elementFormDefault="qualified"
+            targetNamespace="urn:sobject.enterprise.soap.sforce.com"
+            xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:sobject.enterprise.soap.sforce.com">
+            <complexType name="sObject">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="0" name="type"
+                        nillable="false" type="string"/>
+                    <element maxOccurs="unbounded" minOccurs="0"
+                        name="fieldsToNull" nillable="true" type="string"/>
+                    <element maxOccurs="1" minOccurs="0" name="Id"
+                        nillable="true" type="string"/>
+                    <any maxOccurs="unbounded" minOccurs="0" processContents="lax"/>
+                </sequence>
+            </complexType>
+        </schema>
+        <schema
+            targetNamespace="urn:enterprise.soap.sforce.com_queryAllOutput"
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:Q1="urn:sobject.enterprise.soap.sforce.com" xmlns:tns="urn:enterprise.soap.sforce.com_queryAllOutput">
+            <import namespace="urn:sobject.enterprise.soap.sforce.com"/>
+            <complexType name="queryAllOutputType">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="0"
+                        name="queryAllResponse" type="tns:queryAllResponseType"/>
+                </sequence>
+            </complexType>
+            <element name="queryAllOutput" type="tns:queryAllOutputType"/>
+            <complexType name="queryAllResponseType">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:result"/>
+                    <element maxOccurs="1" minOccurs="0"
+                        name="lastSubset" type="boolean"/>
+                </sequence>
+            </complexType>
+            <element name="result" nillable="false" type="tns:QueryResult"/>
+            <complexType name="QueryResult">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:done"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:queryLocator"/>
+                    <element maxOccurs="unbounded" minOccurs="0" ref="tns:records"/>
+                    <element maxOccurs="1" minOccurs="1" ref="tns:size"/>
+                </sequence>
+            </complexType>
+            <element name="done" nillable="false" type="boolean"/>
+            <element name="queryLocator" nillable="true" type="string"/>
+            <element name="records" nillable="true" type="Q1:sObject"/>
+            <element name="size" nillable="false" type="integer"/>
+        </schema>
+        <schema elementFormDefault="unqualified"
+            targetNamespace="http://tns.tibco.com/bw/palette/internal/activityerror+bw.bwsalesforce.SalesforceQuery"
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:Q1="http://schemas.tibco.com/bw/plugins/salesforce/2.0/salesforceExceptions" xmlns:tns="http://tns.tibco.com/bw/palette/internal/activityerror+bw.bwsalesforce.SalesforceQuery">
+            <import namespace="http://schemas.tibco.com/bw/plugins/salesforce/2.0/salesforceExceptions"/>
+            <element name="ActivityErrorData" type="tns:ActivityErrorDataType"/>
+            <complexType name="ActivityErrorDataType">
+                <choice>
+                    <element maxOccurs="1" minOccurs="0" ref="Q1:SalesforceExecuteSOAPMethodException"/>
+                    <element maxOccurs="1" minOccurs="0" ref="Q1:SalesforceLoginException"/>
+                    <element maxOccurs="1" minOccurs="0" ref="Q1:SalesforceConnectionNotFoundException"/>
+                </choice>
+            </complexType>
+        </schema>
+        <wsdl:definitions
+            targetNamespace="http://xmlns.example.com/20181119230232"
+            xmlns:tns="http://xmlns.example.com/20181119230232"
+            xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop"
+            xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+    </tibex:Types>
+    <tibex:ProcessInfo callable="true" createdBy="Administrator"
+        createdOn="Mon Nov 19 23:02:32 EST 2018" description=""
+        extraErrorVars="true" modifiers="public"
+        productVersion="1.1.0 V14 2018-10-03" scalable="true"
+        singleton="true" stateless="true" type="IT"/>
+    <tibex:ProcessInterface context=""
+        input="{/T1542684608558Converted/JsonSchema}deal" output="{http://www.example.com/namespaces/tns/1542685390266}Element"/>
+    <tibex:ProcessTemplateConfigurations/>
+    <notation:Diagram measurementUnit="Pixel" type="BWProcess"
+        xmlns:bwnotation="http://tns.tibco.com/bw/runtime/BWNotation"
+        xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <children type="2001">
+            <children type="5001"/>
+            <children type="3002">
+                <styles xsi:type="notation:SortingStyle"/>
+                <styles xsi:type="notation:FilteringStyle"/>
+            </children>
+            <children type="3003">
+                <styles xsi:type="notation:SortingStyle"/>
+                <styles xsi:type="notation:FilteringStyle"/>
+            </children>
+            <children type="3004">
+                <children type="4018">
+                    <children type="3018">
+                        <children type="4020">
+                            <children type="3020">
+                                <children type="4005">
+                                    <children type="3007">
+                                    <children type="4002">
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.0"/>
+                                    <layoutConstraint x="2"
+                                    xsi:type="notation:Bounds" y="2"/>
+                                    </children>
+                                    <children type="4002">
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.1"/>
+                                    <layoutConstraint x="723"
+                                    xsi:type="notation:Bounds" y="81"/>
+                                    </children>
+                                    <children type="4002">
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.2"/>
+                                    <layoutConstraint x="102"
+                                    xsi:type="notation:Bounds" y="96"/>
+                                    </children>
+                                    <children type="4002">
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.3"/>
+                                    <layoutConstraint x="235"
+                                    xsi:type="notation:Bounds" y="96"/>
+                                    </children>
+                                    <children type="4002">
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.4"/>
+                                    <layoutConstraint x="383"
+                                    xsi:type="notation:Bounds" y="96"/>
+                                    </children>
+                                    <children type="4002">
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.5"/>
+                                    <layoutConstraint x="2"
+                                    xsi:type="notation:Bounds" y="123"/>
+                                    </children>
+                                    <children type="4002">
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.6"/>
+                                    <layoutConstraint x="535"
+                                    xsi:type="notation:Bounds" y="89"/>
+                                    </children>
+                                    <children type="4002">
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.7"/>
+                                    <layoutConstraint x="647"
+                                    xsi:type="notation:Bounds" y="198"/>
+                                    </children>
+                                    <styles xsi:type="notation:DrawerStyle"/>
+                                    <styles xsi:type="notation:SortingStyle"/>
+                                    <styles xsi:type="notation:FilteringStyle"/>
+                                    <element href="//0/@process/@activity/@activity"/>
+                                    </children>
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <styles xsi:type="bwnotation:ResizingStyle"/>
+                                    <element href="//0/@process/@activity/@activity"/>
+                                    <layoutConstraint height="332"
+                                    width="880" xsi:type="notation:Bounds"/>
+                                </children>
+                                <styles xsi:type="notation:SortingStyle"/>
+                                <styles xsi:type="notation:FilteringStyle"/>
+                            </children>
+                            <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                            <styles xsi:type="bwnotation:BackgroundStyle"/>
+                            <styles xsi:type="bwnotation:ResizingStyle"/>
+                            <element href="//0/@process/@activity"/>
+                            <layoutConstraint height="384" width="636" xsi:type="notation:Bounds"/>
+                        </children>
+                        <styles xsi:type="notation:SortingStyle"/>
+                        <styles xsi:type="notation:FilteringStyle"/>
+                        <element href="//0/@process/@activity"/>
+                    </children>
+                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                    <styles xsi:type="bwnotation:BackgroundStyle"/>
+                    <styles xsi:type="bwnotation:ResizingStyle"/>
+                    <element href="//0/@process/@activity"/>
+                    <layoutConstraint height="408" width="636" x="1"
+                        xsi:type="notation:Bounds" y="1"/>
+                </children>
+                <styles xsi:type="notation:SortingStyle"/>
+                <styles xsi:type="notation:FilteringStyle"/>
+                <element href="//0/@process"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+            <element href="//0/@process"/>
+            <layoutConstraint height="408" width="1225" xsi:type="notation:Bounds"/>
+        </children>
+        <styles xsi:type="notation:DiagramStyle"/>
+        <element href="//0"/>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.3" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.0"/>
+            <bendpoints points="[25, -4, -143, 0]$[144, 0, -24, 4]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.3"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.4" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.1"/>
+            <bendpoints points="[25, 0, -101, 0]$[102, 0, -24, 0]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.5" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.2"/>
+            <bendpoints points="[0, 25, 0, -96]$[0, 97, 0, -24]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.5"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.3"/>
+            <bendpoints points="[25, -7, -75, 20]$[76, -20, -24, 7]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.4"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.6" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.4"/>
+            <bendpoints points="[6, 25, -19, -81]$[19, 82, -6, -24]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.6"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.7" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.5"/>
+            <bendpoints points="[25, 24, -87, -85]$[88, 85, -24, -24]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.7"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.1" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.6"/>
+            <bendpoints points="[16, -24, -60, 93]$[60, -92, -16, 25]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+    </notation:Diagram>
+    <tibex:NamespaceRegistry enabled="true">
+        <tibex:namespaceItem
+            namespace="http://tns.tibco.com/bw/json/1542686650609" prefix="tns1"/>
+        <tibex:namespaceItem
+            namespace="/T1542684608558Converted/JsonSchema" prefix="tns"/>
+        <tibex:namespaceItem
+            namespace="http://www.example.com/namespaces/tns/1542685390266" prefix="tns2"/>
+        <tibex:namespaceItem
+            namespace="http://www.w3.org/2001/XMLSchema" prefix="xsd"/>
+        <tibex:namespaceItem
+            namespace="http://www.tibco.com/namespaces/tnt/plugins/restinvoke+359cf6e2-c4ed-459b-a068-a8ac39e7a66a+RestInvokeInput" prefix="tns3"/>
+        <tibex:namespaceItem
+            namespace="urn:enterprise.soap.sforce.com_getSessionOutput" prefix="tns4"/>
+        <tibex:namespaceItem
+            namespace="activity.jsonParser.input+3eff77af-46ac-42cb-945e-c2e98b7be7ec+ActivityInputType" prefix="tns5"/>
+        <tibex:namespaceItem
+            namespace="urn:enterprise.soap.sforce.com_queryAllInput+e675f524-4b03-425f-a925-cb47bfe9a6fb+input" prefix="tns6"/>
+        <tibex:namespaceItem
+            namespace="http://www.w3.org/2001/XMLSchema-instance" prefix="xsi"/>
+        <tibex:namespaceItem
+            namespace="http://tns.tibco.com/bw/json/1542749952029" prefix="tns7"/>
+        <tibex:namespaceItem
+            namespace="urn:sobject.enterprise.soap.sforce.com" prefix="tns9"/>
+        <tibex:namespaceItem
+            namespace="urn:enterprise.soap.sforce.com_queryAllOutput" prefix="tns8"/>
+    </tibex:NamespaceRegistry>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://tns.tibco.com/bw/json/1542686650609"/>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="/T1542684608558Converted/JsonSchema"/>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.com/namespaces/tns/1542685390266"/>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://tns.tibco.com/bw/json/1542749952029"/>
+    <bpws:variables>
+        <bpws:variable element="ns:ProcessContext"
+            name="_processContext" sca-bpel:internal="true"/>
+        <bpws:variable element="ns0:SFCompositeOpportunityElement"
+            name="RenderJSON-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns1:ActivityOutputClass"
+            name="RenderJSON" sca-bpel:internal="true"/>
+        <bpws:variable element="ns2:ActivityErrorData"
+            name="_error_RenderJSON" sca-bpel:internal="true"/>
+        <bpws:variable element="ns:ErrorReport" name="_error" sca-bpel:internal="true"/>
+        <bpws:variable name="salesforceConnProperty"
+            sca-bpel:hotUpdate="false" sca-bpel:privateProperty="true"
+            sca-bpel:property="yes"
+            sca-bpel:sharedResourceType="{http://ns.tibco.com/bw/palette/salesforceconnection}SalesforceConnection" type="xsd:string">
+            <bpws:from>
+                <bpws:literal>multifamilyapipof.module.SalesforceConnection</bpws:literal>
+            </bpws:from>
+        </bpws:variable>
+        <bpws:variable element="ns3:getSessionInput"
+            name="SalesforceGetSession-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns4:getSessionOutput"
+            name="SalesforceGetSession" sca-bpel:internal="true"/>
+        <bpws:variable element="ns5:ActivityErrorData"
+            name="_error_SalesforceGetSession" sca-bpel:internal="true"/>
+        <bpws:variable name="httpClientResource"
+            sca-bpel:hotUpdate="false" sca-bpel:privateProperty="true"
+            sca-bpel:property="yes"
+            sca-bpel:sharedResourceType="{http://xsd.tns.tibco.com/bw/models/sharedresource/httpclient}HttpClientConfiguration" type="xsd:string">
+            <bpws:from>
+                <bpws:literal>multifamilyapipof.module.HttpClientResource</bpws:literal>
+            </bpws:from>
+        </bpws:variable>
+        <bpws:variable element="ns6:RestActivityInput"
+            name="InvokeRESTAPI-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns7:RestActivityOutput"
+            name="InvokeRESTAPI" sca-bpel:internal="true"/>
+        <bpws:variable element="ns8:ActivityErrorData"
+            name="_error_InvokeRESTAPI" sca-bpel:internal="true"/>
+        <bpws:variable element="ns9:deal" name="Start"
+            sca-bpel:internal="true" tibex:parameter="in"/>
+        <bpws:variable element="ns10:Element" name="GetSharedVariable" sca-bpel:internal="true"/>
+        <bpws:variable element="ns13:ActivityInputClass"
+            name="ParseJSON-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns14:SFOutputSchemaElement"
+            name="ParseJSON" sca-bpel:internal="true"/>
+        <bpws:variable element="ns12:ActivityErrorData"
+            name="_error_ParseJSON" sca-bpel:internal="true"/>
+        <bpws:variable element="ns15:queryAllInput"
+            name="SalesforceQueryAll-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns16:queryAllOutput"
+            name="SalesforceQueryAll" sca-bpel:internal="true"/>
+        <bpws:variable element="ns17:ActivityErrorData"
+            name="_error_SalesforceQueryAll" sca-bpel:internal="true"/>
+        <bpws:variable element="ns10:Element" name="End-input"
+            sca-bpel:internal="true" tibex:parameter="out"/>
+    </bpws:variables>
+    <bpws:extensions>
+        <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+        <bpws:extension mustUnderstand="no" namespace="http://www.tibco.com/bw/process/info"/>
+        <bpws:extension mustUnderstand="no" namespace="http://docs.oasis-open.org/ns/opencsa/sca-bpel/200801"/>
+        <bpws:extension mustUnderstand="no" namespace="http://docs.oasis-open.org/ns/opencsa/sca/200912"/>
+        <bpws:extension mustUnderstand="no" namespace="http://ns.tibco.com/bw/property"/>
+        <bpws:extension mustUnderstand="no" namespace="http://www.tibco.com/bpel/2007/extensions"/>
+    </bpws:extensions>
+    <bpws:scope name="scope">
+        <bpws:flow name="flow">
+            <bpws:links>
+                <bpws:link name="RenderJSONToSalesforceGetSession" tibex:linkType="SUCCESS"/>
+                <bpws:link name="SalesforceGetSessionToInvokeRESTAPI" tibex:linkType="SUCCESS"/>
+                <bpws:link name="StartToGetSharedVariable" tibex:linkType="SUCCESS"/>
+                <bpws:link name="GetSharedVariableToRenderJSON" tibex:linkType="SUCCESS"/>
+                <bpws:link name="InvokeRESTAPIToParseJSON" tibex:linkType="SUCCESS"/>
+                <bpws:link name="ParseJSONToSalesforceQueryAll" tibex:linkType="SUCCESS"/>
+                <bpws:link name="SalesforceQueryAllToEnd" tibex:linkType="SUCCESS"/>
+            </bpws:links>
+            <bpws:extensionActivity>
+                <tibex:receiveEvent createInstance="yes"
+                    eventTimeout="0" name="Start"
+                    tibex:xpdlId="6065bc1b-06e3-4e9f-bcd3-d1b5b50e8d71"
+                    variable="Start" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                    <bpws:sources>
+                        <bpws:source linkName="StartToGetSharedVariable"/>
+                    </bpws:sources>
+                    <tibex:eventSource>
+                        <tibex:StartEvent xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
+                    </tibex:eventSource>
+                </tibex:receiveEvent>
+            </bpws:extensionActivity>
+            <bpws:extensionActivity>
+                <tibex:activityExtension inputVariable="End-input"
+                    name="End"
+                    tibex:xpdlId="ebd13bb9-bc0a-4fdb-8a90-29bc2a5a48f5" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                    <bpws:targets>
+                        <bpws:target linkName="SalesforceQueryAllToEnd"/>
+                    </bpws:targets>
+                    <tibex:inputBindings>
+                        <tibex:inputBinding
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns2=&quot;http://www.example.com/namespaces/tns/1542685390266&quot; xmlns:tns8=&quot;urn:enterprise.soap.sforce.com_queryAllOutput&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;SalesforceQueryAll&quot;/>&lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&lt;tns2:Element>&lt;xsl:if test=&quot;$SalesforceQueryAll/queryAllResponse/tns8:result/tns8:records[1]/*[2]&quot;>&lt;tns2:LenderAccountId>&lt;xsl:value-of select=&quot;$SalesforceQueryAll/queryAllResponse/tns8:result/tns8:records[1]/*[2]&quot;/>&lt;/tns2:LenderAccountId>&lt;/xsl:if>&lt;xsl:if test=&quot;$SalesforceQueryAll/queryAllResponse/tns8:result/tns8:records[1]/*[1]&quot;>&lt;tns2:OriginatorAccountId>&lt;xsl:value-of select=&quot;$SalesforceQueryAll/queryAllResponse/tns8:result/tns8:records[1]/*[1]&quot;/>&lt;/tns2:OriginatorAccountId>&lt;/xsl:if>&lt;xsl:if test=&quot;$SalesforceQueryAll/queryAllResponse/tns8:result/tns8:records[1]/*[3]&quot;>&lt;tns2:AccountId>&lt;xsl:value-of select=&quot;$SalesforceQueryAll/queryAllResponse/tns8:result/tns8:records[1]/*[3]&quot;/>&lt;/tns2:AccountId>&lt;/xsl:if>&lt;/tns2:Element>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                    </tibex:inputBindings>
+                    <tibex:config>
+                        <bwext:BWActivity
+                            activityTypeID="bw.internal.end"
+                            xmlns:activityconfig="http://tns.tibco.com/bw/model/activityconfig"
+                            xmlns:bwext="http://tns.tibco.com/bw/model/core/bwext"
+                            xmlns:internalactivities="http://ns.tibco.com/bw/core/internalactivity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <activityConfig>
+                                <properties name="config" xsi:type="activityconfig:EMFProperty">
+                                    <type href="http://ns.tibco.com/bw/core/internalactivity#//End"/>
+                                    <value xsi:type="internalactivities:End"/>
+                                </properties>
+                            </activityConfig>
+                        </bwext:BWActivity>
+                    </tibex:config>
+                </tibex:activityExtension>
+            </bpws:extensionActivity>
+            <bpws:extensionActivity>
+                <tibex:activityExtension
+                    inputVariable="RenderJSON-input" name="RenderJSON"
+                    outputVariable="RenderJSON"
+                    tibex:xpdlId="a7708434-3032-427a-b10e-b2f646306b9a" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                    <bpws:targets>
+                        <bpws:target linkName="GetSharedVariableToRenderJSON"/>
+                    </bpws:targets>
+                    <bpws:sources>
+                        <bpws:source linkName="RenderJSONToSalesforceGetSession"/>
+                    </bpws:sources>
+                    <tibex:inputBindings>
+                        <tibex:inputBinding
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns1=&quot;http://tns.tibco.com/bw/json/1542686650609&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:tns=&quot;/T1542684608558Converted/JsonSchema&quot; xmlns:tns2=&quot;http://www.example.com/namespaces/tns/1542685390266&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;Start&quot;/>&lt;xsl:param name=&quot;GetSharedVariable&quot;/>&lt;xsl:template name=&quot;RenderJSON-input&quot; match=&quot;/&quot;>&lt;tns1:SFCompositeOpportunityElement>&lt;tns1:records>&lt;tns1:attributes>&lt;tns1:type>&lt;xsl:value-of select=&quot;&amp;quot;Opportunity&amp;quot;&quot;/>&lt;/tns1:type>&lt;tns1:referenceId>&lt;xsl:value-of select=&quot;$Start/tns:reference&quot;/>&lt;/tns1:referenceId>&lt;/tns1:attributes>&lt;tns1:Agreement_Type__c>&lt;xsl:value-of select=&quot;$Start/tns:agreementType&quot;/>&lt;/tns1:Agreement_Type__c>&lt;xsl:if test=&quot;$GetSharedVariable/tns2:AccountId&quot;>&lt;tns1:AccountId>&lt;xsl:value-of select=&quot;$GetSharedVariable/tns2:AccountId&quot;/>&lt;/tns1:AccountId>&lt;/xsl:if>&lt;tns1:Name>&lt;xsl:value-of select=&quot;$Start/tns:dealName&quot;/>&lt;/tns1:Name>&lt;tns1:StageName>&lt;xsl:value-of select=&quot;&amp;quot;Pre-Registered&amp;quot;&quot;/>&lt;/tns1:StageName>&lt;xsl:if test=&quot;$GetSharedVariable/tns2:OriginatorAccountId&quot;>&lt;tns1:Originator__c>&lt;xsl:value-of select=&quot;$GetSharedVariable/tns2:OriginatorAccountId&quot;/>&lt;/tns1:Originator__c>&lt;/xsl:if>&lt;xsl:if test=&quot;$GetSharedVariable/tns2:LenderAccountId&quot;>&lt;tns1:Lender_Contact_Name__c>&lt;xsl:value-of select=&quot;$GetSharedVariable/tns2:LenderAccountId&quot;/>&lt;/tns1:Lender_Contact_Name__c>&lt;/xsl:if>&lt;tns1:Chapter_9_Small_Loans__c>&lt;xsl:value-of select=&quot;$Start/tns:chapter9SmallLoansIndicator&quot;/>&lt;/tns1:Chapter_9_Small_Loans__c>&lt;tns1:Estimated_MBS_Issuance_Date__c>&lt;xsl:value-of select=&quot;$Start/tns:estimatedMBSIssuanceDate&quot;/>&lt;/tns1:Estimated_MBS_Issuance_Date__c>&lt;tns1:Excluded_From_Scorecard_Cap__c>&lt;xsl:value-of select=&quot;xsd:integer($Start/tns:excludedFromScorecardCapPercent)&quot;/>&lt;/tns1:Excluded_From_Scorecard_Cap__c>&lt;tns1:Execution_Type__c>&lt;xsl:value-of select=&quot;$Start/tns:executionType&quot;/>&lt;/tns1:Execution_Type__c>&lt;tns1:Loan_Purpose__c>&lt;xsl:value-of select=&quot;$Start/tns:loanPurposeType&quot;/>&lt;/tns1:Loan_Purpose__c>&lt;xsl:if test=&quot;$Start/tns:MATSStructuredType&quot;>&lt;tns1:MATS_Structured__c>&lt;xsl:value-of select=&quot;$Start/tns:MATSStructuredType&quot;/>&lt;/tns1:MATS_Structured__c>&lt;/xsl:if>&lt;tns1:Submission_Type__c>&lt;xsl:value-of select=&quot;$Start/tns:submissionType&quot;/>&lt;/tns1:Submission_Type__c>&lt;xsl:if test=&quot;$Start/tns:applicationIssuedToTheBorrowerIndicator&quot;>&lt;tns1:Application_Issued_to_the_Borrower__c>&lt;xsl:value-of select=&quot;$Start/tns:applicationIssuedToTheBorrowerIndicator&quot;/>&lt;/tns1:Application_Issued_to_the_Borrower__c>&lt;/xsl:if>&lt;xsl:if test=&quot;$Start/tns:interestRateConversionType&quot;>&lt;tns1:Interest_Rate_Conversion_Type__c>&lt;xsl:value-of select=&quot;$Start/tns:interestRateConversionType&quot;/>&lt;/tns1:Interest_Rate_Conversion_Type__c>&lt;/xsl:if>&lt;tns1:Green_Financing_Type__c>&lt;xsl:value-of select=&quot;$Start/tns:greenFinancingType&quot;/>&lt;/tns1:Green_Financing_Type__c>&lt;tns1:Amount>&lt;xsl:value-of select=&quot;xsd:integer($Start/tns:dealAmount)&quot;/>&lt;/tns1:Amount>&lt;tns1:CloseDate>&lt;xsl:value-of select=&quot;$Start/tns:estimatedLoanClosingDate&quot;/>&lt;/tns1:CloseDate>&lt;tns1:Deal_Participants__r>&lt;xsl:for-each select=&quot;$Start/tns:dealParticipants&quot;>&lt;tns1:records>&lt;tns1:attributes>&lt;tns1:type>&lt;xsl:value-of select=&quot;&amp;quot;Deal_Participant__c&amp;quot;&quot;/>&lt;/tns1:type>&lt;tns1:referenceId>&lt;xsl:value-of select=&quot;tns:reference&quot;/>&lt;/tns1:referenceId>&lt;/tns1:attributes>&lt;xsl:if test=&quot;tns:dealParticipantId&quot;>&lt;tns1:Deal_Participant__c>&lt;xsl:value-of select=&quot;tns:dealParticipantId&quot;/>&lt;/tns1:Deal_Participant__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:entityName&quot;>&lt;tns1:Entity_Name__c>&lt;xsl:value-of select=&quot;tns:entityName&quot;/>&lt;/tns1:Entity_Name__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:firstName&quot;>&lt;tns1:First_Name__c>&lt;xsl:value-of select=&quot;tns:firstName&quot;/>&lt;/tns1:First_Name__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:lastName&quot;>&lt;tns1:Last_Name__c>&lt;xsl:value-of select=&quot;tns:lastName&quot;/>&lt;/tns1:Last_Name__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:middleName&quot;>&lt;tns1:Middle_Name__c>&lt;xsl:value-of select=&quot;tns:middleName&quot;/>&lt;/tns1:Middle_Name__c>&lt;/xsl:if>&lt;tns1:Participant_Role__c>&lt;xsl:value-of select=&quot;tns:participantRoleType&quot;/>&lt;/tns1:Participant_Role__c>&lt;/tns1:records>&lt;/xsl:for-each>&lt;/tns1:Deal_Participants__r>&lt;tns1:Properties__r>&lt;xsl:for-each select=&quot;$Start/tns:properties&quot;>&lt;tns1:records>&lt;tns1:attributes>&lt;tns1:type>&lt;xsl:value-of select=&quot;&amp;quot;Property__c&amp;quot;&quot;/>&lt;/tns1:type>&lt;tns1:referenceId>&lt;xsl:value-of select=&quot;tns:reference&quot;/>&lt;/tns1:referenceId>&lt;/tns1:attributes>&lt;tns1:Name>&lt;xsl:value-of select=&quot;tns:propertyName&quot;/>&lt;/tns1:Name>&lt;xsl:if test=&quot;tns:accountsReceivablePercent&quot;>&lt;tns1:Accounts_Receivable_as_a__c>&lt;xsl:value-of select=&quot;tns:accountsReceivablePercent&quot;/>&lt;/tns1:Accounts_Receivable_as_a__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:affordabilityProgramType&quot;>&lt;tns1:Affordability_Program__c>&lt;xsl:value-of select=&quot;tns:affordabilityProgramType&quot;/>&lt;/tns1:Affordability_Program__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:ageRestrictedIndicator&quot;>&lt;tns1:Age_Restricted__c>&lt;xsl:value-of select=&quot;tns:ageRestrictedIndicator&quot;/>&lt;/tns1:Age_Restricted__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:alzheimerCareIndicator&quot;>&lt;tns1:Alzheimer_Care__c>&lt;xsl:value-of select=&quot;tns:alzheimerCareIndicator&quot;/>&lt;/tns1:Alzheimer_Care__c>&lt;/xsl:if>&lt;tns1:Alzheimer_Care_Beds__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:alzheimerCareBedCount)&quot;/>&lt;/tns1:Alzheimer_Care_Beds__c>&lt;tns1:Alzheimer_Care_Units__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:alzheimerCareUnitCount)&quot;/>&lt;/tns1:Alzheimer_Care_Units__c>&lt;tns1:Alzheimer_Care1__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:alzheimerCarePercent)&quot;/>&lt;/tns1:Alzheimer_Care1__c>&lt;tns1:Appraised_Gross_Sell_Out_Value__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:estimatedGrossSellOutValueAmount)&quot;/>&lt;/tns1:Appraised_Gross_Sell_Out_Value__c>&lt;tns1:Assisted_Living1__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:assistedLivingPercent)&quot;/>&lt;/tns1:Assisted_Living1__c>&lt;tns1:Assisted_Living_Beds__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:assistedLivingBedCount)&quot;/>&lt;/tns1:Assisted_Living_Beds__c>&lt;tns1:Assisted_Living_Units__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:assistedLivingUnitCount)&quot;/>&lt;/tns1:Assisted_Living_Units__c>&lt;xsl:if test=&quot;tns:assistedLivingIndicator&quot;>&lt;tns1:Assisted_Living__c>&lt;xsl:value-of select=&quot;tns:assistedLivingIndicator&quot;/>&lt;/tns1:Assisted_Living__c>&lt;/xsl:if>&lt;tns1:City__c>&lt;xsl:value-of select=&quot;tns:city&quot;/>&lt;/tns1:City__c>&lt;xsl:if test=&quot;tns:communityQualityRatingType&quot;>&lt;tns1:Community_Quality_Rating__c>&lt;xsl:value-of select=&quot;tns:communityQualityRatingType&quot;/>&lt;/tns1:Community_Quality_Rating__c>&lt;/xsl:if>&lt;tns1:Distance_to_Campus_Library__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:distanceToMainCampusInMiles)&quot;/>&lt;/tns1:Distance_to_Campus_Library__c>&lt;xsl:if test=&quot;tns:unsoldUnitsPosOrNegCarryIndicator&quot;>&lt;tns1:Do_the_unsold_units_generate_a_positive__c>&lt;xsl:value-of select=&quot;tns:unsoldUnitsPosOrNegCarryIndicator&quot;/>&lt;/tns1:Do_the_unsold_units_generate_a_positive__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:anySponsorOwnMoreThan40PctIndicator&quot;>&lt;tns1:Does_any_1_one_Sponsor_own_more_than_4__c>&lt;xsl:value-of select=&quot;tns:anySponsorOwnMoreThan40PctIndicator&quot;/>&lt;/tns1:Does_any_1_one_Sponsor_own_more_than_4__c>&lt;/xsl:if>&lt;tns1:Independent_Living1__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:independentLivingPercent)&quot;/>&lt;/tns1:Independent_Living1__c>&lt;tns1:Independent_Living_Beds__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:independentLivingBedCount)&quot;/>&lt;/tns1:Independent_Living_Beds__c>&lt;tns1:Independent_Living_Units__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:independentLivingUnitCount)&quot;/>&lt;/tns1:Independent_Living_Units__c>&lt;xsl:if test=&quot;tns:independentLivingIndicator&quot;>&lt;tns1:Independent_Living__c>&lt;xsl:value-of select=&quot;tns:independentLivingIndicator&quot;/>&lt;/tns1:Independent_Living__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:taxCreditComplianceIndicator&quot;>&lt;tns1:Init_7_years_of_tax_credit_compliance__c>&lt;xsl:value-of select=&quot;tns:taxCreditComplianceIndicator&quot;/>&lt;/tns1:Init_7_years_of_tax_credit_compliance__c>&lt;/xsl:if>&lt;tns1:MAH__c>&lt;xsl:value-of select=&quot;tns:MAHIndicator&quot;/>&lt;/tns1:MAH__c>&lt;tns1:Medicaid_Beds1__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:medicaidBedsPercent)&quot;/>&lt;/tns1:Medicaid_Beds1__c>&lt;tns1:Medicaid_Units1__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:medicaidUnitsPercent)&quot;/>&lt;/tns1:Medicaid_Units1__c>&lt;xsl:if test=&quot;tns:medicaidIndicator&quot;>&lt;tns1:Medicaid__c>&lt;xsl:value-of select=&quot;tns:medicaidIndicator&quot;/>&lt;/tns1:Medicaid__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:nameOfSchoolPropertyServes&quot;>&lt;tns1:Name_of_School_s_Property_Serves__c>&lt;xsl:value-of select=&quot;tns:nameOfSchoolPropertyServes&quot;/>&lt;/tns1:Name_of_School_s_Property_Serves__c>&lt;/xsl:if>&lt;tns1:New_Maintenance_Fees_as_a_of_Comparabl__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:newMaintFeesPercentOfComparableRentsPercent)&quot;/>&lt;/tns1:New_Maintenance_Fees_as_a_of_Comparabl__c>&lt;tns1:Number_of_Medicaid_Residents__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:numberOfMedicaidResidents)&quot;/>&lt;/tns1:Number_of_Medicaid_Residents__c>&lt;tns1:Number_of_Other_Subsidies_Residents__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:numberOfOtherSubsidiesResidents)&quot;/>&lt;/tns1:Number_of_Other_Subsidies_Residents__c>&lt;tns1:Number_of_Student_Properties_Owned__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:numberOfStudentUnitsOwnedBySponsor)&quot;/>&lt;/tns1:Number_of_Student_Properties_Owned__c>&lt;tns1:Number_of_Student_Units__c>&lt;xsl:value-of select=&quot;0&quot;/>&lt;/tns1:Number_of_Student_Units__c>&lt;tns1:Number_of_Units__c>&lt;xsl:value-of select=&quot;tns:numberOfUnits&quot;/>&lt;/tns1:Number_of_Units__c>&lt;xsl:if test=&quot;tns:otherAffordabilityProgramText&quot;>&lt;tns1:Other_Affordability_Program__c>&lt;xsl:value-of select=&quot;tns:otherAffordabilityProgramText&quot;/>&lt;/tns1:Other_Affordability_Program__c>&lt;/xsl:if>&lt;tns1:Other_Subsidies_Beds__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:otherSubsidiesBedsPercent)&quot;/>&lt;/tns1:Other_Subsidies_Beds__c>&lt;tns1:Other_Subsidies_Units__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:otherSubsidiesUnitsPercent)&quot;/>&lt;/tns1:Other_Subsidies_Units__c>&lt;xsl:if test=&quot;tns:otherSubsidiesIndicator&quot;>&lt;tns1:Other_Subsidies__c>&lt;xsl:value-of select=&quot;tns:otherSubsidiesIndicator&quot;/>&lt;/tns1:Other_Subsidies__c>&lt;/xsl:if>&lt;tns1:Percentage_of_Full_Time_Students__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:percentOfFullTimeStudentsToTotalStudents)&quot;/>&lt;/tns1:Percentage_of_Full_Time_Students__c>&lt;tns1:Percentage_of_Units_Sold_to_Shareholders__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:percentOfUnitsSoldToShareholders)&quot;/>&lt;/tns1:Percentage_of_Units_Sold_to_Shareholders__c>&lt;tns1:Percentage_of_Units_with_12_Month_Leases__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:percentOfUnitsWith12MonthLeases)&quot;/>&lt;/tns1:Percentage_of_Units_with_12_Month_Leases__c>&lt;tns1:Postal_Code__c>&lt;xsl:value-of select=&quot;tns:postalCode&quot;/>&lt;/tns1:Postal_Code__c>&lt;tns1:Primary_Property_Type__c>&lt;xsl:value-of select=&quot;tns:propertyType&quot;/>&lt;/tns1:Primary_Property_Type__c>&lt;tns1:Projected_Maintenance_Fee_Increase_to_ac__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:projectedMaintFeeIncrForBalancedBudgetPercent)&quot;/>&lt;/tns1:Projected_Maintenance_Fee_Increase_to_ac__c>&lt;xsl:if test=&quot;tns:locatedOnCollegeOwnedTransLineIndicator&quot;>&lt;tns1:Prop_located_on_college_owned_trans_line__c>&lt;xsl:value-of select=&quot;tns:locatedOnCollegeOwnedTransLineIndicator&quot;/>&lt;/tns1:Prop_located_on_college_owned_trans_line__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:propSubjectToMasterOrGroundIndicator&quot;>&lt;tns1:Property_Subj_to_Ground_Lease_or_Master__c>&lt;xsl:value-of select=&quot;tns:propSubjectToMasterOrGroundIndicator&quot;/>&lt;/tns1:Property_Subj_to_Ground_Lease_or_Master__c>&lt;/xsl:if>&lt;tns1:Rel_Perct_of_Undergrad_to_Grad_Students__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:percentOfUndergradToTotalStudents)&quot;/>&lt;/tns1:Rel_Perct_of_Undergrad_to_Grad_Students__c>&lt;xsl:if test=&quot;tns:rentByRoomOrByBedIndicator&quot;>&lt;tns1:Rent_By_the_Room_or_By_the_Bed__c>&lt;xsl:value-of select=&quot;tns:rentByRoomOrByBedIndicator&quot;/>&lt;/tns1:Rent_By_the_Room_or_By_the_Bed__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:rentalHomesPercent&quot;>&lt;tns1:Rental_Homes__c>&lt;xsl:value-of select=&quot;tns:rentalHomesPercent&quot;/>&lt;/tns1:Rental_Homes__c>&lt;/xsl:if>&lt;tns1:Reserve_Balance_as_a_of_Annual_Mainten__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:reserveBalanceAsOfAnnualMaintPercent)&quot;/>&lt;/tns1:Reserve_Balance_as_a_of_Annual_Mainten__c>&lt;xsl:if test=&quot;tns:certificationLicensureIndicator&quot;>&lt;tns1:Seniors_Service_License__c>&lt;xsl:value-of select=&quot;tns:certificationLicensureIndicator&quot;/>&lt;/tns1:Seniors_Service_License__c>&lt;/xsl:if>&lt;tns1:Skilled_Nursing1__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:skilledNursingPercent)&quot;/>&lt;/tns1:Skilled_Nursing1__c>&lt;tns1:Skilled_Nursing_Beds__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:skilledNursingBedCount)&quot;/>&lt;/tns1:Skilled_Nursing_Beds__c>&lt;tns1:Skilled_Nursing_Units__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:skilledNursingUnitCount)&quot;/>&lt;/tns1:Skilled_Nursing_Units__c>&lt;xsl:if test=&quot;tns:skilledNursingIndicator&quot;>&lt;tns1:Skilled_Nursing__c>&lt;xsl:value-of select=&quot;tns:skilledNursingIndicator&quot;/>&lt;/tns1:Skilled_Nursing__c>&lt;/xsl:if>&lt;tns1:Sponsor_Experience_in_Student_Market__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:sponsorExpInStudHousThisMarkt)&quot;/>&lt;/tns1:Sponsor_Experience_in_Student_Market__c>&lt;tns1:State__c>&lt;xsl:value-of select=&quot;tns:state&quot;/>&lt;/tns1:State__c>&lt;tns1:Street_Address__c>&lt;xsl:value-of select=&quot;tns:streetAddress&quot;/>&lt;/tns1:Street_Address__c>&lt;tns1:Student_Enrollment__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:studentEnrollmentCount)&quot;/>&lt;/tns1:Student_Enrollment__c>&lt;xsl:if test=&quot;tns:taxCreditExpirationDate&quot;>&lt;tns1:Tax_Credit_Expiration_Date__c>&lt;xsl:value-of select=&quot;tns:taxCreditExpirationDate&quot;/>&lt;/tns1:Tax_Credit_Expiration_Date__c>&lt;/xsl:if>&lt;tns1:Year_Built__c>&lt;xsl:value-of select=&quot;tns:yearBuilt&quot;/>&lt;/tns1:Year_Built__c>&lt;tns1:affordable_at_below_50_AMI__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:numberAffordableAtBelow50AMI)&quot;/>&lt;/tns1:affordable_at_below_50_AMI__c>&lt;tns1:affordable_at_below_60_AMI__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:numberAffordableAtBelow60AMI)&quot;/>&lt;/tns1:affordable_at_below_60_AMI__c>&lt;xsl:if test=&quot;tns:extendedUseExpirationDate&quot;>&lt;tns1:Extended_Use_Expiration_Date__c>&lt;xsl:value-of select=&quot;tns:extendedUseExpirationDate&quot;/>&lt;/tns1:Extended_Use_Expiration_Date__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:parkModelRVResortComponentIndicator&quot;>&lt;tns1:Park_Model_RV_Resort_Component__c>&lt;xsl:value-of select=&quot;tns:parkModelRVResortComponentIndicator&quot;/>&lt;/tns1:Park_Model_RV_Resort_Component__c>&lt;/xsl:if>&lt;tns1:Percentage_of_Students_at_the_Property__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:percentOfStudentsAtProperty)&quot;/>&lt;/tns1:Percentage_of_Students_at_the_Property__c>&lt;tns1:Sponsor_s_Exp_in_Stud_Hous_This_Market__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:sponsorExperienceInStudentHousing)&quot;/>&lt;/tns1:Sponsor_s_Exp_in_Stud_Hous_This_Market__c>&lt;xsl:if test=&quot;tns:yearLastRenovated&quot;>&lt;tns1:Year_Last_Renovated__c>&lt;xsl:value-of select=&quot;tns:yearLastRenovated&quot;/>&lt;/tns1:Year_Last_Renovated__c>&lt;/xsl:if>&lt;tns1:Moderate_Rehabilitation__c>&lt;xsl:value-of select=&quot;tns:moderateRehabilitationIndicator&quot;/>&lt;/tns1:Moderate_Rehabilitation__c>&lt;tns1:Rehabilitation_Work_Escrow_Amount__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:rehabilitationWorkEscrowAmount)&quot;/>&lt;/tns1:Rehabilitation_Work_Escrow_Amount__c>&lt;tns1:Rehabilitation_Work_unit__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:rehabilitationWorkPerUnitAmount)&quot;/>&lt;/tns1:Rehabilitation_Work_unit__c>&lt;tns1:Green_Building_Certification_Type__c>&lt;xsl:value-of select=&quot;tns:greenBuildingCertificationType&quot;/>&lt;/tns1:Green_Building_Certification_Type__c>&lt;xsl:if test=&quot;tns:lesseeAffiliationType&quot;>&lt;tns1:Lessee_Affiliation__c>&lt;xsl:value-of select=&quot;tns:lesseeAffiliationType&quot;/>&lt;/tns1:Lessee_Affiliation__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:managementAgreementIndicator&quot;>&lt;tns1:Management_Agreement__c>&lt;xsl:value-of select=&quot;tns:managementAgreementIndicator&quot;/>&lt;/tns1:Management_Agreement__c>&lt;/xsl:if>&lt;tns1:NCF_to_Lease_Ratio__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:NCFToLeaseRatio)&quot;/>&lt;/tns1:NCF_to_Lease_Ratio__c>&lt;xsl:if test=&quot;tns:operatingLeaseIndicator&quot;>&lt;tns1:Operating_Lease__c>&lt;xsl:value-of select=&quot;tns:operatingLeaseIndicator&quot;/>&lt;/tns1:Operating_Lease__c>&lt;/xsl:if>&lt;/tns1:records>&lt;/xsl:for-each>&lt;/tns1:Properties__r>&lt;/tns1:records>&lt;/tns1:SFCompositeOpportunityElement>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                    </tibex:inputBindings>
+                    <tibex:config>
+                        <bwext:BWActivity
+                            activityTypeID="bw.restjson.JsonRender"
+                            xmlns:activityconfig="http://tns.tibco.com/bw/model/activityconfig"
+                            xmlns:bwext="http://tns.tibco.com/bw/model/core/bwext"
+                            xmlns:restjson="http://ns.tibco.com/bw/palette/restjson" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <activityConfig>
+                                <properties name="config" xsi:type="activityconfig:EMFProperty">
+                                    <type href="http://ns.tibco.com/bw/palette/restjson#//JsonRender"/>
+                                    <value jsonOutputStyle="None"
+                                    schemaType="Xsd" xsi:type="restjson:JsonRender">
+                                    <inputEditorElement href="platform:/resource/MultiFamilyAPIPoF.module/Schemas/SFCompositeOpportunityResource.xsd#//SFCompositeOpportunityElement;XSDElementDeclaration"/>
+                                    </value>
+                                </properties>
+                            </activityConfig>
+                        </bwext:BWActivity>
+                    </tibex:config>
+                </tibex:activityExtension>
+            </bpws:extensionActivity>
+            <bpws:extensionActivity>
+                <tibex:activityExtension
+                    inputVariable="SalesforceGetSession-input"
+                    name="SalesforceGetSession"
+                    outputVariable="SalesforceGetSession"
+                    tibex:xpdlId="ab434356-8fd8-4348-bbe6-0977bd1bb78a" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                    <bpws:targets>
+                        <bpws:target linkName="RenderJSONToSalesforceGetSession"/>
+                    </bpws:targets>
+                    <bpws:sources>
+                        <bpws:source linkName="SalesforceGetSessionToInvokeRESTAPI"/>
+                    </bpws:sources>
+                    <tibex:inputBindings>
+                        <tibex:inputBinding
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns10=&quot;urn:enterprise.soap.sforce.com_getSessionInput&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:template name=&quot;SalesforceGetSession-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns10:getSessionInput/>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                    </tibex:inputBindings>
+                    <tibex:config>
+                        <bwext:BWActivity
+                            activityTypeID="bw.bwsalesforce.SalesforceGetSession"
+                            xmlns:activityconfig="http://tns.tibco.com/bw/model/activityconfig"
+                            xmlns:bwext="http://tns.tibco.com/bw/model/core/bwext"
+                            xmlns:bwsalesforce="http://ns.tibco.com/bw/palette/bwsalesforce" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <activityConfig>
+                                <properties name="config" xsi:type="activityconfig:EMFProperty">
+                                    <type href="http://ns.tibco.com/bw/palette/bwsalesforce#//SalesforceGetSession"/>
+                                    <value
+                                    salesforceConnection="salesforceConnProperty"
+                                    wsdlPath="/SalesforceResources/Dedev1.wsdl" xsi:type="bwsalesforce:SalesforceGetSession"/>
+                                </properties>
+                            </activityConfig>
+                        </bwext:BWActivity>
+                    </tibex:config>
+                </tibex:activityExtension>
+            </bpws:extensionActivity>
+            <bpws:extensionActivity>
+                <tibex:activityExtension
+                    governedObjectTypes="BWHttpReference"
+                    inputVariable="InvokeRESTAPI-input"
+                    name="InvokeRESTAPI" outputVariable="InvokeRESTAPI"
+                    tibex:xpdlId="359cf6e2-c4ed-459b-a068-a8ac39e7a66a" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                    <bpws:targets>
+                        <bpws:target linkName="SalesforceGetSessionToInvokeRESTAPI"/>
+                    </bpws:targets>
+                    <bpws:sources>
+                        <bpws:source linkName="InvokeRESTAPIToParseJSON"/>
+                    </bpws:sources>
+                    <tibex:inputBindings>
+                        <tibex:inputBinding
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns3=&quot;http://www.tibco.com/namespaces/tnt/plugins/restinvoke+359cf6e2-c4ed-459b-a068-a8ac39e7a66a+RestInvokeInput&quot; xmlns:tns4=&quot;urn:enterprise.soap.sforce.com_getSessionOutput&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;SalesforceGetSession&quot;/>&lt;xsl:param name=&quot;RenderJSON&quot;/>&lt;xsl:template name=&quot;InvokeRESTAPI-input&quot; match=&quot;/&quot;>&lt;tns3:RestActivityInput>&lt;MessageBody>&lt;asciiContent>&lt;xsl:value-of select=&quot;$RenderJSON/jsonString&quot;/>&lt;/asciiContent>&lt;/MessageBody>&lt;HttpHeaders>&lt;DynamicHeaders>&lt;Header>&lt;Name>&lt;xsl:value-of select=&quot;&amp;quot;Authorization&amp;quot;&quot;/>&lt;/Name>&lt;Value>&lt;xsl:value-of select=&quot;concat(&amp;quot;Bearer &amp;quot;, $SalesforceGetSession/tns4:loginResponse/tns4:result/tns4:sessionId)&quot;/>&lt;/Value>&lt;/Header>&lt;/DynamicHeaders>&lt;/HttpHeaders>&lt;/tns3:RestActivityInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                    </tibex:inputBindings>
+                    <tibex:config>
+                        <bwext:BWActivity
+                            activityTypeID="bw.restjson.Rest"
+                            xmlns:activityconfig="http://tns.tibco.com/bw/model/activityconfig"
+                            xmlns:bwext="http://tns.tibco.com/bw/model/core/bwext"
+                            xmlns:restjson="http://ns.tibco.com/bw/palette/restjson" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <activityConfig>
+                                <properties name="config" xsi:type="activityconfig:EMFProperty">
+                                    <type href="http://ns.tibco.com/bw/palette/restjson#//RestInvokeActivity"/>
+                                    <value
+                                    httpClientSR="httpClientResource"
+                                    httpMethod="POST"
+                                    requestContentType="JSON"
+                                    resourcePath="/services/data/v43.0/composite/tree/Opportunity"
+                                    responseAcceptType="JSON" xsi:type="restjson:RestInvokeActivity"/>
+                                </properties>
+                            </activityConfig>
+                        </bwext:BWActivity>
+                    </tibex:config>
+                </tibex:activityExtension>
+            </bpws:extensionActivity>
+            <bpws:extensionActivity>
+                <tibex:extActivity name="GetSharedVariable"
+                    outputVariable="GetSharedVariable"
+                    tibex:xpdlId="6fdb42e7-5719-4d2f-926b-67bf4a28aa89"
+                    type="bw.internal.getSharedVariable" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                    <bpws:targets>
+                        <bpws:target linkName="StartToGetSharedVariable"/>
+                    </bpws:targets>
+                    <bpws:sources>
+                        <bpws:source linkName="GetSharedVariableToRenderJSON"/>
+                    </bpws:sources>
+                    <tibex:GetSharedVariable inline="true"
+                        variableName="SFObjectssharedvar" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
+                </tibex:extActivity>
+            </bpws:extensionActivity>
+            <bpws:extensionActivity>
+                <tibex:activityExtension inputVariable="ParseJSON-input"
+                    name="ParseJSON" outputVariable="ParseJSON"
+                    tibex:xpdlId="3eff77af-46ac-42cb-945e-c2e98b7be7ec" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                    <bpws:targets>
+                        <bpws:target linkName="InvokeRESTAPIToParseJSON"/>
+                    </bpws:targets>
+                    <bpws:sources>
+                        <bpws:source linkName="ParseJSONToSalesforceQueryAll"/>
+                    </bpws:sources>
+                    <tibex:inputBindings>
+                        <tibex:inputBinding
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns5=&quot;activity.jsonParser.input+3eff77af-46ac-42cb-945e-c2e98b7be7ec+ActivityInputType&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;InvokeRESTAPI&quot;/>&lt;xsl:template name=&quot;ParseJSON-input&quot; match=&quot;/&quot;>&lt;tns5:ActivityInputClass>&lt;jsonString>&lt;xsl:value-of select=&quot;$InvokeRESTAPI/MessageBody/asciiContent&quot;/>&lt;/jsonString>&lt;/tns5:ActivityInputClass>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                    </tibex:inputBindings>
+                    <tibex:config>
+                        <bwext:BWActivity
+                            activityTypeID="bw.restjson.JsonParser"
+                            xmlns:activityconfig="http://tns.tibco.com/bw/model/activityconfig"
+                            xmlns:bwext="http://tns.tibco.com/bw/model/core/bwext"
+                            xmlns:restjson="http://ns.tibco.com/bw/palette/restjson" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <activityConfig>
+                                <properties name="config" xsi:type="activityconfig:EMFProperty">
+                                    <type href="http://ns.tibco.com/bw/palette/restjson#//JsonParser"/>
+                                    <value jsonInputStyle="None"
+                                    schemaType="Xsd" xsi:type="restjson:JsonParser">
+                                    <outputEditorElement href="platform:/resource/MultiFamilyAPIPoF.module/Schemas/SFOutputSchemaResource.xsd#//SFOutputSchemaElement;XSDElementDeclaration"/>
+                                    </value>
+                                </properties>
+                            </activityConfig>
+                        </bwext:BWActivity>
+                    </tibex:config>
+                </tibex:activityExtension>
+            </bpws:extensionActivity>
+            <bpws:extensionActivity>
+                <tibex:activityExtension
+                    inputVariable="SalesforceQueryAll-input"
+                    name="SalesforceQueryAll"
+                    outputVariable="SalesforceQueryAll"
+                    tibex:xpdlId="e675f524-4b03-425f-a925-cb47bfe9a6fb" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                    <bpws:targets>
+                        <bpws:target linkName="ParseJSONToSalesforceQueryAll"/>
+                    </bpws:targets>
+                    <bpws:sources>
+                        <bpws:source linkName="SalesforceQueryAllToEnd"/>
+                    </bpws:sources>
+                    <tibex:inputBindings>
+                        <tibex:inputBinding
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns6=&quot;urn:enterprise.soap.sforce.com_queryAllInput+e675f524-4b03-425f-a925-cb47bfe9a6fb+input&quot; xmlns:tns7=&quot;http://tns.tibco.com/bw/json/1542749952029&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;ParseJSON&quot;/>&#xa;    &lt;xsl:template name=&quot;SalesforceQueryAll-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns6:queryAllInput>&#xa;            &lt;query>&#xa;                &lt;fields>&#xa;                    &lt;DealId>&#xa;                        &lt;xsl:choose>&#xa;                            &lt;xsl:when test=&quot;exists($ParseJSON/tns7:results[1]/tns7:id)&quot;>&#xa;                                &lt;xsl:value-of select=&quot;$ParseJSON/tns7:results[1]/tns7:id&quot;/>&#xa;                            &lt;/xsl:when>&#xa;                            &lt;xsl:otherwise>&#xa;                                &lt;xsl:attribute name=&quot;xsi:nil&quot;>true&lt;/xsl:attribute>&#xa;                            &lt;/xsl:otherwise>&#xa;                        &lt;/xsl:choose>&#xa;                    &lt;/DealId>&#xa;                &lt;/fields>&#xa;            &lt;/query>&#xa;        &lt;/tns6:queryAllInput>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                    </tibex:inputBindings>
+                    <tibex:config>
+                        <bwext:BWActivity
+                            activityTypeID="bw.bwsalesforce.SalesforceQuery"
+                            xmlns:activityconfig="http://tns.tibco.com/bw/model/activityconfig"
+                            xmlns:bwext="http://tns.tibco.com/bw/model/core/bwext"
+                            xmlns:bwsalesforce="http://ns.tibco.com/bw/palette/bwsalesforce" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <activityConfig>
+                                <properties name="config" xsi:type="activityconfig:EMFProperty">
+                                    <type href="http://ns.tibco.com/bw/palette/bwsalesforce#//SalesforceQuery"/>
+                                    <value
+                                    query="SELECT deal_id__c FROM opportunity WHERE id =?"
+                                    queryType="Query"
+                                    salesforceConnection="salesforceConnProperty"
+                                    wsdlPath="/SalesforceResources/Dedev1.wsdl" xsi:type="bwsalesforce:SalesforceQuery">
+                                    <PreparedParameters
+                                    DataType="12"
+                                    DataTypeDisplayValue="STRING" ParameterName="DealId"/>
+                                    </value>
+                                </properties>
+                            </activityConfig>
+                        </bwext:BWActivity>
+                    </tibex:config>
+                </tibex:activityExtension>
+            </bpws:extensionActivity>
+        </bpws:flow>
+    </bpws:scope>
+</bpws:process>

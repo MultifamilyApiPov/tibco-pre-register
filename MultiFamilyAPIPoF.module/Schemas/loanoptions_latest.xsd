@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="/T1541790007664Converted/JsonSchema" xmlns:tns="/T1541790007664Converted/JsonSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="LoanOption" type="tns:LoanOption"/>
+    <xs:complexType name="LoanOption">
+        <xs:sequence>
+            <xs:element name="dealId" type="xs:double"/>
+            <xs:element name="loanAmount">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="1"/>
+                        <xs:maxInclusive value="10000000000000000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Type" type="xs:string"/>
+            <xs:element name="Status">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Draft"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="Comments">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="0"/>
+                        <xs:maxLength value="200"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="interestType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Fixed Rate"/>
+                        <xs:enumeration value="Variable Rate"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="variableProductType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="SARM"/>
+                        <xs:enumeration value="DMBS"/>
+                        <xs:enumeration value="ARM 7/6"/>
+                        <xs:enumeration value="ARM 7/4"/>
+                        <xs:enumeration value="Fixed+1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="lienPosition">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="1"/>
+                        <xs:maxInclusive value="3"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="supplementalType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Coterminous"/>
+                        <xs:enumeration value="Non-Coterminous"/>
+                        <xs:enumeration value="DUS Split 2nd"/>
+                        <xs:enumeration value="New Loan Test"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="exercisingTierDroppingOption">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Yes"/>
+                        <xs:enumeration value="No"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="loanTermMonths">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="1"/>
+                        <xs:maxInclusive value="480"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="interestOnlyPeriodMonths">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="0"/>
+                        <xs:maxInclusive value="480"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="amortizationTermMonths">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="1"/>
+                        <xs:maxInclusive value="480"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="lossSharingPercent">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="0"/>
+                        <xs:maxInclusive value="100"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="prepaymentComponent1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Yield Maintenance"/>
+                        <xs:enumeration value="Prepayment Lockout"/>
+                        <xs:enumeration value="Declining Premium"/>
+                        <xs:enumeration value="Defeasance"/>
+                        <xs:enumeration value="Defeasance Lockout"/>
+                        <xs:enumeration value="Fee Maintenance"/>
+                        <xs:enumeration value="Other Prepayment Premium"/>
+                        <xs:enumeration value="1%  Fixed Prepayment"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="prepaymentComponenttoMonths1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="0"/>
+                        <xs:maxInclusive value="480"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="prepaymentComponent2">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Yield Maintenance"/>
+                        <xs:enumeration value="Prepayment Lockout"/>
+                        <xs:enumeration value="Declining Premium"/>
+                        <xs:enumeration value="Defeasance"/>
+                        <xs:enumeration value="Defeasance Lockout"/>
+                        <xs:enumeration value="Fee Maintenance"/>
+                        <xs:enumeration value="Other Prepayment Premium"/>
+                        <xs:enumeration value="1%  Fixed Prepayment"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="prepaymentComponenttoMonths2">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="0"/>
+                        <xs:maxInclusive value="480"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="decliningPremiumSchedule">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="5-4-3-2-1-1-1-1-1-1"/>
+                        <xs:enumeration value="5-1-1-1-1-1-1-1-1-1"/>
+                        <xs:enumeration value="5-4-3-2-1-1-1"/>
+                        <xs:enumeration value="5-1-1-1-1-1-1"/>
+                        <xs:enumeration value="5-4-3-2-1"/>
+                        <xs:enumeration value="5-5-4-4-3-3-2-2-1-1"/>
+                        <xs:enumeration value="10-10-5-4-3-2-1"/>
+                        <xs:enumeration value="5-1-1-1-1"/>
+                        <xs:enumeration value="5-5-5-5-4-4-3-3-2-2-1-1"/>
+                        <xs:enumeration value="5-5-5-5-5-5-5-4-4-3-3-2-2-1-1"/>
+                        <xs:enumeration value="5-5-5-5-5-5-5-4-4-3-3-2-2-1-1-1-1-1"/>
+                        <xs:enumeration value="5-5-5-5-5-5-5-4-4-3-3-2-2-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="otherPrepaymentPremiumSchedule" type="xs:string"/>
+            <xs:element name="propertyGrossPotentialRent">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="propertyEconomicVacancyAmount" type="xs:double"/>
+            <xs:element name="propertyOtherIncome">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="propertyManagementFee">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="propertyRealEstateTaxes">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="propertyInsurance">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="propertyOtherExpenses">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="propertyReplacementReserves">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="propertyActualCooperativeNCF" type="xs:double"/>
+            <xs:element minOccurs="0" name="propertyPurchasePrice">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="propertyCost">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="propertyUnderwrittenValue">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="propertyUnitCount">
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="5"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="x1stLienInterestType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Fixed Rate"/>
+                        <xs:enumeration value="Variable Rate"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="x1stLienOriginalLoanAmount" type="xs:double"/>
+            <xs:element minOccurs="0" name="x1stLienActualFixedFixedEquivalentInterestRate" type="xs:double"/>
+            <xs:element minOccurs="0" name="x1stLienLoanTermMonths" type="xs:double"/>
+            <xs:element minOccurs="0" name="x1stLienInterestOnlyPeriodMonths" type="xs:double"/>
+            <xs:element minOccurs="0" name="x1stLienAmortizationTermMonths" type="xs:double"/>
+            <xs:element minOccurs="0" name="x1stLienVariableUWInterestRate" type="xs:double"/>
+            <xs:element minOccurs="0" name="x1stLienPurchasedCapStrikeRate" type="xs:double"/>
+            <xs:element minOccurs="0" name="x1stLienInterestBasis">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Actual/360"/>
+                        <xs:enumeration value="30/360"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="x1stLienLoanMaturityDate" type="xs:date"/>
+            <xs:element minOccurs="0" name="x1stLienCurrentUPBAmount" type="xs:double"/>
+            <xs:element minOccurs="0" name="x1stLienRequiredMinDSCRforLoanSizing" type="xs:double"/>
+            <xs:element minOccurs="0" name="x2ndLienInterestType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Fixed Rate"/>
+                        <xs:enumeration value="Variable Rate"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="x2ndLienOriginalLoanAmount" type="xs:double"/>
+            <xs:element minOccurs="0" name="x2ndLienActualFixedFixedEquivalentInterestRate" type="xs:double"/>
+            <xs:element minOccurs="0" name="x2ndLienLoanTermMonths" type="xs:double"/>
+            <xs:element minOccurs="0" name="x2ndLienInterestOnlyPeriodMonths" type="xs:double"/>
+            <xs:element minOccurs="0" name="x2ndLienAmortizationTermMonths" type="xs:double"/>
+            <xs:element minOccurs="0" name="x2ndLienVariableUWInterestRate" type="xs:double"/>
+            <xs:element minOccurs="0" name="x2ndLienPurchasedCapStrikeRate" type="xs:double"/>
+            <xs:element minOccurs="0" name="x2ndLienInterestBasis">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Actual/360"/>
+                        <xs:enumeration value="30/360"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="x2ndLienLoanMaturityDate" type="xs:date"/>
+            <xs:element minOccurs="0" name="x2ndLienCurrentUPBAmount" type="xs:double"/>
+            <xs:element minOccurs="0" name="x2ndLienRequiredMinDSCRforLoanSizing" type="xs:double"/>
+            <xs:element name="pricingMethod">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Standard"/>
+                        <xs:enumeration value="Enhanced Standard"/>
+                        <xs:enumeration value="Tier Plus"/>
+                        <xs:enumeration value="Tier Plus/Plus"/>
+                        <xs:enumeration value="First Level Lender Delegated"/>
+                        <xs:enumeration value="Second Level Lender Delegated"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="greenFinancingType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="N/A"/>
+                        <xs:enumeration value="Green Rewards"/>
+                        <xs:enumeration value="Green Preservation Plus"/>
+                        <xs:enumeration value="Green Building Certification "/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="latestPricingMemoGuarantyFee" type="xs:double"/>
+            <xs:element name="latestPricingMemoServicingFee" type="xs:double"/>
+            <xs:element name="commitmentPerioddays" type="xs:double"/>
+            <xs:element name="rateLockType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Standard"/>
+                        <xs:enumeration value="Streamlined"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="interestBasis">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Actual/360"/>
+                        <xs:enumeration value="30/360"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="loanPurchasePriceofpar" type="xs:double"/>
+            <xs:element minOccurs="0" name="excessOriginationPremiumAmount" type="xs:double"/>
+            <xs:element minOccurs="0" name="estimatedOriginationFee" type="xs:double"/>
+            <xs:element minOccurs="0" name="originationFeePaidtoBroker" type="xs:double"/>
+            <xs:element minOccurs="0" name="originationFeePaidtoCorrespondent" type="xs:double"/>
+            <xs:element name="fixedIndexRateType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="1-Month Treasury Bill"/>
+                        <xs:enumeration value="3-Month Treasury Bill"/>
+                        <xs:enumeration value="6-Month Treasury Bill"/>
+                        <xs:enumeration value="1-Year Treasury Note"/>
+                        <xs:enumeration value="2-Year Treasury Note"/>
+                        <xs:enumeration value="3-Year Treasury Note"/>
+                        <xs:enumeration value="5-Year Treasury Note"/>
+                        <xs:enumeration value="7-Year Treasury Note"/>
+                        <xs:enumeration value="10-Year Treasury Note"/>
+                        <xs:enumeration value="30-Year Treasury Note"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="treasuryRate" type="xs:double"/>
+            <xs:element name="totalFixedRateInvestorSpread" type="xs:double"/>
+            <xs:element name="requestedFixedRateGuarantyFee" type="xs:double"/>
+            <xs:element name="requestedFixedRateServicingFee" type="xs:double"/>
+            <xs:element name="otherFixedRateFeeSpread" type="xs:double"/>
+            <xs:element minOccurs="0" name="indexRateType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="11 FHLB COFI (1 Month)"/>
+                        <xs:enumeration value="11 FHLB COFI (6 Month)"/>
+                        <xs:enumeration value="1 Year CMT Weekly Average Treasury"/>
+                        <xs:enumeration value="3 Year CMT Weekly Average Treasury"/>
+                        <xs:enumeration value="5 Year CMT Weekly Average Treasury"/>
+                        <xs:enumeration value="Wall Street Journal Prime Rate"/>
+                        <xs:enumeration value="1 Month LIBOR"/>
+                        <xs:enumeration value="3 Month LIBOR"/>
+                        <xs:enumeration value="6 Month LIBOR"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="indexRate" type="xs:double"/>
+            <xs:element minOccurs="0" name="totalVariableRateInvestorSpread" type="xs:double"/>
+            <xs:element minOccurs="0" name="requestedVariableRateGuarantyFee" type="xs:double"/>
+            <xs:element minOccurs="0" name="requestedVariableRateServicingFee" type="xs:double"/>
+            <xs:element minOccurs="0" name="capCostFactor" type="xs:double"/>
+            <xs:element minOccurs="0" name="underwrittenStressMaxLifetimePassThruRate" type="xs:double"/>
+            <xs:element minOccurs="0" name="sARMInitialCapTermMonths" type="xs:double"/>
+            <xs:element minOccurs="0" name="sARMMinCapStrikeRate" type="xs:double"/>
+            <xs:element minOccurs="0" name="uWInterestRateFloorperGuide" type="xs:double"/>
+            <xs:element name="guideTierLevel">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Tier 2"/>
+                        <xs:enumeration value="Tier 3"/>
+                        <xs:enumeration value="Tier 4"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="guideMinActualCooperativeDSCR" type="xs:double"/>
+            <xs:element name="guideMinUWDSCRperGuide" type="xs:double"/>
+            <xs:element name="guideMaximumLTV" type="xs:double"/>
+            <xs:element minOccurs="0" name="guideFRTMinActualCooperativeDSCR" type="xs:double"/>
+            <xs:element minOccurs="0" name="guideFRTMinUWDSCRperGuide" type="xs:double"/>
+            <xs:element minOccurs="0" name="guideFRTLTV" type="xs:double"/>
+            <xs:element name="requestedTierLevel">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Tier 2"/>
+                        <xs:enumeration value="Tier 3"/>
+                        <xs:enumeration value="Tier 4"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="requestedMinActualCooperativeDSCR" type="xs:double"/>
+            <xs:element name="requestedMinUWDSCRperGuide" type="xs:double"/>
+            <xs:element name="requestedMinAmortizingUWNCFDSCR" type="xs:double"/>
+            <xs:element name="requestedMaximumLTV" type="xs:double"/>
+            <xs:element minOccurs="0" name="requestedMaximumLTC" type="xs:double"/>
+            <xs:element minOccurs="0" name="requestedFRTMinActualNCFCOOPDSCR" type="xs:double"/>
+            <xs:element minOccurs="0" name="requestedFRTMinUWDSCRperGuide" type="xs:double"/>
+            <xs:element minOccurs="0" name="requestedFRTMinAmortizingUWNCFDSCR" type="xs:double"/>
+            <xs:element minOccurs="0" name="requestedFRTLTV" type="xs:double"/>
+            <xs:element minOccurs="0" name="expectedExitRefinanceCosts" type="xs:double"/>
+            <xs:element minOccurs="0" name="expectedExitAmortizationTerm" type="xs:double"/>
+            <xs:element minOccurs="0" name="expectedExitMinUWDSCRperGuide" type="xs:double"/>
+            <xs:element minOccurs="0" name="expectedExitMaximumLTV" type="xs:double"/>
+            <xs:element minOccurs="0" name="expectedExitRefinanceInterestRate" type="xs:double"/>
+            <xs:element minOccurs="0" name="expectedExitTerminalCapRate" type="xs:double"/>
+            <xs:element minOccurs="0" name="mezzanineandPreferredEquityDebtService" type="xs:double"/>
+            <xs:element minOccurs="0" name="subordinateFinancing1" type="xs:double"/>
+            <xs:element minOccurs="0" name="subordinateFinancing2" type="xs:double"/>
+            <xs:element minOccurs="0" name="subordinateFinancing3" type="xs:double"/>
+            <xs:element minOccurs="0" name="mezzPreferredEquity1" type="xs:double"/>
+            <xs:element minOccurs="0" name="mezzPreferredEquity2" type="xs:double"/>
+            <xs:element minOccurs="0" name="lIHTCEquity" type="xs:double"/>
+            <xs:element minOccurs="0" name="otherSources" type="xs:double"/>
+            <xs:element minOccurs="0" name="payoffExistingMortgageLoan" type="xs:double"/>
+            <xs:element minOccurs="0" name="prepaymentPremium" type="xs:double"/>
+            <xs:element minOccurs="0" name="propertyDevelopmentConstructionCost" type="xs:double"/>
+            <xs:element minOccurs="0" name="affiliatedMezzanineDebtorPreferredEquityPayoff" type="xs:double"/>
+            <xs:element minOccurs="0" name="nonAffiliatedMezzanineDebtorPreferredEquityPayoff" type="xs:double"/>
+            <xs:element minOccurs="0" name="propertyFundedCapitalImprovements" type="xs:double"/>
+            <xs:element minOccurs="0" name="propertyFundedCapitalExpendituresReplacementReserveAccount" type="xs:double"/>
+            <xs:element minOccurs="0" name="propertyFundedCompletionRepairs" type="xs:double"/>
+            <xs:element minOccurs="0" name="propertyFundedOtherEscrows" type="xs:double"/>
+            <xs:element minOccurs="0" name="interestRateCapHedgingFees" type="xs:double"/>
+            <xs:element minOccurs="0" name="originationFees" type="xs:double"/>
+            <xs:element minOccurs="0" name="lenderClosingTransactionFees" type="xs:double"/>
+            <xs:element minOccurs="0" name="thirdPartyClosingTransactionFees" type="xs:double"/>
+            <xs:element minOccurs="0" name="otherUses" type="xs:double"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

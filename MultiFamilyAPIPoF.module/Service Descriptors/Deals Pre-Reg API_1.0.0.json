@@ -1,0 +1,744 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Deals Pre-Reg API",
+    "description": "Deals endpoint",
+    "version": "1.0.0",
+    "x-lastModified": "Nov 20, 2018 18:14PM PST"
+  },
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "definitions": {
+    "deal": {
+      "type": "object",
+      "required": [
+        "reference",
+        "agreementType",
+        "dealAmount",
+        "chapter9SmallLoansIndicator",
+        "estimatedLoanClosingDate",
+        "estimatedMBSIssuanceDate",
+        "executionType",
+        "greenFinancingType",
+        "lenderContactEmail",
+        "loanPurposeType",
+        "dealName",
+        "originatorEmail",
+        "submissionType"
+      ],
+      "properties": {
+        "reference": {
+          "type": "string",
+          "description": "A unique label used to identify this particular deal."
+        },
+        "agreementType": {
+          "type": "string",
+          "enum": [
+            "DUS",
+            "Non-DUS",
+            "Negotiated Purchase"
+          ]
+        },
+        "applicationIssuedToTheBorrowerIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes"
+          ]
+        },
+        "chapter9SmallLoansIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes"
+          ]
+        },
+        "dealAmount": {
+          "type": "number",
+          "format": ""
+        },
+        "dealName": {
+          "type": "string"
+        },
+        "estimatedLoanClosingDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "estimatedMBSIssuanceDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "excludedFromScorecardCapPercent": {
+          "type": "number",
+          "format": "double"
+        },
+        "executionType": {
+          "type": "string",
+          "enum": [
+            "Bond Credit Enhancement",
+            "Cash",
+            "DMBS",
+            "MBS"
+          ]
+        },
+        "greenFinancingType": {
+          "type": "string",
+          "enum": [
+            "N/A",
+            "Green Rewards",
+            "Green Preservation Plus",
+            "Green Building Certification"
+          ]
+        },
+        "interestRateConversionType": {
+          "type": "string",
+          "enum": [
+            "N/A",
+            "ARM to Fixed Conversion"
+          ]
+        },
+        "lenderContactEmail": {
+          "type": "string"
+        },
+        "loanPurposeType": {
+          "type": "string",
+          "enum": [
+            "Acquisition",
+            "Refinance",
+            "Supplemental",
+            "Assumption with Supplemental",
+            "Moderate Rehabilitation Supplemental",
+            "Assumption/Transfer",
+            "Credit Facility - Borrow Up"
+          ]
+        },
+        "MATSStructuredType": {
+          "type": "string",
+          "enum": [
+            "Structured Transaction - Bulk Delivery",
+            "Structured Transaction - Bulk Delivery - Addition",
+            "Structured Transaction - Credit Facility",
+            "Structured Transaction - Credit Facility - Addition"
+          ]
+        },
+        "originatorEmail": {
+          "type": "string"
+        },
+        "submissionType": {
+          "type": "string",
+          "enum": [
+            "Pre-Review (4660)",
+            "Performance Differentiation",
+            "Performance Differentiation - Lite",
+            "Guide and Pricing Waiver (if applicable)",
+            "Pricing Waiver only",
+            "Delegated"
+          ]
+        },
+        "properties": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/property"
+          }
+        },
+        "dealParticipants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dealParticipant"
+          }
+        }
+      }
+    },
+    "property": {
+      "type": "object",
+      "required": [
+        "reference",
+        "city",
+        "greenBuildingCertificationType",
+        "MAHIndicator",
+        "moderateRehabilitationIndicator",
+        "numberOfUnits",
+        "percentOfUnitsLessThan50OfAMI",
+        "percentOfUnitsLessThan80OfAMI",
+        "postalCode",
+        "propertyName",
+        "propertyType",
+        "state",
+        "streetAddress",
+        "yearBuilt"
+      ],
+      "properties": {
+        "reference": {
+          "type": "string",
+          "description": "A unique label used to identify this particular property."
+        },
+        "accountsReceivablePercent": {
+          "type": "number",
+          "format": "double"
+        },
+        "affordabilityProgramType": {
+          "type": "string",
+          "enum": [
+            "4% LIHTC",
+            "9% LIHTC",
+            "4% LIHTC with HAP - Project Based Section 8",
+            "9% LIHTC with HAP - Project Based Section 8",
+            "HAP - Project Based Section 8",
+            "Other"
+          ]
+        },
+        "ageRestrictedIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes"
+          ]
+        },
+        "alzheimerCareBedCount": {
+          "type": "number"
+        },
+        "alzheimerCareIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes"
+          ]
+        },
+        "alzheimerCarePercent": {
+          "type": "number",
+          "format": "double"
+        },
+        "alzheimerCareUnitCount": {
+          "type": "number"
+        },
+        "anySponsorOwnMoreThan40PctIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes"
+          ]
+        },
+        "assistedLivingBedCount": {
+          "type": "number"
+        },
+        "assistedLivingIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes"
+          ]
+        },
+        "assistedLivingPercent": {
+          "type": "number",
+          "format": "double"
+        },
+        "assistedLivingUnitCount": {
+          "type": "number"
+        },
+        "certificationLicensureIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes"
+          ]
+        },
+        "city": {
+          "type": "string"
+        },
+        "communityQualityRatingType": {
+          "type": "string",
+          "enum": [
+            "Level 3",
+            "Level 4",
+            "Level 5"
+          ]
+        },
+        "distanceToMainCampusInMiles": {
+          "type": "number"
+        },
+        "estimatedGrossSellOutValueAmount": {
+          "type": "number",
+          "format": "double"
+        },
+        "estimatedMarketValueAmount": {
+          "type": "number",
+          "format": "double"
+        },
+        "extendedUseExpirationDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "greenBuildingCertificationType": {
+          "type": "string",
+          "enum": [
+            "No Green Building Certification",
+            "EarthCraft ",
+            "ENERGY STAR Certified Homes",
+            "ENERGY STAR Existing Multifamily Building",
+            "ENERGY STAR Qualified Multifamily High Rise - Performance",
+            "ENERGY STAR Qualified Multifamily High Rise - Prescriptive",
+            "Enterprise Green Communities Criteria",
+            "Green Globes Existing Building ",
+            "Green Globes New Construction",
+            "GreenPoint Rated Existing Multifamily Whole Building",
+            "GreenPoint Rated New Home Multifamily",
+            "LEED Building Design and Construction",
+            "LEED Homes",
+            "LEED Operations and Maintenance",
+            "NGBS Green Home Remodeling Project",
+            "NGBS Green Multifamily Building Certification"
+          ]
+        },
+        "independentLivingBedCount": {
+          "type": "number"
+        },
+        "independentLivingIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes"
+          ]
+        },
+        "independentLivingPercent": {
+          "type": "number",
+          "format": "double"
+        },
+        "independentLivingUnitCount": {
+          "type": "number"
+        },
+        "intentionToResyndicateIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes"
+          ]
+        },
+        "lesseeAffiliationType": {
+          "type": "string",
+          "enum": [
+            "Affiliated",
+            "Unaffiliated"
+          ]
+        },
+        "locatedOnCollegeOwnedTransLineIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes"
+          ]
+        },
+        "MAHIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes"
+          ]
+        },
+        "managementAgreementIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes"
+          ]
+        },
+        "medicaidBedsPercent": {
+          "type": "number",
+          "format": "double"
+        },
+        "medicaidIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes"
+          ]
+        },
+        "medicaidUnitsPercent": {
+          "type": "number",
+          "format": "double"
+        },
+        "moderateRehabilitationIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes"
+          ]
+        },
+        "nameOfSchoolPropertyServes": {
+          "type": "string"
+        },
+        "NCFToLeaseRatio": {
+          "type": "number"
+        },
+        "newMaintFeesPercentOfComparableRentsPercent": {
+          "type": "number",
+          "format": "double"
+        },
+        "numberAffordableAtBelow50AMI": {
+          "type": "number"
+        },
+        "numberAffordableAtBelow60AMI": {
+          "type": "number"
+        },
+        "numberOfMedicaidResidents": {
+          "type": "number"
+        },
+        "numberOfOtherSubsidiesResidents": {
+          "type": "number"
+        },
+        "numberOfStudentUnitsOwnedBySponsor": {
+          "type": "number"
+        },
+        "numberOfStudentUnitsManagedByPropertyManager": {
+          "type": "number"
+        },
+        "numberOfUnits": {
+          "type": "number"
+        },
+        "operatingLeaseIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes"
+          ]
+        },
+        "otherAffordabilityProgramText": {
+          "type": "string"
+        },
+        "otherSubsidiesBedsPercent": {
+          "type": "number",
+          "format": "double"
+        },
+        "otherSubsidiesIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes"
+          ]
+        },
+        "otherSubsidiesUnitsPercent": {
+          "type": "number",
+          "format": "double"
+        },
+        "parkModelRVResortComponentIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes"
+          ]
+        },
+        "percentOfFullTimeStudentsToTotalStudents": {
+          "type": "number",
+          "format": "double"
+        },
+        "percentOfStudentsAtProperty": {
+          "type": "number",
+          "format": "double"
+        },
+        "percentOfUndergradToTotalStudents": {
+          "type": "number",
+          "format": "double"
+        },
+        "percentOfUnitsLessThan50OfAMI": {
+          "type": "number",
+          "format": "double"
+        },
+        "percentOfUnitsLessThan80OfAMI": {
+          "type": "number",
+          "format": "double"
+        },
+        "percentOfUnitsSoldToShareholders": {
+          "type": "number",
+          "format": "double"
+        },
+        "percentOfUnitsWith12MonthLeases": {
+          "type": "number",
+          "format": "double"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "projectedMaintFeeIncrForBalancedBudgetPercent": {
+          "type": "number",
+          "format": "double"
+        },
+        "propSubjectToMasterOrGroundIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes"
+          ]
+        },
+        "propertyName": {
+          "type": "string"
+        },
+        "propertyType": {
+          "type": "string",
+          "enum": [
+            "Conventional Multifamily",
+            "Limited Equity Cooperative",
+            "Manufactured Housing Community",
+            "Market-Rate Cooperative",
+            "Military",
+            "Seniors",
+            "Student - Dedicated",
+            "Student - Non - Dedicated"
+          ]
+        },
+        "rehabilitationWorkEscrowAmount": {
+          "type": "number",
+          "format": "double"
+        },
+        "rehabilitationWorkPerUnitAmount": {
+          "type": "number",
+          "format": "double"
+        },
+        "rentByRoomOrByBedIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes"
+          ]
+        },
+        "rentalHomesPercent": {
+          "type": "number",
+          "format": "double"
+        },
+        "reserveBalanceAsOfAnnualMaintPercent": {
+          "type": "number",
+          "format": "double"
+        },
+        "skilledNursingBedCount": {
+          "type": "number"
+        },
+        "skilledNursingIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes"
+          ]
+        },
+        "skilledNursingPercent": {
+          "type": "number",
+          "format": "double"
+        },
+        "skilledNursingUnitCount": {
+          "type": "number"
+        },
+        "sponsorExpInStudHousThisMarkt": {
+          "type": "number"
+        },
+        "sponsorExperienceInStudentHousing": {
+          "type": "number"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "AK",
+            "AL",
+            "AR",
+            "AZ",
+            "CA",
+            "CO",
+            "CT",
+            "DC",
+            "DE",
+            "FL",
+            "GA",
+            "GU",
+            "HI",
+            "IA",
+            "ID",
+            "IL",
+            "IN",
+            "KS",
+            "KY",
+            "LA",
+            "MA",
+            "MD",
+            "ME",
+            "MI",
+            "MN",
+            "MO",
+            "MS",
+            "MT",
+            "NC",
+            "ND",
+            "NE",
+            "NH",
+            "NJ",
+            "NM",
+            "NV",
+            "NY",
+            "OH",
+            "OK",
+            "OR",
+            "PA",
+            "PR",
+            "RI",
+            "SC",
+            "SD",
+            "TN",
+            "TX",
+            "UT",
+            "VA",
+            "VI",
+            "VT",
+            "WA",
+            "WI",
+            "WV",
+            "WY"
+          ]
+        },
+        "streetAddress": {
+          "type": "string"
+        },
+        "studentEnrollmentCount": {
+          "type": "number"
+        },
+        "taxCreditComplianceIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes",
+            "N/A"
+          ]
+        },
+        "taxCreditExpirationDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "unsoldUnitsPosOrNegCarryIndicator": {
+          "type": "string",
+          "enum": [
+            "No",
+            "Yes"
+          ]
+        },
+        "yearBuilt": {
+          "type": "string"
+        },
+        "yearLastRenovated": {
+          "type": "string"
+        }
+      }
+    },
+    "dealParticipant": {
+      "type": "object",
+      "required": [
+        "reference",
+        "participantRoleType"
+      ],
+      "properties": {
+        "reference": {
+          "type": "string",
+          "description": "A unique label used to identify this particular deal participant."
+        },
+        "dealParticipantId": {
+          "type": "string"
+        },
+        "entityName": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "middleName": {
+          "type": "string"
+        },
+        "participantRoleType": {
+          "type": "string",
+          "enum": [
+            "Sponsor",
+            "Key Principal",
+            "Principal",
+            "Property Manager",
+            "Property Operator",
+            "Guarantor",
+            "Borrower",
+            "Equity Provider",
+            "Other"
+          ]
+        }
+      }
+    },
+    "dealResponse": {
+      "type": "object",
+      "properties": {
+        "dealId": {
+          "type": "string",
+          "default": "123456"
+        }
+      }
+    },
+    "dealErrorResponse": {
+      "description": "Describes an error response",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Code defining an error message",
+          "example": 123,
+          "type": "string"
+        },
+        "message": {
+          "description": "Message describing the error",
+          "example": "This is an error message",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ]
+    }
+  },
+  "paths": {
+    "/deal": {
+      "post": {
+        "summary": "Add a new Deal",
+        "description": "Creates a new Deal",
+        "operationId": "addDeal",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/dealResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/dealErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/dealErrorResponse"
+            }
+          }
+        },
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Deal Request",
+            "schema": {
+              "$ref": "#/definitions/deal"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

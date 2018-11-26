@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="/T1542684608558Converted/JsonSchema" xmlns:tns="/T1542684608558Converted/JsonSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="dealParticipant" type="tns:dealParticipant"/>
+    <xs:complexType name="dealParticipant">
+        <xs:sequence>
+            <xs:element name="reference" type="xs:string"/>
+            <xs:element minOccurs="0" name="dealParticipantId" type="xs:string"/>
+            <xs:element minOccurs="0" name="entityName" type="xs:string"/>
+            <xs:element minOccurs="0" name="firstName" type="xs:string"/>
+            <xs:element minOccurs="0" name="lastName" type="xs:string"/>
+            <xs:element minOccurs="0" name="middleName" type="xs:string"/>
+            <xs:element name="participantRoleType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Sponsor"/>
+                        <xs:enumeration value="Key Principal"/>
+                        <xs:enumeration value="Principal"/>
+                        <xs:enumeration value="Property Manager"/>
+                        <xs:enumeration value="Property Operator"/>
+                        <xs:enumeration value="Guarantor"/>
+                        <xs:enumeration value="Borrower"/>
+                        <xs:enumeration value="Equity Provider"/>
+                        <xs:enumeration value="Other"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="deal" type="tns:deal"/>
+    <xs:complexType name="deal">
+        <xs:sequence>
+            <xs:element name="reference" type="xs:string"/>
+            <xs:element name="agreementType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="DUS"/>
+                        <xs:enumeration value="Non-DUS"/>
+                        <xs:enumeration value="Negotiated Purchase"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="applicationIssuedToTheBorrowerIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="chapter9SmallLoansIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="dealAmount" type="xs:decimal"/>
+            <xs:element name="dealName" type="xs:string"/>
+            <xs:element name="estimatedLoanClosingDate" type="xs:date"/>
+            <xs:element name="estimatedMBSIssuanceDate" type="xs:date"/>
+            <xs:element minOccurs="0" name="excludedFromScorecardCapPercent" type="xs:double"/>
+            <xs:element name="executionType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Bond Credit Enhancement"/>
+                        <xs:enumeration value="Cash"/>
+                        <xs:enumeration value="DMBS"/>
+                        <xs:enumeration value="MBS"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="greenFinancingType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="N/A"/>
+                        <xs:enumeration value="Green Rewards"/>
+                        <xs:enumeration value="Green Preservation Plus"/>
+                        <xs:enumeration value="Green Building Certification"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="interestRateConversionType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="N/A"/>
+                        <xs:enumeration value="ARM to Fixed Conversion"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="lenderContactEmail" type="xs:string"/>
+            <xs:element name="loanPurposeType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Acquisition"/>
+                        <xs:enumeration value="Refinance"/>
+                        <xs:enumeration value="Supplemental"/>
+                        <xs:enumeration value="Assumption with Supplemental"/>
+                        <xs:enumeration value="Moderate Rehabilitation Supplemental"/>
+                        <xs:enumeration value="Assumption/Transfer"/>
+                        <xs:enumeration value="Credit Facility - Borrow Up"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="MATSStructuredType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Structured Transaction - Bulk Delivery"/>
+                        <xs:enumeration value="Structured Transaction - Bulk Delivery - Addition"/>
+                        <xs:enumeration value="Structured Transaction - Credit Facility"/>
+                        <xs:enumeration value="Structured Transaction - Credit Facility - Addition"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="originatorEmail" type="xs:string"/>
+            <xs:element name="submissionType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Pre-Review (4660)"/>
+                        <xs:enumeration value="Performance Differentiation"/>
+                        <xs:enumeration value="Performance Differentiation - Lite"/>
+                        <xs:enumeration value="Guide and Pricing Waiver (if applicable)"/>
+                        <xs:enumeration value="Pricing Waiver only"/>
+                        <xs:enumeration value="Delegated"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="properties" type="tns:property"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="dealParticipants" type="tns:dealParticipant"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="dealErrorResponse" type="tns:dealErrorResponse"/>
+    <xs:complexType name="dealErrorResponse">
+        <xs:sequence>
+            <xs:element name="code" type="xs:string"/>
+            <xs:element name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="property" type="tns:property"/>
+    <xs:complexType name="property">
+        <xs:sequence>
+            <xs:element name="reference" type="xs:string"/>
+            <xs:element minOccurs="0" name="accountsReceivablePercent" type="xs:double"/>
+            <xs:element minOccurs="0" name="affordabilityProgramType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="4% LIHTC"/>
+                        <xs:enumeration value="9% LIHTC"/>
+                        <xs:enumeration value="4% LIHTC with HAP - Project Based Section 8"/>
+                        <xs:enumeration value="9% LIHTC with HAP - Project Based Section 8"/>
+                        <xs:enumeration value="HAP - Project Based Section 8"/>
+                        <xs:enumeration value="Other"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="ageRestrictedIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="alzheimerCareBedCount" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="alzheimerCareIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="alzheimerCarePercent" type="xs:double"/>
+            <xs:element minOccurs="0" name="alzheimerCareUnitCount" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="anySponsorOwnMoreThan40PctIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="assistedLivingBedCount" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="assistedLivingIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="assistedLivingPercent" type="xs:double"/>
+            <xs:element minOccurs="0" name="assistedLivingUnitCount" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="certificationLicensureIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="city" type="xs:string"/>
+            <xs:element minOccurs="0" name="communityQualityRatingType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Level 3"/>
+                        <xs:enumeration value="Level 4"/>
+                        <xs:enumeration value="Level 5"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="distanceToMainCampusInMiles" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="estimatedGrossSellOutValueAmount" type="xs:double"/>
+            <xs:element minOccurs="0" name="estimatedMarketValueAmount" type="xs:double"/>
+            <xs:element minOccurs="0" name="extendedUseExpirationDate" type="xs:date"/>
+            <xs:element name="greenBuildingCertificationType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No Green Building Certification"/>
+                        <xs:enumeration value="EarthCraft "/>
+                        <xs:enumeration value="ENERGY STAR Certified Homes"/>
+                        <xs:enumeration value="ENERGY STAR Existing Multifamily Building"/>
+                        <xs:enumeration value="ENERGY STAR Qualified Multifamily High Rise - Performance"/>
+                        <xs:enumeration value="ENERGY STAR Qualified Multifamily High Rise - Prescriptive"/>
+                        <xs:enumeration value="Enterprise Green Communities Criteria"/>
+                        <xs:enumeration value="Green Globes Existing Building "/>
+                        <xs:enumeration value="Green Globes New Construction"/>
+                        <xs:enumeration value="GreenPoint Rated Existing Multifamily Whole Building"/>
+                        <xs:enumeration value="GreenPoint Rated New Home Multifamily"/>
+                        <xs:enumeration value="LEED Building Design and Construction"/>
+                        <xs:enumeration value="LEED Homes"/>
+                        <xs:enumeration value="LEED Operations and Maintenance"/>
+                        <xs:enumeration value="NGBS Green Home Remodeling Project"/>
+                        <xs:enumeration value="NGBS Green Multifamily Building Certification"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="independentLivingBedCount" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="independentLivingIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="independentLivingPercent" type="xs:double"/>
+            <xs:element minOccurs="0" name="independentLivingUnitCount" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="intentionToResyndicateIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="lesseeAffiliationType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Affiliated"/>
+                        <xs:enumeration value="Unaffiliated"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="locatedOnCollegeOwnedTransLineIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="MAHIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="managementAgreementIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="medicaidBedsPercent" type="xs:double"/>
+            <xs:element minOccurs="0" name="medicaidIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="medicaidUnitsPercent" type="xs:double"/>
+            <xs:element name="moderateRehabilitationIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="nameOfSchoolPropertyServes" type="xs:string"/>
+            <xs:element minOccurs="0" name="NCFToLeaseRatio" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="newMaintFeesPercentOfComparableRentsPercent" type="xs:double"/>
+            <xs:element minOccurs="0" name="numberAffordableAtBelow50AMI" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="numberAffordableAtBelow60AMI" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="numberOfMedicaidResidents" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="numberOfOtherSubsidiesResidents" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="numberOfStudentUnitsOwnedBySponsor" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="numberOfStudentUnitsManagedByPropertyManager" type="xs:decimal"/>
+            <xs:element name="numberOfUnits" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="operatingLeaseIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="otherAffordabilityProgramText" type="xs:string"/>
+            <xs:element minOccurs="0" name="otherSubsidiesBedsPercent" type="xs:double"/>
+            <xs:element minOccurs="0" name="otherSubsidiesIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="otherSubsidiesUnitsPercent" type="xs:double"/>
+            <xs:element minOccurs="0" name="parkModelRVResortComponentIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="percentOfFullTimeStudentsToTotalStudents" type="xs:double"/>
+            <xs:element minOccurs="0" name="percentOfStudentsAtProperty" type="xs:double"/>
+            <xs:element minOccurs="0" name="percentOfUndergradToTotalStudents" type="xs:double"/>
+            <xs:element name="percentOfUnitsLessThan50OfAMI" type="xs:double"/>
+            <xs:element name="percentOfUnitsLessThan80OfAMI" type="xs:double"/>
+            <xs:element minOccurs="0" name="percentOfUnitsSoldToShareholders" type="xs:double"/>
+            <xs:element minOccurs="0" name="percentOfUnitsWith12MonthLeases" type="xs:double"/>
+            <xs:element name="postalCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="projectedMaintFeeIncrForBalancedBudgetPercent" type="xs:double"/>
+            <xs:element minOccurs="0" name="propSubjectToMasterOrGroundIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="propertyName" type="xs:string"/>
+            <xs:element name="propertyType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Conventional Multifamily"/>
+                        <xs:enumeration value="Limited Equity Cooperative"/>
+                        <xs:enumeration value="Manufactured Housing Community"/>
+                        <xs:enumeration value="Market-Rate Cooperative"/>
+                        <xs:enumeration value="Military"/>
+                        <xs:enumeration value="Seniors"/>
+                        <xs:enumeration value="Student - Dedicated"/>
+                        <xs:enumeration value="Student - Non - Dedicated"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="rehabilitationWorkEscrowAmount" type="xs:double"/>
+            <xs:element minOccurs="0" name="rehabilitationWorkPerUnitAmount" type="xs:double"/>
+            <xs:element minOccurs="0" name="rentByRoomOrByBedIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="rentalHomesPercent" type="xs:double"/>
+            <xs:element minOccurs="0" name="reserveBalanceAsOfAnnualMaintPercent" type="xs:double"/>
+            <xs:element minOccurs="0" name="skilledNursingBedCount" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="skilledNursingIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="skilledNursingPercent" type="xs:double"/>
+            <xs:element minOccurs="0" name="skilledNursingUnitCount" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="sponsorExpInStudHousThisMarkt" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="sponsorExperienceInStudentHousing" type="xs:decimal"/>
+            <xs:element name="state">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="AK"/>
+                        <xs:enumeration value="AL"/>
+                        <xs:enumeration value="AR"/>
+                        <xs:enumeration value="AZ"/>
+                        <xs:enumeration value="CA"/>
+                        <xs:enumeration value="CO"/>
+                        <xs:enumeration value="CT"/>
+                        <xs:enumeration value="DC"/>
+                        <xs:enumeration value="DE"/>
+                        <xs:enumeration value="FL"/>
+                        <xs:enumeration value="GA"/>
+                        <xs:enumeration value="GU"/>
+                        <xs:enumeration value="HI"/>
+                        <xs:enumeration value="IA"/>
+                        <xs:enumeration value="ID"/>
+                        <xs:enumeration value="IL"/>
+                        <xs:enumeration value="IN"/>
+                        <xs:enumeration value="KS"/>
+                        <xs:enumeration value="KY"/>
+                        <xs:enumeration value="LA"/>
+                        <xs:enumeration value="MA"/>
+                        <xs:enumeration value="MD"/>
+                        <xs:enumeration value="ME"/>
+                        <xs:enumeration value="MI"/>
+                        <xs:enumeration value="MN"/>
+                        <xs:enumeration value="MO"/>
+                        <xs:enumeration value="MS"/>
+                        <xs:enumeration value="MT"/>
+                        <xs:enumeration value="NC"/>
+                        <xs:enumeration value="ND"/>
+                        <xs:enumeration value="NE"/>
+                        <xs:enumeration value="NH"/>
+                        <xs:enumeration value="NJ"/>
+                        <xs:enumeration value="NM"/>
+                        <xs:enumeration value="NV"/>
+                        <xs:enumeration value="NY"/>
+                        <xs:enumeration value="OH"/>
+                        <xs:enumeration value="OK"/>
+                        <xs:enumeration value="OR"/>
+                        <xs:enumeration value="PA"/>
+                        <xs:enumeration value="PR"/>
+                        <xs:enumeration value="RI"/>
+                        <xs:enumeration value="SC"/>
+                        <xs:enumeration value="SD"/>
+                        <xs:enumeration value="TN"/>
+                        <xs:enumeration value="TX"/>
+                        <xs:enumeration value="UT"/>
+                        <xs:enumeration value="VA"/>
+                        <xs:enumeration value="VI"/>
+                        <xs:enumeration value="VT"/>
+                        <xs:enumeration value="WA"/>
+                        <xs:enumeration value="WI"/>
+                        <xs:enumeration value="WV"/>
+                        <xs:enumeration value="WY"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="streetAddress" type="xs:string"/>
+            <xs:element minOccurs="0" name="studentEnrollmentCount" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="taxCreditComplianceIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                        <xs:enumeration value="N/A"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="taxCreditExpirationDate" type="xs:date"/>
+            <xs:element minOccurs="0" name="unsoldUnitsPosOrNegCarryIndicator">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="No"/>
+                        <xs:enumeration value="Yes"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="yearBuilt" type="xs:string"/>
+            <xs:element minOccurs="0" name="yearLastRenovated" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="dealResponse" type="tns:dealResponse"/>
+    <xs:complexType name="dealResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="dealId" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

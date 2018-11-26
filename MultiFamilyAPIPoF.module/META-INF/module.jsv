@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jsv:DocumentRoot xmlns:jsv="http://tns.tibco.com/bw/model/core/jobSV">
+  <jobSharedVariables>
+    <jobSharedVariable name="SFObjectssharedvar" type="{http://www.example.com/namespaces/tns/1542685390266}Element" initialValueMode="none"/>
+  </jobSharedVariables>
+  <import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.com/namespaces/tns/1542685390266" location="../Schemas/OutputSchema.xsd"/>
+</jsv:DocumentRoot>

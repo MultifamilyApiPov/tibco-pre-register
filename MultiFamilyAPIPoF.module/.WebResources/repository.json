@@ -1,0 +1,16 @@
+{
+    "records": [{
+        "name": "Cloud",
+        "items": [{
+            "localTimestamp": 2718,
+            "localURI": "/MultiFamilyAPIPoF.module/Service Descriptors/Deals Pre-Reg API_1.0.0.json",
+            "disabled": false,
+            "remoteTimestamp": 1542784459000,
+            "localHash": "85cd6afce153e40bda474cb6abdb9a164521a93d",
+            "remoteId": "26",
+            "remoteHash": "85cd6afce153e40bda474cb6abdb9a164521a93d"
+        }],
+        "url": "https://integration.cloud.tibco.com:443"
+    }],
+    "resources": []
+}

@@ -1,0 +1,12 @@
+{"records": [
+    {
+        "jsonSchemaLocation": "/MultiFamilyAPIPoF.module/Service Descriptors/loanoptions_latest.json",
+        "conversionType": "generated",
+        "xsdSchemaTargetNamespace": "/T1541790007664Converted/JsonSchema"
+    },
+    {
+        "jsonSchemaLocation": "/MultiFamilyAPIPoF.module/Service Descriptors/Deals Pre-Reg API_1.0.0.json",
+        "conversionType": "generated",
+        "xsdSchemaTargetNamespace": "/T1542684608558Converted/JsonSchema"
+    }
+]}

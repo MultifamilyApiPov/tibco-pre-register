@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tns.tibco.com/bw/json/1542245688141" elementFormDefault="qualified" targetNamespace="http://tns.tibco.com/bw/json/1542245688141">
+  <complexType name="OpportunityRequestElementType">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="records">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="attributes">
+              <complexType>
+                <sequence>
+                  <element maxOccurs="1" minOccurs="0" name="type" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="referenceId" type="string"/>
+                </sequence>
+              </complexType>
+            </element>
+            <element maxOccurs="1" minOccurs="0" name="Name" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="AccountId" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="Originator__c" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="Lender_Contact_Name__c" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="Agreement_Type__c" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="Execution_Type__c" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="Loan_Purpose__c" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="Submission_Type__c" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="Green_Financing_Type__c" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="Chapter_9_Small_Loans__c" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="Amount" type="double"/>
+            <element maxOccurs="1" minOccurs="0" name="Estimated_MBS_Issuance_Date__c" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="CloseDate" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="StageName" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="Deal_Participants__r">
+              <complexType>
+                <sequence>
+                  <element maxOccurs="unbounded" minOccurs="0" name="records">
+                    <complexType>
+                      <sequence>
+                        <element maxOccurs="1" minOccurs="0" name="attributes">
+                          <complexType>
+                            <sequence>
+                              <element maxOccurs="1" minOccurs="0" name="type" type="string"/>
+                              <element maxOccurs="1" minOccurs="0" name="referenceId" type="string"/>
+                            </sequence>
+                          </complexType>
+                        </element>
+                        <element maxOccurs="1" minOccurs="0" name="Entity_Name__c" type="string"/>
+                        <element maxOccurs="1" minOccurs="0" name="Participant_Name_Autofill__c" type="string"/>
+                        <element maxOccurs="1" minOccurs="0" name="Participant_Role__c" type="string"/>
+                      </sequence>
+                    </complexType>
+                  </element>
+                </sequence>
+              </complexType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <element name="OpportunityRequestElement" type="tns:OpportunityRequestElementType"/>
+</schema>

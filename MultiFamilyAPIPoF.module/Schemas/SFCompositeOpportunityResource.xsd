@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tns.tibco.com/bw/json/1542686650609" elementFormDefault="qualified" targetNamespace="http://tns.tibco.com/bw/json/1542686650609">
+  <complexType name="SFCompositeOpportunityElementType">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="records">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="attributes">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="type" type="string"/>
+            <element maxOccurs="1" minOccurs="0" name="referenceId" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element maxOccurs="1" minOccurs="0" name="Agreement_Type__c" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="AccountId" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="Name" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="StageName" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="Originator__c" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="Lender_Contact_Name__c" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="Chapter_9_Small_Loans__c" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="Estimated_MBS_Issuance_Date__c" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="Excluded_From_Scorecard_Cap__c" type="integer"/>
+      <element maxOccurs="1" minOccurs="0" name="Execution_Type__c" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="Loan_Purpose__c" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="MATS_Structured__c" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="Submission_Type__c" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="Application_Issued_to_the_Borrower__c" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="Interest_Rate_Conversion_Type__c" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="Green_Financing_Type__c" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="Amount" type="integer"/>
+      <element maxOccurs="1" minOccurs="0" name="CloseDate" type="string"/>
+      <element maxOccurs="1" minOccurs="0" name="Deal_Participants__r">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="records">
+              <complexType>
+                <sequence>
+                  <element maxOccurs="1" minOccurs="0" name="attributes">
+                    <complexType>
+                      <sequence>
+                        <element maxOccurs="1" minOccurs="0" name="type" type="string"/>
+                        <element maxOccurs="1" minOccurs="0" name="referenceId" type="string"/>
+                      </sequence>
+                    </complexType>
+                  </element>
+                  <element maxOccurs="1" minOccurs="0" name="Deal_Participant__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Entity_Name__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="First_Name__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Last_Name__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Middle_Name__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Participant_Role__c" type="string"/>
+                </sequence>
+              </complexType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element maxOccurs="1" minOccurs="0" name="Properties__r">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="records">
+              <complexType>
+                <sequence>
+                  <element maxOccurs="1" minOccurs="0" name="attributes">
+                    <complexType>
+                      <sequence>
+                        <element maxOccurs="1" minOccurs="0" name="type" type="string"/>
+                        <element maxOccurs="1" minOccurs="0" name="referenceId" type="string"/>
+                      </sequence>
+                    </complexType>
+                  </element>
+                  <element maxOccurs="1" minOccurs="0" name="Name" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Accounts_Receivable_as_a__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Affordability_Program__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Age_Restricted__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Alzheimer_Care__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Alzheimer_Care_Beds__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Alzheimer_Care_Units__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Alzheimer_Care1__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Appraised_Gross_Sell_Out_Value__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Assisted_Living1__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Assisted_Living_Beds__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Assisted_Living_Units__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Assisted_Living__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="City__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Community_Quality_Rating__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Distance_to_Campus_Library__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Do_the_unsold_units_generate_a_positive__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Does_any_1_one_Sponsor_own_more_than_4__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Independent_Living1__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Independent_Living_Beds__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Independent_Living_Units__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Independent_Living__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Init_7_years_of_tax_credit_compliance__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="MAH__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Medicaid_Beds1__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Medicaid_Units1__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Medicaid__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Name_of_School_s_Property_Serves__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="New_Maintenance_Fees_as_a_of_Comparabl__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Number_of_Medicaid_Residents__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Number_of_Other_Subsidies_Residents__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Number_of_Student_Properties_Owned__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Number_of_Student_Units__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Number_of_Units__c" type="double"/>
+                  <element maxOccurs="1" minOccurs="0" name="Other_Affordability_Program__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Other_Subsidies_Beds__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Other_Subsidies_Units__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Other_Subsidies__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Percentage_of_Full_Time_Students__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Percentage_of_Units_Sold_to_Shareholders__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Percentage_of_Units_with_12_Month_Leases__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Postal_Code__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Primary_Property_Type__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Projected_Maintenance_Fee_Increase_to_ac__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Prop_located_on_college_owned_trans_line__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Property_Subj_to_Ground_Lease_or_Master__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Rel_Perct_of_Undergrad_to_Grad_Students__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Rent_By_the_Room_or_By_the_Bed__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Rental_Homes__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Reserve_Balance_as_a_of_Annual_Mainten__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Seniors_Service_License__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Skilled_Nursing1__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Skilled_Nursing_Beds__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Skilled_Nursing_Units__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Skilled_Nursing__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Sponsor_Experience_in_Student_Market__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="State__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Street_Address__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Student_Enrollment__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Tax_Credit_Expiration_Date__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Year_Built__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="affordable_at_below_50_AMI__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="affordable_at_below_60_AMI__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Extended_Use_Expiration_Date__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Park_Model_RV_Resort_Component__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Percentage_of_Students_at_the_Property__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Sponsor_s_Exp_in_Stud_Hous_This_Market__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Number_of_Units_50_of_AMI__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Number_of_Units_80_of_AMI__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Year_Last_Renovated__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Moderate_Rehabilitation__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Rehabilitation_Work_Escrow_Amount__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Rehabilitation_Work_unit__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Intention_to_Resyndicate__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Green_Building_Certification_Type__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Lessee_Affiliation__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Management_Agreement__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="NCF_to_Lease_Ratio__c" type="integer"/>
+                  <element maxOccurs="1" minOccurs="0" name="Operating_Lease__c" type="string"/>
+                </sequence>
+              </complexType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <element name="SFCompositeOpportunityElement" type="tns:SFCompositeOpportunityElementType"/>
+</schema>
