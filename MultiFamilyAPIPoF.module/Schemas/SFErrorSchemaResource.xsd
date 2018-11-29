@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tns.tibco.com/bw/json/1543245707038" elementFormDefault="qualified" targetNamespace="http://tns.tibco.com/bw/json/1543245707038">
+  <complexType name="SFErrorSchemaElementType">
+    <sequence>
+      <element maxOccurs="1" minOccurs="0" name="hasErrors" type="boolean"/>
+      <element maxOccurs="unbounded" minOccurs="0" name="results">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="referenceId" type="string"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="errors">
+              <complexType>
+                <sequence>
+                  <element maxOccurs="1" minOccurs="0" name="statusCode" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="message" type="string"/>
+                  <element maxOccurs="unbounded" minOccurs="0" name="fields" type="string"/>
+                </sequence>
+              </complexType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <element name="SFErrorSchemaElement" type="tns:SFErrorSchemaElementType"/>
+</schema>

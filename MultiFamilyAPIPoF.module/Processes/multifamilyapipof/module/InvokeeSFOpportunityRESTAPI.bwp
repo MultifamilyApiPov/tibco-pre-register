@@ -16,7 +16,14 @@
     xmlns:ns15="urn:enterprise.soap.sforce.com_queryAllInput+e675f524-4b03-425f-a925-cb47bfe9a6fb+input"
     xmlns:ns16="urn:enterprise.soap.sforce.com_queryAllOutput"
     xmlns:ns17="http://tns.tibco.com/bw/palette/internal/activityerror+bw.bwsalesforce.SalesforceQuery"
+    xmlns:ns18="activity.jsonParser.input+f294a04d-c368-49cf-a3e5-72c460b65e98+ActivityInputType"
+    xmlns:ns19="http://tns.tibco.com/bw/json/1543245707038"
     xmlns:ns2="http://tns.tibco.com/bw/palette/internal/activityerror+bw.restjson.JsonRender"
+    xmlns:ns20="http://tns.tibco.com/bw/palette/internal/errorlinkhandler+359cf6e2-c4ed-459b-a068-a8ac39e7a66a"
+    xmlns:ns21="http://schemas.tibco.com/bw/plugins/basic/6.0/Exceptions"
+    xmlns:ns22="activity.jsonRender.output+3697d103-3cdd-4c55-8500-038a83a04f1a+ActivityOutputType"
+    xmlns:ns23="http://tns.tibco.com/bw/json/1543246665258"
+    xmlns:ns24="http://www.tibco.com/namespaces/tnt/plugins/generalactivities/mapper/1543285056212"
     xmlns:ns3="urn:enterprise.soap.sforce.com_getSessionInput"
     xmlns:ns4="urn:enterprise.soap.sforce.com_getSessionOutput"
     xmlns:ns5="http://tns.tibco.com/bw/palette/internal/activityerror+bw.bwsalesforce.SalesforceGetSession"
@@ -666,22 +673,6 @@
             <element name="HttpServerException" type="tns:HttpServerExceptionType"/>
         </schema>
         <schema elementFormDefault="unqualified"
-            targetNamespace="http://tns.tibco.com/bw/palette/internal/activityerror+bw.restjson.Rest"
-            xmlns="http://www.w3.org/2001/XMLSchema"
-            xmlns:Q1="http://schemas.tibco.com/bw/plugins/http/5.0/httpExceptions" xmlns:tns="http://tns.tibco.com/bw/palette/internal/activityerror+bw.restjson.Rest">
-            <import namespace="http://schemas.tibco.com/bw/plugins/http/5.0/httpExceptions"/>
-            <import namespace="http://schemas.tibco.com/bw/plugins/http/5.0/httpExceptions"/>
-            <import namespace="http://schemas.tibco.com/bw/plugins/http/5.0/httpExceptions"/>
-            <element name="ActivityErrorData" type="tns:ActivityErrorDataType"/>
-            <complexType name="ActivityErrorDataType">
-                <choice>
-                    <element maxOccurs="1" minOccurs="0" ref="Q1:HttpCommunicationException"/>
-                    <element maxOccurs="1" minOccurs="0" ref="Q1:HttpClientException"/>
-                    <element maxOccurs="1" minOccurs="0" ref="Q1:HttpServerException"/>
-                </choice>
-            </complexType>
-        </schema>
-        <schema elementFormDefault="unqualified"
             targetNamespace="activity.jsonParser.input+3eff77af-46ac-42cb-945e-c2e98b7be7ec+ActivityInputType"
             xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="activity.jsonParser.input+3eff77af-46ac-42cb-945e-c2e98b7be7ec+ActivityInputType">
             <complexType name="ActivityInputClassType">
@@ -865,6 +856,59 @@
                 </choice>
             </complexType>
         </schema>
+        <schema elementFormDefault="unqualified"
+            targetNamespace="activity.jsonParser.input+f294a04d-c368-49cf-a3e5-72c460b65e98+ActivityInputType"
+            xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="activity.jsonParser.input+f294a04d-c368-49cf-a3e5-72c460b65e98+ActivityInputType">
+            <complexType name="ActivityInputClassType">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="1"
+                        name="jsonString" type="string"/>
+                </sequence>
+            </complexType>
+            <element name="ActivityInputClass" type="tns:ActivityInputClassType"/>
+        </schema>
+        <schema elementFormDefault="unqualified"
+            targetNamespace="http://tns.tibco.com/bw/palette/internal/errorlinkhandler+359cf6e2-c4ed-459b-a068-a8ac39e7a66a"
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:Q1="http://schemas.tibco.com/bw/plugins/http/5.0/httpExceptions" xmlns:tns="http://tns.tibco.com/bw/palette/internal/errorlinkhandler+359cf6e2-c4ed-459b-a068-a8ac39e7a66a">
+            <import namespace="http://schemas.tibco.com/bw/plugins/http/5.0/httpExceptions"/>
+            <import namespace="http://schemas.tibco.com/bw/plugins/http/5.0/httpExceptions"/>
+            <import namespace="http://schemas.tibco.com/bw/plugins/http/5.0/httpExceptions"/>
+            <element name="ErrorLinkHandlerFaultData" type="tns:ErrorLinkHandlerFaultDataType"/>
+            <complexType name="ErrorLinkHandlerFaultDataType">
+                <choice>
+                    <element maxOccurs="1" minOccurs="0" ref="Q1:HttpCommunicationException"/>
+                    <element maxOccurs="1" minOccurs="0" ref="Q1:HttpClientException"/>
+                    <element maxOccurs="1" minOccurs="0" ref="Q1:HttpServerException"/>
+                </choice>
+            </complexType>
+        </schema>
+        <schema
+            targetNamespace="http://schemas.tibco.com/bw/plugins/basic/6.0/Exceptions"
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:tibex="http://www.tibco.com/bpel/2007/extensions" xmlns:tns="http://schemas.tibco.com/bw/plugins/basic/6.0/Exceptions">
+            <element name="DefaultFault">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="1" minOccurs="0"
+                            name="message" type="string"/>
+                        <element maxOccurs="1" minOccurs="0"
+                            name="msgCode" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+        <schema
+            targetNamespace="activity.jsonRender.output+3697d103-3cdd-4c55-8500-038a83a04f1a+ActivityOutputType"
+            xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="activity.jsonRender.output+3697d103-3cdd-4c55-8500-038a83a04f1a+ActivityOutputType">
+            <complexType name="ActivityOutputClassType">
+                <sequence>
+                    <element maxOccurs="1" minOccurs="1"
+                        name="jsonString" type="string"/>
+                </sequence>
+            </complexType>
+            <element name="ActivityOutputClass" type="tns:ActivityOutputClassType"/>
+        </schema>
         <wsdl:definitions
             targetNamespace="http://xmlns.example.com/20181119230232"
             xmlns:tns="http://xmlns.example.com/20181119230232"
@@ -923,7 +967,7 @@
                                     gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
                                     <element href="//0/@process/@activity/@activity/@activities.0"/>
                                     <layoutConstraint x="2"
-                                    xsi:type="notation:Bounds" y="2"/>
+                                    xsi:type="notation:Bounds" y="3"/>
                                     </children>
                                     <children type="4002">
                                     <children type="4017">
@@ -1107,6 +1151,136 @@
                                     <layoutConstraint x="647"
                                     xsi:type="notation:Bounds" y="198"/>
                                     </children>
+                                    <children type="4002">
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.8"/>
+                                    <layoutConstraint x="368"
+                                    xsi:type="notation:Bounds" y="253"/>
+                                    </children>
+                                    <children type="4002">
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.9"/>
+                                    <layoutConstraint x="749"
+                                    xsi:type="notation:Bounds" y="253"/>
+                                    </children>
+                                    <children type="4002">
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.10"/>
+                                    <layoutConstraint x="571"
+                                    xsi:type="notation:Bounds" y="295"/>
+                                    </children>
+                                    <children type="4002">
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.11"/>
+                                    <layoutConstraint x="121"
+                                    xsi:type="notation:Bounds" y="198"/>
+                                    </children>
+                                    <children type="4002">
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.12"/>
+                                    <layoutConstraint x="664"
+                                    xsi:type="notation:Bounds" y="320"/>
+                                    </children>
                                     <styles xsi:type="notation:DrawerStyle"/>
                                     <styles xsi:type="notation:SortingStyle"/>
                                     <styles xsi:type="notation:FilteringStyle"/>
@@ -1118,8 +1292,8 @@
                                     gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
                                     <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@activity"/>
-                                    <layoutConstraint height="332"
-                                    width="880" xsi:type="notation:Bounds"/>
+                                    <layoutConstraint height="425"
+                                    width="890" xsi:type="notation:Bounds"/>
                                 </children>
                                 <styles xsi:type="notation:SortingStyle"/>
                                 <styles xsi:type="notation:FilteringStyle"/>
@@ -1128,7 +1302,7 @@
                             <styles xsi:type="bwnotation:BackgroundStyle"/>
                             <styles xsi:type="bwnotation:ResizingStyle"/>
                             <element href="//0/@process/@activity"/>
-                            <layoutConstraint height="384" width="636" xsi:type="notation:Bounds"/>
+                            <layoutConstraint height="332" width="893" xsi:type="notation:Bounds"/>
                         </children>
                         <styles xsi:type="notation:SortingStyle"/>
                         <styles xsi:type="notation:FilteringStyle"/>
@@ -1138,7 +1312,7 @@
                     <styles xsi:type="bwnotation:BackgroundStyle"/>
                     <styles xsi:type="bwnotation:ResizingStyle"/>
                     <element href="//0/@process/@activity"/>
-                    <layoutConstraint height="408" width="636" x="1"
+                    <layoutConstraint height="356" width="893" x="1"
                         xsi:type="notation:Bounds" y="1"/>
                 </children>
                 <styles xsi:type="notation:SortingStyle"/>
@@ -1147,7 +1321,7 @@
             </children>
             <styles lineColor="0" xsi:type="notation:ShapeStyle"/>
             <element href="//0/@process"/>
-            <layoutConstraint height="408" width="1225" xsi:type="notation:Bounds"/>
+            <layoutConstraint height="501" width="1235" xsi:type="notation:Bounds"/>
         </children>
         <styles xsi:type="notation:DiagramStyle"/>
         <element href="//0"/>
@@ -1185,17 +1359,6 @@
             <bendpoints points="[0, 25, 0, -96]$[0, 97, 0, -24]" xsi:type="notation:RelativeBendpoints"/>
         </edges>
         <edges
-            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.5"
-            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2" type="4006">
-            <children type="6002">
-                <layoutConstraint xsi:type="notation:Location" y="40"/>
-            </children>
-            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
-            <styles xsi:type="notation:FontStyle"/>
-            <element href="//0/@process/@activity/@activity/@links/@children.3"/>
-            <bendpoints points="[25, -7, -75, 20]$[76, -20, -24, 7]" xsi:type="notation:RelativeBendpoints"/>
-        </edges>
-        <edges
             source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.4"
             target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.6" type="4006">
             <children type="6002">
@@ -1203,7 +1366,7 @@
             </children>
             <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
             <styles xsi:type="notation:FontStyle"/>
-            <element href="//0/@process/@activity/@activity/@links/@children.4"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.3"/>
             <bendpoints points="[6, 25, -19, -81]$[19, 82, -6, -24]" xsi:type="notation:RelativeBendpoints"/>
         </edges>
         <edges
@@ -1214,7 +1377,7 @@
             </children>
             <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
             <styles xsi:type="notation:FontStyle"/>
-            <element href="//0/@process/@activity/@activity/@links/@children.5"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.4"/>
             <bendpoints points="[25, 24, -87, -85]$[88, 85, -24, -24]" xsi:type="notation:RelativeBendpoints"/>
         </edges>
         <edges
@@ -1225,8 +1388,74 @@
             </children>
             <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
             <styles xsi:type="notation:FontStyle"/>
-            <element href="//0/@process/@activity/@activity/@links/@children.6"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.5"/>
             <bendpoints points="[16, -24, -60, 93]$[60, -92, -16, 25]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.4"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.8" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="255" xsi:type="notation:ConnectorStyle"/>
+            <styles fontColor="255" xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.6"/>
+            <bendpoints points="[3, 25, 0, -85]$[0, 86, -3, -24]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.8"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.10" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.7"/>
+            <bendpoints points="[25, 5, -178, -37]$[179, 37, -24, -5]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.5"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.11" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.8"/>
+            <bendpoints points="[25, 15, -94, -60]$[95, 60, -24, -15]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.11"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.9"/>
+            <bendpoints points="[-5, -24, 14, 78]$[-14, -77, 5, 25]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.10"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.12" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.10"/>
+            <bendpoints points="[25, 7, -68, -18]$[69, 18, -24, -7]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.12"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.9" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.11"/>
+            <bendpoints points="[25, -19, -60, 48]$[61, -48, -24, 19]" xsi:type="notation:RelativeBendpoints"/>
         </edges>
     </notation:Diagram>
     <tibex:NamespaceRegistry enabled="true">
@@ -1254,11 +1483,24 @@
             namespace="urn:sobject.enterprise.soap.sforce.com" prefix="tns9"/>
         <tibex:namespaceItem
             namespace="urn:enterprise.soap.sforce.com_queryAllOutput" prefix="tns8"/>
+        <tibex:namespaceItem
+            namespace="http://schemas.tibco.com/bw/plugins/basic/6.0/Exceptions" prefix="tns10"/>
+        <tibex:namespaceItem
+            namespace="activity.jsonParser.input+f294a04d-c368-49cf-a3e5-72c460b65e98+ActivityInputType" prefix="tns11"/>
+        <tibex:namespaceItem
+            namespace="http://tns.tibco.com/bw/json/1543246665258" prefix="tns12"/>
+        <tibex:namespaceItem
+            namespace="http://tns.tibco.com/bw/json/1543245707038" prefix="tns13"/>
+        <tibex:namespaceItem
+            namespace="http://www.tibco.com/bw/xslt/custom-functions" prefix="tib"/>
     </tibex:NamespaceRegistry>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://tns.tibco.com/bw/json/1542686650609"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="/T1542684608558Converted/JsonSchema"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.com/namespaces/tns/1542685390266"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://tns.tibco.com/bw/json/1542749952029"/>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://tns.tibco.com/bw/json/1543245707038"/>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://tns.tibco.com/bw/json/1543246665258"/>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.tibco.com/namespaces/tnt/plugins/generalactivities/mapper/1543285056212"/>
     <bpws:variables>
         <bpws:variable element="ns:ProcessContext"
             name="_processContext" sca-bpel:internal="true"/>
@@ -1295,7 +1537,7 @@
             name="InvokeRESTAPI-input" sca-bpel:internal="true"/>
         <bpws:variable element="ns7:RestActivityOutput"
             name="InvokeRESTAPI" sca-bpel:internal="true"/>
-        <bpws:variable element="ns8:ActivityErrorData"
+        <bpws:variable element="ns20:ErrorLinkHandlerFaultData"
             name="_error_InvokeRESTAPI" sca-bpel:internal="true"/>
         <bpws:variable element="ns9:deal" name="Start"
             sca-bpel:internal="true" tibex:parameter="in"/>
@@ -1314,6 +1556,28 @@
             name="_error_SalesforceQueryAll" sca-bpel:internal="true"/>
         <bpws:variable element="ns10:Element" name="End-input"
             sca-bpel:internal="true" tibex:parameter="out"/>
+        <bpws:variable element="ns18:ActivityInputClass"
+            name="ParseJSONErrors-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns19:SFErrorSchemaElement"
+            name="ParseJSONErrors" sca-bpel:internal="true"/>
+        <bpws:variable element="ns12:ActivityErrorData"
+            name="_error_ParseJSONErrors" sca-bpel:internal="true"/>
+        <bpws:variable name="FaultName" sca-bpel:internal="true" type="xsd:string"/>
+        <bpws:variable element="ns:OptionalErrorReport"
+            name="_errorOptional" sca-bpel:internal="true"/>
+        <bpws:variable element="ns21:DefaultFault" name="Throw-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns23:ErrorsOutElement"
+            name="RenderJSON1-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns22:ActivityOutputClass"
+            name="RenderJSON1" sca-bpel:internal="true"/>
+        <bpws:variable element="ns2:ActivityErrorData"
+            name="_error_RenderJSON1" sca-bpel:internal="true"/>
+        <bpws:variable element="ns9:deal" name="InvokeGeoCodeAPI-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns24:MapperInput"
+            name="InvokeGeoCodeAPI" sca-bpel:internal="true"/>
+        <bpws:variable element="ns23:ErrorsOutElement"
+            name="Mapper-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns23:ErrorsOutElement" name="Mapper" sca-bpel:internal="true"/>
     </bpws:variables>
     <bpws:extensions>
         <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
@@ -1329,10 +1593,15 @@
                 <bpws:link name="RenderJSONToSalesforceGetSession" tibex:linkType="SUCCESS"/>
                 <bpws:link name="SalesforceGetSessionToInvokeRESTAPI" tibex:linkType="SUCCESS"/>
                 <bpws:link name="StartToGetSharedVariable" tibex:linkType="SUCCESS"/>
-                <bpws:link name="GetSharedVariableToRenderJSON" tibex:linkType="SUCCESS"/>
                 <bpws:link name="InvokeRESTAPIToParseJSON" tibex:linkType="SUCCESS"/>
                 <bpws:link name="ParseJSONToSalesforceQueryAll" tibex:linkType="SUCCESS"/>
                 <bpws:link name="SalesforceQueryAllToEnd" tibex:linkType="SUCCESS"/>
+                <bpws:link name="InvokeRESTAPIToParseJSONErrors" tibex:linkType="ERROR"/>
+                <bpws:link name="ParseJSONErrorsToRenderJSON1" tibex:linkType="SUCCESS"/>
+                <bpws:link name="GetSharedVariableToInvokeGeoCodeAPI" tibex:linkType="SUCCESS"/>
+                <bpws:link name="InvokeGeoCodeAPIToRenderJSON" tibex:linkType="SUCCESS"/>
+                <bpws:link name="RenderJSON1ToMapper" tibex:linkType="SUCCESS"/>
+                <bpws:link name="MapperToThrow" tibex:linkType="SUCCESS"/>
             </bpws:links>
             <bpws:extensionActivity>
                 <tibex:receiveEvent createInstance="yes"
@@ -1356,7 +1625,7 @@
                     </bpws:targets>
                     <tibex:inputBindings>
                         <tibex:inputBinding
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns2=&quot;http://www.example.com/namespaces/tns/1542685390266&quot; xmlns:tns8=&quot;urn:enterprise.soap.sforce.com_queryAllOutput&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;SalesforceQueryAll&quot;/>&lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&lt;tns2:Element>&lt;xsl:if test=&quot;$SalesforceQueryAll/queryAllResponse/tns8:result/tns8:records[1]/*[2]&quot;>&lt;tns2:LenderAccountId>&lt;xsl:value-of select=&quot;$SalesforceQueryAll/queryAllResponse/tns8:result/tns8:records[1]/*[2]&quot;/>&lt;/tns2:LenderAccountId>&lt;/xsl:if>&lt;xsl:if test=&quot;$SalesforceQueryAll/queryAllResponse/tns8:result/tns8:records[1]/*[1]&quot;>&lt;tns2:OriginatorAccountId>&lt;xsl:value-of select=&quot;$SalesforceQueryAll/queryAllResponse/tns8:result/tns8:records[1]/*[1]&quot;/>&lt;/tns2:OriginatorAccountId>&lt;/xsl:if>&lt;xsl:if test=&quot;$SalesforceQueryAll/queryAllResponse/tns8:result/tns8:records[1]/*[3]&quot;>&lt;tns2:AccountId>&lt;xsl:value-of select=&quot;$SalesforceQueryAll/queryAllResponse/tns8:result/tns8:records[1]/*[3]&quot;/>&lt;/tns2:AccountId>&lt;/xsl:if>&lt;/tns2:Element>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns2=&quot;http://www.example.com/namespaces/tns/1542685390266&quot; xmlns:tns8=&quot;urn:enterprise.soap.sforce.com_queryAllOutput&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:tib=&quot;http://www.tibco.com/bw/xslt/custom-functions&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;SalesforceQueryAll&quot;/>&lt;xsl:param name=&quot;InvokeGeoCodeAPI&quot;/>&lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&lt;tns2:Element>&lt;xsl:if test=&quot;$SalesforceQueryAll/queryAllResponse/tns8:result/tns8:records[1]/*[2]&quot;>&lt;tns2:LenderAccountId>&lt;xsl:value-of select=&quot;$SalesforceQueryAll/queryAllResponse/tns8:result/tns8:records[1]/*[2]&quot;/>&lt;/tns2:LenderAccountId>&lt;/xsl:if>&lt;xsl:if test=&quot;count($InvokeGeoCodeAPI/Properties[Status= 'ZERO_RESULTS'])> 0&quot;>&lt;tns2:OriginatorAccountId>&lt;xsl:value-of select=&quot;concat(&amp;quot;For Properties &amp;quot;,tib:concat-sequence-format($InvokeGeoCodeAPI/Properties[Status= 'ZERO_RESULTS']/PropertyName, ','), &amp;quot; GeoCode returned no results&amp;quot;)&quot;/>&lt;/tns2:OriginatorAccountId>&lt;/xsl:if>&lt;xsl:if test=&quot;$SalesforceQueryAll/queryAllResponse/tns8:result/tns8:records[1]/*[3]&quot;>&lt;tns2:AccountId>&lt;xsl:value-of select=&quot;$SalesforceQueryAll/queryAllResponse/tns8:result/tns8:records[1]/*[3]&quot;/>&lt;/tns2:AccountId>&lt;/xsl:if>&lt;/tns2:Element>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:config>
                         <bwext:BWActivity
@@ -1380,14 +1649,14 @@
                     outputVariable="RenderJSON"
                     tibex:xpdlId="a7708434-3032-427a-b10e-b2f646306b9a" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                     <bpws:targets>
-                        <bpws:target linkName="GetSharedVariableToRenderJSON"/>
+                        <bpws:target linkName="InvokeGeoCodeAPIToRenderJSON"/>
                     </bpws:targets>
                     <bpws:sources>
                         <bpws:source linkName="RenderJSONToSalesforceGetSession"/>
                     </bpws:sources>
                     <tibex:inputBindings>
                         <tibex:inputBinding
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns1=&quot;http://tns.tibco.com/bw/json/1542686650609&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:tns=&quot;/T1542684608558Converted/JsonSchema&quot; xmlns:tns2=&quot;http://www.example.com/namespaces/tns/1542685390266&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;Start&quot;/>&lt;xsl:param name=&quot;GetSharedVariable&quot;/>&lt;xsl:template name=&quot;RenderJSON-input&quot; match=&quot;/&quot;>&lt;tns1:SFCompositeOpportunityElement>&lt;tns1:records>&lt;tns1:attributes>&lt;tns1:type>&lt;xsl:value-of select=&quot;&amp;quot;Opportunity&amp;quot;&quot;/>&lt;/tns1:type>&lt;tns1:referenceId>&lt;xsl:value-of select=&quot;$Start/tns:reference&quot;/>&lt;/tns1:referenceId>&lt;/tns1:attributes>&lt;tns1:Agreement_Type__c>&lt;xsl:value-of select=&quot;$Start/tns:agreementType&quot;/>&lt;/tns1:Agreement_Type__c>&lt;xsl:if test=&quot;$GetSharedVariable/tns2:AccountId&quot;>&lt;tns1:AccountId>&lt;xsl:value-of select=&quot;$GetSharedVariable/tns2:AccountId&quot;/>&lt;/tns1:AccountId>&lt;/xsl:if>&lt;tns1:Name>&lt;xsl:value-of select=&quot;$Start/tns:dealName&quot;/>&lt;/tns1:Name>&lt;tns1:StageName>&lt;xsl:value-of select=&quot;&amp;quot;Pre-Registered&amp;quot;&quot;/>&lt;/tns1:StageName>&lt;xsl:if test=&quot;$GetSharedVariable/tns2:OriginatorAccountId&quot;>&lt;tns1:Originator__c>&lt;xsl:value-of select=&quot;$GetSharedVariable/tns2:OriginatorAccountId&quot;/>&lt;/tns1:Originator__c>&lt;/xsl:if>&lt;xsl:if test=&quot;$GetSharedVariable/tns2:LenderAccountId&quot;>&lt;tns1:Lender_Contact_Name__c>&lt;xsl:value-of select=&quot;$GetSharedVariable/tns2:LenderAccountId&quot;/>&lt;/tns1:Lender_Contact_Name__c>&lt;/xsl:if>&lt;tns1:Chapter_9_Small_Loans__c>&lt;xsl:value-of select=&quot;$Start/tns:chapter9SmallLoansIndicator&quot;/>&lt;/tns1:Chapter_9_Small_Loans__c>&lt;tns1:Estimated_MBS_Issuance_Date__c>&lt;xsl:value-of select=&quot;$Start/tns:estimatedMBSIssuanceDate&quot;/>&lt;/tns1:Estimated_MBS_Issuance_Date__c>&lt;tns1:Excluded_From_Scorecard_Cap__c>&lt;xsl:value-of select=&quot;xsd:integer($Start/tns:excludedFromScorecardCapPercent)&quot;/>&lt;/tns1:Excluded_From_Scorecard_Cap__c>&lt;tns1:Execution_Type__c>&lt;xsl:value-of select=&quot;$Start/tns:executionType&quot;/>&lt;/tns1:Execution_Type__c>&lt;tns1:Loan_Purpose__c>&lt;xsl:value-of select=&quot;$Start/tns:loanPurposeType&quot;/>&lt;/tns1:Loan_Purpose__c>&lt;xsl:if test=&quot;$Start/tns:MATSStructuredType&quot;>&lt;tns1:MATS_Structured__c>&lt;xsl:value-of select=&quot;$Start/tns:MATSStructuredType&quot;/>&lt;/tns1:MATS_Structured__c>&lt;/xsl:if>&lt;tns1:Submission_Type__c>&lt;xsl:value-of select=&quot;$Start/tns:submissionType&quot;/>&lt;/tns1:Submission_Type__c>&lt;xsl:if test=&quot;$Start/tns:applicationIssuedToTheBorrowerIndicator&quot;>&lt;tns1:Application_Issued_to_the_Borrower__c>&lt;xsl:value-of select=&quot;$Start/tns:applicationIssuedToTheBorrowerIndicator&quot;/>&lt;/tns1:Application_Issued_to_the_Borrower__c>&lt;/xsl:if>&lt;xsl:if test=&quot;$Start/tns:interestRateConversionType&quot;>&lt;tns1:Interest_Rate_Conversion_Type__c>&lt;xsl:value-of select=&quot;$Start/tns:interestRateConversionType&quot;/>&lt;/tns1:Interest_Rate_Conversion_Type__c>&lt;/xsl:if>&lt;tns1:Green_Financing_Type__c>&lt;xsl:value-of select=&quot;$Start/tns:greenFinancingType&quot;/>&lt;/tns1:Green_Financing_Type__c>&lt;tns1:Amount>&lt;xsl:value-of select=&quot;xsd:integer($Start/tns:dealAmount)&quot;/>&lt;/tns1:Amount>&lt;tns1:CloseDate>&lt;xsl:value-of select=&quot;$Start/tns:estimatedLoanClosingDate&quot;/>&lt;/tns1:CloseDate>&lt;tns1:Deal_Participants__r>&lt;xsl:for-each select=&quot;$Start/tns:dealParticipants&quot;>&lt;tns1:records>&lt;tns1:attributes>&lt;tns1:type>&lt;xsl:value-of select=&quot;&amp;quot;Deal_Participant__c&amp;quot;&quot;/>&lt;/tns1:type>&lt;tns1:referenceId>&lt;xsl:value-of select=&quot;tns:reference&quot;/>&lt;/tns1:referenceId>&lt;/tns1:attributes>&lt;xsl:if test=&quot;tns:dealParticipantId&quot;>&lt;tns1:Deal_Participant__c>&lt;xsl:value-of select=&quot;tns:dealParticipantId&quot;/>&lt;/tns1:Deal_Participant__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:entityName&quot;>&lt;tns1:Entity_Name__c>&lt;xsl:value-of select=&quot;tns:entityName&quot;/>&lt;/tns1:Entity_Name__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:firstName&quot;>&lt;tns1:First_Name__c>&lt;xsl:value-of select=&quot;tns:firstName&quot;/>&lt;/tns1:First_Name__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:lastName&quot;>&lt;tns1:Last_Name__c>&lt;xsl:value-of select=&quot;tns:lastName&quot;/>&lt;/tns1:Last_Name__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:middleName&quot;>&lt;tns1:Middle_Name__c>&lt;xsl:value-of select=&quot;tns:middleName&quot;/>&lt;/tns1:Middle_Name__c>&lt;/xsl:if>&lt;tns1:Participant_Role__c>&lt;xsl:value-of select=&quot;tns:participantRoleType&quot;/>&lt;/tns1:Participant_Role__c>&lt;/tns1:records>&lt;/xsl:for-each>&lt;/tns1:Deal_Participants__r>&lt;tns1:Properties__r>&lt;xsl:for-each select=&quot;$Start/tns:properties&quot;>&lt;tns1:records>&lt;tns1:attributes>&lt;tns1:type>&lt;xsl:value-of select=&quot;&amp;quot;Property__c&amp;quot;&quot;/>&lt;/tns1:type>&lt;tns1:referenceId>&lt;xsl:value-of select=&quot;tns:reference&quot;/>&lt;/tns1:referenceId>&lt;/tns1:attributes>&lt;tns1:Name>&lt;xsl:value-of select=&quot;tns:propertyName&quot;/>&lt;/tns1:Name>&lt;xsl:if test=&quot;tns:accountsReceivablePercent&quot;>&lt;tns1:Accounts_Receivable_as_a__c>&lt;xsl:value-of select=&quot;tns:accountsReceivablePercent&quot;/>&lt;/tns1:Accounts_Receivable_as_a__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:affordabilityProgramType&quot;>&lt;tns1:Affordability_Program__c>&lt;xsl:value-of select=&quot;tns:affordabilityProgramType&quot;/>&lt;/tns1:Affordability_Program__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:ageRestrictedIndicator&quot;>&lt;tns1:Age_Restricted__c>&lt;xsl:value-of select=&quot;tns:ageRestrictedIndicator&quot;/>&lt;/tns1:Age_Restricted__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:alzheimerCareIndicator&quot;>&lt;tns1:Alzheimer_Care__c>&lt;xsl:value-of select=&quot;tns:alzheimerCareIndicator&quot;/>&lt;/tns1:Alzheimer_Care__c>&lt;/xsl:if>&lt;tns1:Alzheimer_Care_Beds__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:alzheimerCareBedCount)&quot;/>&lt;/tns1:Alzheimer_Care_Beds__c>&lt;tns1:Alzheimer_Care_Units__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:alzheimerCareUnitCount)&quot;/>&lt;/tns1:Alzheimer_Care_Units__c>&lt;tns1:Alzheimer_Care1__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:alzheimerCarePercent)&quot;/>&lt;/tns1:Alzheimer_Care1__c>&lt;tns1:Appraised_Gross_Sell_Out_Value__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:estimatedGrossSellOutValueAmount)&quot;/>&lt;/tns1:Appraised_Gross_Sell_Out_Value__c>&lt;tns1:Assisted_Living1__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:assistedLivingPercent)&quot;/>&lt;/tns1:Assisted_Living1__c>&lt;tns1:Assisted_Living_Beds__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:assistedLivingBedCount)&quot;/>&lt;/tns1:Assisted_Living_Beds__c>&lt;tns1:Assisted_Living_Units__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:assistedLivingUnitCount)&quot;/>&lt;/tns1:Assisted_Living_Units__c>&lt;xsl:if test=&quot;tns:assistedLivingIndicator&quot;>&lt;tns1:Assisted_Living__c>&lt;xsl:value-of select=&quot;tns:assistedLivingIndicator&quot;/>&lt;/tns1:Assisted_Living__c>&lt;/xsl:if>&lt;tns1:City__c>&lt;xsl:value-of select=&quot;tns:city&quot;/>&lt;/tns1:City__c>&lt;xsl:if test=&quot;tns:communityQualityRatingType&quot;>&lt;tns1:Community_Quality_Rating__c>&lt;xsl:value-of select=&quot;tns:communityQualityRatingType&quot;/>&lt;/tns1:Community_Quality_Rating__c>&lt;/xsl:if>&lt;tns1:Distance_to_Campus_Library__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:distanceToMainCampusInMiles)&quot;/>&lt;/tns1:Distance_to_Campus_Library__c>&lt;xsl:if test=&quot;tns:unsoldUnitsPosOrNegCarryIndicator&quot;>&lt;tns1:Do_the_unsold_units_generate_a_positive__c>&lt;xsl:value-of select=&quot;tns:unsoldUnitsPosOrNegCarryIndicator&quot;/>&lt;/tns1:Do_the_unsold_units_generate_a_positive__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:anySponsorOwnMoreThan40PctIndicator&quot;>&lt;tns1:Does_any_1_one_Sponsor_own_more_than_4__c>&lt;xsl:value-of select=&quot;tns:anySponsorOwnMoreThan40PctIndicator&quot;/>&lt;/tns1:Does_any_1_one_Sponsor_own_more_than_4__c>&lt;/xsl:if>&lt;tns1:Independent_Living1__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:independentLivingPercent)&quot;/>&lt;/tns1:Independent_Living1__c>&lt;tns1:Independent_Living_Beds__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:independentLivingBedCount)&quot;/>&lt;/tns1:Independent_Living_Beds__c>&lt;tns1:Independent_Living_Units__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:independentLivingUnitCount)&quot;/>&lt;/tns1:Independent_Living_Units__c>&lt;xsl:if test=&quot;tns:independentLivingIndicator&quot;>&lt;tns1:Independent_Living__c>&lt;xsl:value-of select=&quot;tns:independentLivingIndicator&quot;/>&lt;/tns1:Independent_Living__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:taxCreditComplianceIndicator&quot;>&lt;tns1:Init_7_years_of_tax_credit_compliance__c>&lt;xsl:value-of select=&quot;tns:taxCreditComplianceIndicator&quot;/>&lt;/tns1:Init_7_years_of_tax_credit_compliance__c>&lt;/xsl:if>&lt;tns1:MAH__c>&lt;xsl:value-of select=&quot;tns:MAHIndicator&quot;/>&lt;/tns1:MAH__c>&lt;tns1:Medicaid_Beds1__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:medicaidBedsPercent)&quot;/>&lt;/tns1:Medicaid_Beds1__c>&lt;tns1:Medicaid_Units1__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:medicaidUnitsPercent)&quot;/>&lt;/tns1:Medicaid_Units1__c>&lt;xsl:if test=&quot;tns:medicaidIndicator&quot;>&lt;tns1:Medicaid__c>&lt;xsl:value-of select=&quot;tns:medicaidIndicator&quot;/>&lt;/tns1:Medicaid__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:nameOfSchoolPropertyServes&quot;>&lt;tns1:Name_of_School_s_Property_Serves__c>&lt;xsl:value-of select=&quot;tns:nameOfSchoolPropertyServes&quot;/>&lt;/tns1:Name_of_School_s_Property_Serves__c>&lt;/xsl:if>&lt;tns1:New_Maintenance_Fees_as_a_of_Comparabl__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:newMaintFeesPercentOfComparableRentsPercent)&quot;/>&lt;/tns1:New_Maintenance_Fees_as_a_of_Comparabl__c>&lt;tns1:Number_of_Medicaid_Residents__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:numberOfMedicaidResidents)&quot;/>&lt;/tns1:Number_of_Medicaid_Residents__c>&lt;tns1:Number_of_Other_Subsidies_Residents__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:numberOfOtherSubsidiesResidents)&quot;/>&lt;/tns1:Number_of_Other_Subsidies_Residents__c>&lt;tns1:Number_of_Student_Properties_Owned__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:numberOfStudentUnitsOwnedBySponsor)&quot;/>&lt;/tns1:Number_of_Student_Properties_Owned__c>&lt;tns1:Number_of_Student_Units__c>&lt;xsl:value-of select=&quot;0&quot;/>&lt;/tns1:Number_of_Student_Units__c>&lt;tns1:Number_of_Units__c>&lt;xsl:value-of select=&quot;tns:numberOfUnits&quot;/>&lt;/tns1:Number_of_Units__c>&lt;xsl:if test=&quot;tns:otherAffordabilityProgramText&quot;>&lt;tns1:Other_Affordability_Program__c>&lt;xsl:value-of select=&quot;tns:otherAffordabilityProgramText&quot;/>&lt;/tns1:Other_Affordability_Program__c>&lt;/xsl:if>&lt;tns1:Other_Subsidies_Beds__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:otherSubsidiesBedsPercent)&quot;/>&lt;/tns1:Other_Subsidies_Beds__c>&lt;tns1:Other_Subsidies_Units__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:otherSubsidiesUnitsPercent)&quot;/>&lt;/tns1:Other_Subsidies_Units__c>&lt;xsl:if test=&quot;tns:otherSubsidiesIndicator&quot;>&lt;tns1:Other_Subsidies__c>&lt;xsl:value-of select=&quot;tns:otherSubsidiesIndicator&quot;/>&lt;/tns1:Other_Subsidies__c>&lt;/xsl:if>&lt;tns1:Percentage_of_Full_Time_Students__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:percentOfFullTimeStudentsToTotalStudents)&quot;/>&lt;/tns1:Percentage_of_Full_Time_Students__c>&lt;tns1:Percentage_of_Units_Sold_to_Shareholders__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:percentOfUnitsSoldToShareholders)&quot;/>&lt;/tns1:Percentage_of_Units_Sold_to_Shareholders__c>&lt;tns1:Percentage_of_Units_with_12_Month_Leases__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:percentOfUnitsWith12MonthLeases)&quot;/>&lt;/tns1:Percentage_of_Units_with_12_Month_Leases__c>&lt;tns1:Postal_Code__c>&lt;xsl:value-of select=&quot;tns:postalCode&quot;/>&lt;/tns1:Postal_Code__c>&lt;tns1:Primary_Property_Type__c>&lt;xsl:value-of select=&quot;tns:propertyType&quot;/>&lt;/tns1:Primary_Property_Type__c>&lt;tns1:Projected_Maintenance_Fee_Increase_to_ac__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:projectedMaintFeeIncrForBalancedBudgetPercent)&quot;/>&lt;/tns1:Projected_Maintenance_Fee_Increase_to_ac__c>&lt;xsl:if test=&quot;tns:locatedOnCollegeOwnedTransLineIndicator&quot;>&lt;tns1:Prop_located_on_college_owned_trans_line__c>&lt;xsl:value-of select=&quot;tns:locatedOnCollegeOwnedTransLineIndicator&quot;/>&lt;/tns1:Prop_located_on_college_owned_trans_line__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:propSubjectToMasterOrGroundIndicator&quot;>&lt;tns1:Property_Subj_to_Ground_Lease_or_Master__c>&lt;xsl:value-of select=&quot;tns:propSubjectToMasterOrGroundIndicator&quot;/>&lt;/tns1:Property_Subj_to_Ground_Lease_or_Master__c>&lt;/xsl:if>&lt;tns1:Rel_Perct_of_Undergrad_to_Grad_Students__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:percentOfUndergradToTotalStudents)&quot;/>&lt;/tns1:Rel_Perct_of_Undergrad_to_Grad_Students__c>&lt;xsl:if test=&quot;tns:rentByRoomOrByBedIndicator&quot;>&lt;tns1:Rent_By_the_Room_or_By_the_Bed__c>&lt;xsl:value-of select=&quot;tns:rentByRoomOrByBedIndicator&quot;/>&lt;/tns1:Rent_By_the_Room_or_By_the_Bed__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:rentalHomesPercent&quot;>&lt;tns1:Rental_Homes__c>&lt;xsl:value-of select=&quot;tns:rentalHomesPercent&quot;/>&lt;/tns1:Rental_Homes__c>&lt;/xsl:if>&lt;tns1:Reserve_Balance_as_a_of_Annual_Mainten__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:reserveBalanceAsOfAnnualMaintPercent)&quot;/>&lt;/tns1:Reserve_Balance_as_a_of_Annual_Mainten__c>&lt;xsl:if test=&quot;tns:certificationLicensureIndicator&quot;>&lt;tns1:Seniors_Service_License__c>&lt;xsl:value-of select=&quot;tns:certificationLicensureIndicator&quot;/>&lt;/tns1:Seniors_Service_License__c>&lt;/xsl:if>&lt;tns1:Skilled_Nursing1__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:skilledNursingPercent)&quot;/>&lt;/tns1:Skilled_Nursing1__c>&lt;tns1:Skilled_Nursing_Beds__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:skilledNursingBedCount)&quot;/>&lt;/tns1:Skilled_Nursing_Beds__c>&lt;tns1:Skilled_Nursing_Units__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:skilledNursingUnitCount)&quot;/>&lt;/tns1:Skilled_Nursing_Units__c>&lt;xsl:if test=&quot;tns:skilledNursingIndicator&quot;>&lt;tns1:Skilled_Nursing__c>&lt;xsl:value-of select=&quot;tns:skilledNursingIndicator&quot;/>&lt;/tns1:Skilled_Nursing__c>&lt;/xsl:if>&lt;tns1:Sponsor_Experience_in_Student_Market__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:sponsorExpInStudHousThisMarkt)&quot;/>&lt;/tns1:Sponsor_Experience_in_Student_Market__c>&lt;tns1:State__c>&lt;xsl:value-of select=&quot;tns:state&quot;/>&lt;/tns1:State__c>&lt;tns1:Street_Address__c>&lt;xsl:value-of select=&quot;tns:streetAddress&quot;/>&lt;/tns1:Street_Address__c>&lt;tns1:Student_Enrollment__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:studentEnrollmentCount)&quot;/>&lt;/tns1:Student_Enrollment__c>&lt;xsl:if test=&quot;tns:taxCreditExpirationDate&quot;>&lt;tns1:Tax_Credit_Expiration_Date__c>&lt;xsl:value-of select=&quot;tns:taxCreditExpirationDate&quot;/>&lt;/tns1:Tax_Credit_Expiration_Date__c>&lt;/xsl:if>&lt;tns1:Year_Built__c>&lt;xsl:value-of select=&quot;tns:yearBuilt&quot;/>&lt;/tns1:Year_Built__c>&lt;tns1:affordable_at_below_50_AMI__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:numberAffordableAtBelow50AMI)&quot;/>&lt;/tns1:affordable_at_below_50_AMI__c>&lt;tns1:affordable_at_below_60_AMI__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:numberAffordableAtBelow60AMI)&quot;/>&lt;/tns1:affordable_at_below_60_AMI__c>&lt;xsl:if test=&quot;tns:extendedUseExpirationDate&quot;>&lt;tns1:Extended_Use_Expiration_Date__c>&lt;xsl:value-of select=&quot;tns:extendedUseExpirationDate&quot;/>&lt;/tns1:Extended_Use_Expiration_Date__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:parkModelRVResortComponentIndicator&quot;>&lt;tns1:Park_Model_RV_Resort_Component__c>&lt;xsl:value-of select=&quot;tns:parkModelRVResortComponentIndicator&quot;/>&lt;/tns1:Park_Model_RV_Resort_Component__c>&lt;/xsl:if>&lt;tns1:Percentage_of_Students_at_the_Property__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:percentOfStudentsAtProperty)&quot;/>&lt;/tns1:Percentage_of_Students_at_the_Property__c>&lt;tns1:Sponsor_s_Exp_in_Stud_Hous_This_Market__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:sponsorExperienceInStudentHousing)&quot;/>&lt;/tns1:Sponsor_s_Exp_in_Stud_Hous_This_Market__c>&lt;xsl:if test=&quot;tns:yearLastRenovated&quot;>&lt;tns1:Year_Last_Renovated__c>&lt;xsl:value-of select=&quot;tns:yearLastRenovated&quot;/>&lt;/tns1:Year_Last_Renovated__c>&lt;/xsl:if>&lt;tns1:Moderate_Rehabilitation__c>&lt;xsl:value-of select=&quot;tns:moderateRehabilitationIndicator&quot;/>&lt;/tns1:Moderate_Rehabilitation__c>&lt;tns1:Rehabilitation_Work_Escrow_Amount__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:rehabilitationWorkEscrowAmount)&quot;/>&lt;/tns1:Rehabilitation_Work_Escrow_Amount__c>&lt;tns1:Rehabilitation_Work_unit__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:rehabilitationWorkPerUnitAmount)&quot;/>&lt;/tns1:Rehabilitation_Work_unit__c>&lt;tns1:Green_Building_Certification_Type__c>&lt;xsl:value-of select=&quot;tns:greenBuildingCertificationType&quot;/>&lt;/tns1:Green_Building_Certification_Type__c>&lt;xsl:if test=&quot;tns:lesseeAffiliationType&quot;>&lt;tns1:Lessee_Affiliation__c>&lt;xsl:value-of select=&quot;tns:lesseeAffiliationType&quot;/>&lt;/tns1:Lessee_Affiliation__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:managementAgreementIndicator&quot;>&lt;tns1:Management_Agreement__c>&lt;xsl:value-of select=&quot;tns:managementAgreementIndicator&quot;/>&lt;/tns1:Management_Agreement__c>&lt;/xsl:if>&lt;tns1:NCF_to_Lease_Ratio__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:NCFToLeaseRatio)&quot;/>&lt;/tns1:NCF_to_Lease_Ratio__c>&lt;xsl:if test=&quot;tns:operatingLeaseIndicator&quot;>&lt;tns1:Operating_Lease__c>&lt;xsl:value-of select=&quot;tns:operatingLeaseIndicator&quot;/>&lt;/tns1:Operating_Lease__c>&lt;/xsl:if>&lt;/tns1:records>&lt;/xsl:for-each>&lt;/tns1:Properties__r>&lt;/tns1:records>&lt;/tns1:SFCompositeOpportunityElement>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns1=&quot;http://tns.tibco.com/bw/json/1542686650609&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:tns=&quot;/T1542684608558Converted/JsonSchema&quot; xmlns:tns2=&quot;http://www.example.com/namespaces/tns/1542685390266&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;Start&quot;/>&lt;xsl:param name=&quot;GetSharedVariable&quot;/>&lt;xsl:param name=&quot;InvokeGeoCodeAPI&quot;/>&lt;xsl:template name=&quot;RenderJSON-input&quot; match=&quot;/&quot;>&lt;tns1:SFCompositeOpportunityElement>&lt;tns1:records>&lt;tns1:attributes>&lt;tns1:type>&lt;xsl:value-of select=&quot;&amp;quot;Opportunity&amp;quot;&quot;/>&lt;/tns1:type>&lt;tns1:referenceId>&lt;xsl:value-of select=&quot;$Start/tns:reference&quot;/>&lt;/tns1:referenceId>&lt;/tns1:attributes>&lt;tns1:Agreement_Type__c>&lt;xsl:value-of select=&quot;$Start/tns:agreementType&quot;/>&lt;/tns1:Agreement_Type__c>&lt;xsl:if test=&quot;$GetSharedVariable/tns2:AccountId&quot;>&lt;tns1:AccountId>&lt;xsl:value-of select=&quot;$GetSharedVariable/tns2:AccountId&quot;/>&lt;/tns1:AccountId>&lt;/xsl:if>&lt;tns1:Name>&lt;xsl:value-of select=&quot;$Start/tns:dealName&quot;/>&lt;/tns1:Name>&lt;tns1:StageName>&lt;xsl:value-of select=&quot;&amp;quot;Pre-Registered&amp;quot;&quot;/>&lt;/tns1:StageName>&lt;xsl:if test=&quot;$GetSharedVariable/tns2:OriginatorAccountId&quot;>&lt;tns1:Originator__c>&lt;xsl:value-of select=&quot;$GetSharedVariable/tns2:OriginatorAccountId&quot;/>&lt;/tns1:Originator__c>&lt;/xsl:if>&lt;xsl:if test=&quot;$GetSharedVariable/tns2:LenderAccountId&quot;>&lt;tns1:Lender_Contact_Name__c>&lt;xsl:value-of select=&quot;$GetSharedVariable/tns2:LenderAccountId&quot;/>&lt;/tns1:Lender_Contact_Name__c>&lt;/xsl:if>&lt;tns1:Chapter_9_Small_Loans__c>&lt;xsl:value-of select=&quot;$Start/tns:chapter9SmallLoansIndicator&quot;/>&lt;/tns1:Chapter_9_Small_Loans__c>&lt;tns1:Estimated_MBS_Issuance_Date__c>&lt;xsl:value-of select=&quot;$Start/tns:estimatedMBSIssuanceDate&quot;/>&lt;/tns1:Estimated_MBS_Issuance_Date__c>&lt;tns1:Excluded_From_Scorecard_Cap__c>&lt;xsl:value-of select=&quot;xsd:integer($Start/tns:excludedFromScorecardCapPercent)&quot;/>&lt;/tns1:Excluded_From_Scorecard_Cap__c>&lt;tns1:Execution_Type__c>&lt;xsl:value-of select=&quot;$Start/tns:executionType&quot;/>&lt;/tns1:Execution_Type__c>&lt;tns1:Loan_Purpose__c>&lt;xsl:value-of select=&quot;$Start/tns:loanPurposeType&quot;/>&lt;/tns1:Loan_Purpose__c>&lt;xsl:if test=&quot;$Start/tns:MATSStructuredType&quot;>&lt;tns1:MATS_Structured__c>&lt;xsl:value-of select=&quot;$Start/tns:MATSStructuredType&quot;/>&lt;/tns1:MATS_Structured__c>&lt;/xsl:if>&lt;tns1:Submission_Type__c>&lt;xsl:value-of select=&quot;$Start/tns:submissionType&quot;/>&lt;/tns1:Submission_Type__c>&lt;xsl:if test=&quot;$Start/tns:applicationIssuedToTheBorrowerIndicator&quot;>&lt;tns1:Application_Issued_to_the_Borrower__c>&lt;xsl:value-of select=&quot;$Start/tns:applicationIssuedToTheBorrowerIndicator&quot;/>&lt;/tns1:Application_Issued_to_the_Borrower__c>&lt;/xsl:if>&lt;xsl:if test=&quot;$Start/tns:interestRateConversionType&quot;>&lt;tns1:Interest_Rate_Conversion_Type__c>&lt;xsl:value-of select=&quot;$Start/tns:interestRateConversionType&quot;/>&lt;/tns1:Interest_Rate_Conversion_Type__c>&lt;/xsl:if>&lt;tns1:Green_Financing_Type__c>&lt;xsl:value-of select=&quot;$Start/tns:greenFinancingType&quot;/>&lt;/tns1:Green_Financing_Type__c>&lt;tns1:Amount>&lt;xsl:value-of select=&quot;xsd:integer($Start/tns:dealAmount)&quot;/>&lt;/tns1:Amount>&lt;tns1:CloseDate>&lt;xsl:value-of select=&quot;$Start/tns:estimatedLoanClosingDate&quot;/>&lt;/tns1:CloseDate>&lt;tns1:Deal_Participants__r>&lt;xsl:for-each select=&quot;$Start/tns:dealParticipants&quot;>&lt;tns1:records>&lt;tns1:attributes>&lt;tns1:type>&lt;xsl:value-of select=&quot;&amp;quot;Deal_Participant__c&amp;quot;&quot;/>&lt;/tns1:type>&lt;tns1:referenceId>&lt;xsl:value-of select=&quot;tns:reference&quot;/>&lt;/tns1:referenceId>&lt;/tns1:attributes>&lt;xsl:if test=&quot;tns:dealParticipantId&quot;>&lt;tns1:Deal_Participant__c>&lt;xsl:value-of select=&quot;tns:dealParticipantId&quot;/>&lt;/tns1:Deal_Participant__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:entityName&quot;>&lt;tns1:Entity_Name__c>&lt;xsl:value-of select=&quot;tns:entityName&quot;/>&lt;/tns1:Entity_Name__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:firstName&quot;>&lt;tns1:First_Name__c>&lt;xsl:value-of select=&quot;tns:firstName&quot;/>&lt;/tns1:First_Name__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:lastName&quot;>&lt;tns1:Last_Name__c>&lt;xsl:value-of select=&quot;tns:lastName&quot;/>&lt;/tns1:Last_Name__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:middleName&quot;>&lt;tns1:Middle_Name__c>&lt;xsl:value-of select=&quot;tns:middleName&quot;/>&lt;/tns1:Middle_Name__c>&lt;/xsl:if>&lt;tns1:Participant_Role__c>&lt;xsl:value-of select=&quot;tns:participantRoleType&quot;/>&lt;/tns1:Participant_Role__c>&lt;/tns1:records>&lt;/xsl:for-each>&lt;/tns1:Deal_Participants__r>&lt;tns1:Properties__r>&lt;xsl:for-each select=&quot;$Start/tns:properties&quot;>&lt;xsl:variable name=&quot;PropVar&quot; select=&quot;tns:reference&quot;/>&lt;tns1:records>&lt;tns1:attributes>&lt;tns1:type>&lt;xsl:value-of select=&quot;&amp;quot;Property__c&amp;quot;&quot;/>&lt;/tns1:type>&lt;tns1:referenceId>&lt;xsl:value-of select=&quot;tns:reference&quot;/>&lt;/tns1:referenceId>&lt;/tns1:attributes>&lt;tns1:Name>&lt;xsl:value-of select=&quot;tns:propertyName&quot;/>&lt;/tns1:Name>&lt;xsl:if test=&quot;tns:accountsReceivablePercent&quot;>&lt;tns1:Accounts_Receivable_as_a__c>&lt;xsl:value-of select=&quot;tns:accountsReceivablePercent&quot;/>&lt;/tns1:Accounts_Receivable_as_a__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:affordabilityProgramType&quot;>&lt;tns1:Affordability_Program__c>&lt;xsl:value-of select=&quot;tns:affordabilityProgramType&quot;/>&lt;/tns1:Affordability_Program__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:ageRestrictedIndicator&quot;>&lt;tns1:Age_Restricted__c>&lt;xsl:value-of select=&quot;tns:ageRestrictedIndicator&quot;/>&lt;/tns1:Age_Restricted__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:alzheimerCareIndicator&quot;>&lt;tns1:Alzheimer_Care__c>&lt;xsl:value-of select=&quot;tns:alzheimerCareIndicator&quot;/>&lt;/tns1:Alzheimer_Care__c>&lt;/xsl:if>&lt;tns1:Alzheimer_Care_Beds__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:alzheimerCareBedCount)&quot;/>&lt;/tns1:Alzheimer_Care_Beds__c>&lt;tns1:Alzheimer_Care_Units__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:alzheimerCareUnitCount)&quot;/>&lt;/tns1:Alzheimer_Care_Units__c>&lt;tns1:Alzheimer_Care1__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:alzheimerCarePercent)&quot;/>&lt;/tns1:Alzheimer_Care1__c>&lt;tns1:Appraised_Gross_Sell_Out_Value__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:estimatedGrossSellOutValueAmount)&quot;/>&lt;/tns1:Appraised_Gross_Sell_Out_Value__c>&lt;tns1:Assisted_Living1__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:assistedLivingPercent)&quot;/>&lt;/tns1:Assisted_Living1__c>&lt;tns1:Assisted_Living_Beds__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:assistedLivingBedCount)&quot;/>&lt;/tns1:Assisted_Living_Beds__c>&lt;tns1:Assisted_Living_Units__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:assistedLivingUnitCount)&quot;/>&lt;/tns1:Assisted_Living_Units__c>&lt;xsl:if test=&quot;tns:assistedLivingIndicator&quot;>&lt;tns1:Assisted_Living__c>&lt;xsl:value-of select=&quot;tns:assistedLivingIndicator&quot;/>&lt;/tns1:Assisted_Living__c>&lt;/xsl:if>&lt;tns1:City__c>&lt;xsl:value-of select=&quot;tns:city&quot;/>&lt;/tns1:City__c>&lt;xsl:if test=&quot;tns:communityQualityRatingType&quot;>&lt;tns1:Community_Quality_Rating__c>&lt;xsl:value-of select=&quot;tns:communityQualityRatingType&quot;/>&lt;/tns1:Community_Quality_Rating__c>&lt;/xsl:if>&lt;tns1:Distance_to_Campus_Library__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:distanceToMainCampusInMiles)&quot;/>&lt;/tns1:Distance_to_Campus_Library__c>&lt;xsl:if test=&quot;tns:unsoldUnitsPosOrNegCarryIndicator&quot;>&lt;tns1:Do_the_unsold_units_generate_a_positive__c>&lt;xsl:value-of select=&quot;tns:unsoldUnitsPosOrNegCarryIndicator&quot;/>&lt;/tns1:Do_the_unsold_units_generate_a_positive__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:anySponsorOwnMoreThan40PctIndicator&quot;>&lt;tns1:Does_any_1_one_Sponsor_own_more_than_4__c>&lt;xsl:value-of select=&quot;tns:anySponsorOwnMoreThan40PctIndicator&quot;/>&lt;/tns1:Does_any_1_one_Sponsor_own_more_than_4__c>&lt;/xsl:if>&lt;tns1:Independent_Living1__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:independentLivingPercent)&quot;/>&lt;/tns1:Independent_Living1__c>&lt;tns1:Independent_Living_Beds__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:independentLivingBedCount)&quot;/>&lt;/tns1:Independent_Living_Beds__c>&lt;tns1:Independent_Living_Units__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:independentLivingUnitCount)&quot;/>&lt;/tns1:Independent_Living_Units__c>&lt;xsl:if test=&quot;tns:independentLivingIndicator&quot;>&lt;tns1:Independent_Living__c>&lt;xsl:value-of select=&quot;tns:independentLivingIndicator&quot;/>&lt;/tns1:Independent_Living__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:taxCreditComplianceIndicator&quot;>&lt;tns1:Init_7_years_of_tax_credit_compliance__c>&lt;xsl:value-of select=&quot;tns:taxCreditComplianceIndicator&quot;/>&lt;/tns1:Init_7_years_of_tax_credit_compliance__c>&lt;/xsl:if>&lt;tns1:MAH__c>&lt;xsl:value-of select=&quot;tns:MAHIndicator&quot;/>&lt;/tns1:MAH__c>&lt;tns1:Medicaid_Beds1__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:medicaidBedsPercent)&quot;/>&lt;/tns1:Medicaid_Beds1__c>&lt;tns1:Medicaid_Units1__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:medicaidUnitsPercent)&quot;/>&lt;/tns1:Medicaid_Units1__c>&lt;xsl:if test=&quot;tns:medicaidIndicator&quot;>&lt;tns1:Medicaid__c>&lt;xsl:value-of select=&quot;tns:medicaidIndicator&quot;/>&lt;/tns1:Medicaid__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:nameOfSchoolPropertyServes&quot;>&lt;tns1:Name_of_School_s_Property_Serves__c>&lt;xsl:value-of select=&quot;tns:nameOfSchoolPropertyServes&quot;/>&lt;/tns1:Name_of_School_s_Property_Serves__c>&lt;/xsl:if>&lt;tns1:New_Maintenance_Fees_as_a_of_Comparabl__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:newMaintFeesPercentOfComparableRentsPercent)&quot;/>&lt;/tns1:New_Maintenance_Fees_as_a_of_Comparabl__c>&lt;tns1:Number_of_Medicaid_Residents__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:numberOfMedicaidResidents)&quot;/>&lt;/tns1:Number_of_Medicaid_Residents__c>&lt;tns1:Number_of_Other_Subsidies_Residents__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:numberOfOtherSubsidiesResidents)&quot;/>&lt;/tns1:Number_of_Other_Subsidies_Residents__c>&lt;tns1:Number_of_Student_Properties_Owned__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:numberOfStudentUnitsOwnedBySponsor)&quot;/>&lt;/tns1:Number_of_Student_Properties_Owned__c>&lt;tns1:Number_of_Student_Units__c>&lt;xsl:value-of select=&quot;0&quot;/>&lt;/tns1:Number_of_Student_Units__c>&lt;tns1:Number_of_Units__c>&lt;xsl:value-of select=&quot;tns:numberOfUnits&quot;/>&lt;/tns1:Number_of_Units__c>&lt;xsl:if test=&quot;tns:otherAffordabilityProgramText&quot;>&lt;tns1:Other_Affordability_Program__c>&lt;xsl:value-of select=&quot;tns:otherAffordabilityProgramText&quot;/>&lt;/tns1:Other_Affordability_Program__c>&lt;/xsl:if>&lt;tns1:Other_Subsidies_Beds__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:otherSubsidiesBedsPercent)&quot;/>&lt;/tns1:Other_Subsidies_Beds__c>&lt;tns1:Other_Subsidies_Units__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:otherSubsidiesUnitsPercent)&quot;/>&lt;/tns1:Other_Subsidies_Units__c>&lt;xsl:if test=&quot;tns:otherSubsidiesIndicator&quot;>&lt;tns1:Other_Subsidies__c>&lt;xsl:value-of select=&quot;tns:otherSubsidiesIndicator&quot;/>&lt;/tns1:Other_Subsidies__c>&lt;/xsl:if>&lt;tns1:Percentage_of_Full_Time_Students__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:percentOfFullTimeStudentsToTotalStudents)&quot;/>&lt;/tns1:Percentage_of_Full_Time_Students__c>&lt;tns1:Percentage_of_Units_Sold_to_Shareholders__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:percentOfUnitsSoldToShareholders)&quot;/>&lt;/tns1:Percentage_of_Units_Sold_to_Shareholders__c>&lt;tns1:Percentage_of_Units_with_12_Month_Leases__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:percentOfUnitsWith12MonthLeases)&quot;/>&lt;/tns1:Percentage_of_Units_with_12_Month_Leases__c>&lt;tns1:Postal_Code__c>&lt;xsl:value-of select=&quot;tns:postalCode&quot;/>&lt;/tns1:Postal_Code__c>&lt;tns1:Primary_Property_Type__c>&lt;xsl:value-of select=&quot;tns:propertyType&quot;/>&lt;/tns1:Primary_Property_Type__c>&lt;tns1:Projected_Maintenance_Fee_Increase_to_ac__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:projectedMaintFeeIncrForBalancedBudgetPercent)&quot;/>&lt;/tns1:Projected_Maintenance_Fee_Increase_to_ac__c>&lt;xsl:if test=&quot;tns:locatedOnCollegeOwnedTransLineIndicator&quot;>&lt;tns1:Prop_located_on_college_owned_trans_line__c>&lt;xsl:value-of select=&quot;tns:locatedOnCollegeOwnedTransLineIndicator&quot;/>&lt;/tns1:Prop_located_on_college_owned_trans_line__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:propSubjectToMasterOrGroundIndicator&quot;>&lt;tns1:Property_Subj_to_Ground_Lease_or_Master__c>&lt;xsl:value-of select=&quot;tns:propSubjectToMasterOrGroundIndicator&quot;/>&lt;/tns1:Property_Subj_to_Ground_Lease_or_Master__c>&lt;/xsl:if>&lt;tns1:Rel_Perct_of_Undergrad_to_Grad_Students__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:percentOfUndergradToTotalStudents)&quot;/>&lt;/tns1:Rel_Perct_of_Undergrad_to_Grad_Students__c>&lt;xsl:if test=&quot;tns:rentByRoomOrByBedIndicator&quot;>&lt;tns1:Rent_By_the_Room_or_By_the_Bed__c>&lt;xsl:value-of select=&quot;tns:rentByRoomOrByBedIndicator&quot;/>&lt;/tns1:Rent_By_the_Room_or_By_the_Bed__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:rentalHomesPercent&quot;>&lt;tns1:Rental_Homes__c>&lt;xsl:value-of select=&quot;tns:rentalHomesPercent&quot;/>&lt;/tns1:Rental_Homes__c>&lt;/xsl:if>&lt;tns1:Reserve_Balance_as_a_of_Annual_Mainten__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:reserveBalanceAsOfAnnualMaintPercent)&quot;/>&lt;/tns1:Reserve_Balance_as_a_of_Annual_Mainten__c>&lt;xsl:if test=&quot;tns:certificationLicensureIndicator&quot;>&lt;tns1:Seniors_Service_License__c>&lt;xsl:value-of select=&quot;tns:certificationLicensureIndicator&quot;/>&lt;/tns1:Seniors_Service_License__c>&lt;/xsl:if>&lt;tns1:Skilled_Nursing1__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:skilledNursingPercent)&quot;/>&lt;/tns1:Skilled_Nursing1__c>&lt;tns1:Skilled_Nursing_Beds__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:skilledNursingBedCount)&quot;/>&lt;/tns1:Skilled_Nursing_Beds__c>&lt;tns1:Skilled_Nursing_Units__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:skilledNursingUnitCount)&quot;/>&lt;/tns1:Skilled_Nursing_Units__c>&lt;xsl:if test=&quot;tns:skilledNursingIndicator&quot;>&lt;tns1:Skilled_Nursing__c>&lt;xsl:value-of select=&quot;tns:skilledNursingIndicator&quot;/>&lt;/tns1:Skilled_Nursing__c>&lt;/xsl:if>&lt;tns1:Sponsor_Experience_in_Student_Market__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:sponsorExpInStudHousThisMarkt)&quot;/>&lt;/tns1:Sponsor_Experience_in_Student_Market__c>&lt;tns1:State__c>&lt;xsl:value-of select=&quot;tns:state&quot;/>&lt;/tns1:State__c>&lt;tns1:Street_Address__c>&lt;xsl:value-of select=&quot;tns:streetAddress&quot;/>&lt;/tns1:Street_Address__c>&lt;tns1:Student_Enrollment__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:studentEnrollmentCount)&quot;/>&lt;/tns1:Student_Enrollment__c>&lt;xsl:if test=&quot;tns:taxCreditExpirationDate&quot;>&lt;tns1:Tax_Credit_Expiration_Date__c>&lt;xsl:value-of select=&quot;tns:taxCreditExpirationDate&quot;/>&lt;/tns1:Tax_Credit_Expiration_Date__c>&lt;/xsl:if>&lt;tns1:Year_Built__c>&lt;xsl:value-of select=&quot;tns:yearBuilt&quot;/>&lt;/tns1:Year_Built__c>&lt;tns1:affordable_at_below_50_AMI__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:numberAffordableAtBelow50AMI)&quot;/>&lt;/tns1:affordable_at_below_50_AMI__c>&lt;tns1:affordable_at_below_60_AMI__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:numberAffordableAtBelow60AMI)&quot;/>&lt;/tns1:affordable_at_below_60_AMI__c>&lt;xsl:if test=&quot;tns:extendedUseExpirationDate&quot;>&lt;tns1:Extended_Use_Expiration_Date__c>&lt;xsl:value-of select=&quot;tns:extendedUseExpirationDate&quot;/>&lt;/tns1:Extended_Use_Expiration_Date__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:parkModelRVResortComponentIndicator&quot;>&lt;tns1:Park_Model_RV_Resort_Component__c>&lt;xsl:value-of select=&quot;tns:parkModelRVResortComponentIndicator&quot;/>&lt;/tns1:Park_Model_RV_Resort_Component__c>&lt;/xsl:if>&lt;tns1:Percentage_of_Students_at_the_Property__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:percentOfStudentsAtProperty)&quot;/>&lt;/tns1:Percentage_of_Students_at_the_Property__c>&lt;tns1:Sponsor_s_Exp_in_Stud_Hous_This_Market__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:sponsorExperienceInStudentHousing)&quot;/>&lt;/tns1:Sponsor_s_Exp_in_Stud_Hous_This_Market__c>&lt;xsl:if test=&quot;tns:yearLastRenovated&quot;>&lt;tns1:Year_Last_Renovated__c>&lt;xsl:value-of select=&quot;tns:yearLastRenovated&quot;/>&lt;/tns1:Year_Last_Renovated__c>&lt;/xsl:if>&lt;tns1:Moderate_Rehabilitation__c>&lt;xsl:value-of select=&quot;tns:moderateRehabilitationIndicator&quot;/>&lt;/tns1:Moderate_Rehabilitation__c>&lt;tns1:Rehabilitation_Work_Escrow_Amount__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:rehabilitationWorkEscrowAmount)&quot;/>&lt;/tns1:Rehabilitation_Work_Escrow_Amount__c>&lt;tns1:Rehabilitation_Work_unit__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:rehabilitationWorkPerUnitAmount)&quot;/>&lt;/tns1:Rehabilitation_Work_unit__c>&lt;tns1:Green_Building_Certification_Type__c>&lt;xsl:value-of select=&quot;tns:greenBuildingCertificationType&quot;/>&lt;/tns1:Green_Building_Certification_Type__c>&lt;xsl:if test=&quot;tns:lesseeAffiliationType&quot;>&lt;tns1:Lessee_Affiliation__c>&lt;xsl:value-of select=&quot;tns:lesseeAffiliationType&quot;/>&lt;/tns1:Lessee_Affiliation__c>&lt;/xsl:if>&lt;xsl:if test=&quot;tns:managementAgreementIndicator&quot;>&lt;tns1:Management_Agreement__c>&lt;xsl:value-of select=&quot;tns:managementAgreementIndicator&quot;/>&lt;/tns1:Management_Agreement__c>&lt;/xsl:if>&lt;tns1:NCF_to_Lease_Ratio__c>&lt;xsl:value-of select=&quot;xsd:integer(tns:NCFToLeaseRatio)&quot;/>&lt;/tns1:NCF_to_Lease_Ratio__c>&lt;xsl:if test=&quot;tns:operatingLeaseIndicator&quot;>&lt;tns1:Operating_Lease__c>&lt;xsl:value-of select=&quot;tns:operatingLeaseIndicator&quot;/>&lt;/tns1:Operating_Lease__c>&lt;/xsl:if>&lt;xsl:if test=&quot;$InvokeGeoCodeAPI/Properties[PropertyName = $PropVar]/lat&quot;>&lt;tns1:Location__Latitude__s>&lt;xsl:value-of select=&quot;$InvokeGeoCodeAPI/Properties[PropertyName = $PropVar]/lat&quot;/>&lt;/tns1:Location__Latitude__s>&lt;/xsl:if>&lt;xsl:if test=&quot;$InvokeGeoCodeAPI/Properties[PropertyName = $PropVar]/lng&quot;>&lt;tns1:Location__Longitude__s>&lt;xsl:value-of select=&quot;$InvokeGeoCodeAPI/Properties[PropertyName = $PropVar]/lng&quot;/>&lt;/tns1:Location__Longitude__s>&lt;/xsl:if>&lt;xsl:choose>&lt;xsl:when test=&quot;string-length(string($InvokeGeoCodeAPI/Properties[PropertyName = $PropVar]/lat)) >= 10&quot;>&lt;tns1:Address_Latitude__c>&lt;xsl:value-of select=&quot;substring(string($InvokeGeoCodeAPI/Properties[PropertyName = $PropVar]/lat), 1, 9)&quot;/>&lt;/tns1:Address_Latitude__c>&lt;/xsl:when>&lt;xsl:otherwise>&lt;tns1:Address_Latitude__c>&lt;xsl:value-of select=&quot;string($InvokeGeoCodeAPI/Properties[PropertyName = $PropVar]/lat)&quot;/>&lt;/tns1:Address_Latitude__c>&lt;/xsl:otherwise>&lt;/xsl:choose>&lt;xsl:choose>&lt;xsl:when test=&quot;string-length(string($InvokeGeoCodeAPI/Properties[PropertyName = $PropVar]/lng)) >= 10&quot;>&lt;tns1:Address_Longitude__c>&lt;xsl:value-of select=&quot;substring(string($InvokeGeoCodeAPI/Properties[PropertyName = $PropVar]/lng), 1, 9)&quot;/>&lt;/tns1:Address_Longitude__c>&lt;/xsl:when>&lt;xsl:otherwise>&lt;tns1:Address_Longitude__c>&lt;xsl:value-of select=&quot;string($InvokeGeoCodeAPI/Properties[PropertyName = $PropVar]/lng)&quot;/>&lt;/tns1:Address_Longitude__c>&lt;/xsl:otherwise>&lt;/xsl:choose>&lt;/tns1:records>&lt;/xsl:for-each>&lt;/tns1:Properties__r>&lt;/tns1:records>&lt;/tns1:SFCompositeOpportunityElement>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:config>
                         <bwext:BWActivity
@@ -1422,7 +1691,7 @@
                     </bpws:sources>
                     <tibex:inputBindings>
                         <tibex:inputBinding
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns10=&quot;urn:enterprise.soap.sforce.com_getSessionInput&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:template name=&quot;SalesforceGetSession-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns10:getSessionInput/>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns14=&quot;urn:enterprise.soap.sforce.com_getSessionInput&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:template name=&quot;SalesforceGetSession-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns14:getSessionInput/>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:config>
                         <bwext:BWActivity
@@ -1453,6 +1722,14 @@
                     </bpws:targets>
                     <bpws:sources>
                         <bpws:source linkName="InvokeRESTAPIToParseJSON"/>
+                        <bpws:source
+                            linkName="InvokeRESTAPIToParseJSONErrors"
+                            tibex:faultDetailsVar="InvokeRESTAPI" tibex:faultNameVar="FaultName">
+                            <tibex:DesignExpression>
+                                <tibex:expression expression="##error##" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"/>
+                            </tibex:DesignExpression>
+                            <bpws:transitionCondition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"><![CDATA[##error##]]></bpws:transitionCondition>
+                        </bpws:source>
                     </bpws:sources>
                     <tibex:inputBindings>
                         <tibex:inputBinding
@@ -1488,7 +1765,7 @@
                         <bpws:target linkName="StartToGetSharedVariable"/>
                     </bpws:targets>
                     <bpws:sources>
-                        <bpws:source linkName="GetSharedVariableToRenderJSON"/>
+                        <bpws:source linkName="GetSharedVariableToInvokeGeoCodeAPI"/>
                     </bpws:sources>
                     <tibex:GetSharedVariable inline="true"
                         variableName="SFObjectssharedvar" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
@@ -1561,6 +1838,139 @@
                                     DataType="12"
                                     DataTypeDisplayValue="STRING" ParameterName="DealId"/>
                                     </value>
+                                </properties>
+                            </activityConfig>
+                        </bwext:BWActivity>
+                    </tibex:config>
+                </tibex:activityExtension>
+            </bpws:extensionActivity>
+            <bpws:extensionActivity>
+                <tibex:activityExtension
+                    inputVariable="ParseJSONErrors-input"
+                    name="ParseJSONErrors"
+                    outputVariable="ParseJSONErrors"
+                    tibex:xpdlId="f294a04d-c368-49cf-a3e5-72c460b65e98" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                    <bpws:targets>
+                        <bpws:target linkName="InvokeRESTAPIToParseJSONErrors"/>
+                    </bpws:targets>
+                    <bpws:sources>
+                        <bpws:source linkName="ParseJSONErrorsToRenderJSON1"/>
+                    </bpws:sources>
+                    <tibex:inputBindings>
+                        <tibex:inputBinding
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns11=&quot;activity.jsonParser.input+f294a04d-c368-49cf-a3e5-72c460b65e98+ActivityInputType&quot; xmlns:tns14=&quot;http://schemas.tibco.com/bw/plugins/http/5.0/httpExceptions&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;_error_InvokeRESTAPI&quot;/>&#xa;    &lt;xsl:template name=&quot;ParseJSONErrors-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns11:ActivityInputClass>&#xa;            &lt;jsonString>&#xa;                &lt;xsl:value-of select=&quot;$_error_InvokeRESTAPI/tns14:HttpClientException/httpMessage/asciiContent&quot;/>&#xa;            &lt;/jsonString>&#xa;        &lt;/tns11:ActivityInputClass>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                    </tibex:inputBindings>
+                    <tibex:config>
+                        <bwext:BWActivity
+                            activityTypeID="bw.restjson.JsonParser"
+                            xmlns:activityconfig="http://tns.tibco.com/bw/model/activityconfig"
+                            xmlns:bwext="http://tns.tibco.com/bw/model/core/bwext"
+                            xmlns:restjson="http://ns.tibco.com/bw/palette/restjson" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <activityConfig>
+                                <properties name="config" xsi:type="activityconfig:EMFProperty">
+                                    <type href="http://ns.tibco.com/bw/palette/restjson#//JsonParser"/>
+                                    <value jsonInputStyle="None"
+                                    schemaType="Xsd" xsi:type="restjson:JsonParser">
+                                    <outputEditorElement href="platform:/resource/MultiFamilyAPIPoF.module/Schemas/SFErrorSchemaResource.xsd#//SFErrorSchemaElement;XSDElementDeclaration"/>
+                                    </value>
+                                </properties>
+                            </activityConfig>
+                        </bwext:BWActivity>
+                    </tibex:config>
+                </tibex:activityExtension>
+            </bpws:extensionActivity>
+            <bpws:throw faultName="ns21:DefaultFault"
+                faultVariable="Throw-input" name="Throw" tibex:xpdlId="8383d0a4-7abd-4d5f-b845-86a8a2f46c56">
+                <tibex:inputBindings>
+                    <tibex:partBinding
+                        expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns10=&quot;http://schemas.tibco.com/bw/plugins/basic/6.0/Exceptions&quot; xmlns:tib=&quot;http://www.tibco.com/bw/xslt/custom-functions&quot; xmlns:tns12=&quot;http://tns.tibco.com/bw/json/1543246665258&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;Mapper&quot;/>&lt;xsl:template name=&quot;Throw-input&quot; match=&quot;/&quot;>&lt;tns10:DefaultFault>&lt;message>&lt;xsl:value-of select=&quot;tib:concat-sequence-format($Mapper/tns12:errors/tns12:message, &amp;quot;&amp;#xD;&amp;#xA;&amp;quot;)&quot;/>&lt;/message>&lt;msgCode>&lt;xsl:value-of select=&quot;&amp;quot;400&amp;quot;&quot;/>&lt;/msgCode>&lt;/tns10:DefaultFault>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                </tibex:inputBindings>
+                <bpws:targets>
+                    <bpws:target linkName="MapperToThrow"/>
+                </bpws:targets>
+            </bpws:throw>
+            <bpws:extensionActivity>
+                <tibex:activityExtension
+                    inputVariable="RenderJSON1-input" name="RenderJSON1"
+                    outputVariable="RenderJSON1"
+                    tibex:xpdlId="3697d103-3cdd-4c55-8500-038a83a04f1a" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                    <bpws:targets>
+                        <bpws:target linkName="ParseJSONErrorsToRenderJSON1"/>
+                    </bpws:targets>
+                    <bpws:sources>
+                        <bpws:source linkName="RenderJSON1ToMapper"/>
+                    </bpws:sources>
+                    <tibex:inputBindings>
+                        <tibex:inputBinding
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns13=&quot;http://tns.tibco.com/bw/json/1543245707038&quot; xmlns:tns12=&quot;http://tns.tibco.com/bw/json/1543246665258&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;ParseJSONErrors&quot;/>&lt;xsl:template name=&quot;RenderJSON1-input&quot; match=&quot;/&quot;>&lt;tns12:ErrorsOutElement>&lt;xsl:for-each select=&quot;$ParseJSONErrors/tns13:results/tns13:errors&quot;>&lt;tns12:errors>&lt;xsl:if test=&quot;../tns13:referenceId&quot;>&lt;tns12:reference>&lt;xsl:value-of select=&quot;../tns13:referenceId&quot;/>&lt;/tns12:reference>&lt;/xsl:if>&lt;tns12:message>&lt;xsl:value-of select=&quot;replace(tns13:message, &amp;quot;Year_Last_Renovated__c&amp;quot;, &amp;quot;yearLastRenovated&amp;quot;)&quot;/>&lt;/tns12:message>&lt;/tns12:errors>&lt;/xsl:for-each>&lt;/tns12:ErrorsOutElement>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                    </tibex:inputBindings>
+                    <tibex:config>
+                        <bwext:BWActivity
+                            activityTypeID="bw.restjson.JsonRender"
+                            xmlns:activityconfig="http://tns.tibco.com/bw/model/activityconfig"
+                            xmlns:bwext="http://tns.tibco.com/bw/model/core/bwext"
+                            xmlns:restjson="http://ns.tibco.com/bw/palette/restjson" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <activityConfig>
+                                <properties name="config" xsi:type="activityconfig:EMFProperty">
+                                    <type href="http://ns.tibco.com/bw/palette/restjson#//JsonRender"/>
+                                    <value jsonOutputStyle="None"
+                                    schemaType="Xsd" xsi:type="restjson:JsonRender">
+                                    <inputEditorElement href="platform:/resource/MultiFamilyAPIPoF.module/Schemas/ErrorsOutResource.xsd#//ErrorsOutElement;XSDElementDeclaration"/>
+                                    </value>
+                                </properties>
+                            </activityConfig>
+                        </bwext:BWActivity>
+                    </tibex:config>
+                </tibex:activityExtension>
+            </bpws:extensionActivity>
+            <bpws:extensionActivity>
+                <tibex:extActivity
+                    inputVariable="InvokeGeoCodeAPI-input"
+                    name="InvokeGeoCodeAPI"
+                    outputVariable="InvokeGeoCodeAPI"
+                    tibex:xpdlId="d9f92d9e-a8dd-4d0f-9394-e3afb5e4750d"
+                    type="bw.generalactivities.callprocess" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                    <bpws:targets>
+                        <bpws:target linkName="GetSharedVariableToInvokeGeoCodeAPI"/>
+                    </bpws:targets>
+                    <bpws:sources>
+                        <bpws:source linkName="InvokeGeoCodeAPIToRenderJSON"/>
+                    </bpws:sources>
+                    <tibex:inputBindings>
+                        <tibex:inputBinding
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;Start&quot;/>&lt;xsl:template name=&quot;InvokeGeoCodeAPI-input&quot; match=&quot;/&quot;>&lt;xsl:copy-of select=&quot;$Start&quot;/>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                    </tibex:inputBindings>
+                    <tibex:CallProcess
+                        subProcessName="multifamilyapipof.module.InvokeGeoCodeAPI" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
+                </tibex:extActivity>
+            </bpws:extensionActivity>
+            <bpws:extensionActivity>
+                <tibex:activityExtension inputVariable="Mapper-input"
+                    name="Mapper" outputVariable="Mapper"
+                    tibex:xpdlId="8b605f94-08e4-4ebc-a6fd-d1d1e01e113a" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                    <bpws:targets>
+                        <bpws:target linkName="RenderJSON1ToMapper"/>
+                    </bpws:targets>
+                    <bpws:sources>
+                        <bpws:source linkName="MapperToThrow"/>
+                    </bpws:sources>
+                    <tibex:inputBindings>
+                        <tibex:inputBinding
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns12=&quot;http://tns.tibco.com/bw/json/1543246665258&quot; xmlns:tns13=&quot;http://tns.tibco.com/bw/json/1543245707038&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;ParseJSONErrors&quot;/>&lt;xsl:template name=&quot;Mapper-input&quot; match=&quot;/&quot;>&lt;tns12:ErrorsOutElement>&lt;xsl:for-each select=&quot;$ParseJSONErrors/tns13:results/tns13:errors&quot;>&lt;tns12:errors>&lt;tns12:message>&lt;xsl:value-of select=&quot;concat(&amp;quot;For &amp;quot;, ../tns13:referenceId, &amp;quot; :: &amp;quot;, replace(replace(tns13:message, &amp;quot;__c&amp;quot;, &amp;quot;&amp;quot;),&amp;quot;_&amp;quot;,&amp;quot;&amp;quot;))&quot;/>&lt;/tns12:message>&lt;/tns12:errors>&lt;/xsl:for-each>&lt;/tns12:ErrorsOutElement>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                    </tibex:inputBindings>
+                    <tibex:config>
+                        <bwext:BWActivity
+                            activityTypeID="bw.generalactivities.mapper"
+                            version="6.0.0.001"
+                            xmlns:activityconfig="http://tns.tibco.com/bw/model/activityconfig"
+                            xmlns:bwext="http://tns.tibco.com/bw/model/core/bwext"
+                            xmlns:generalactivities="http://ns.tibco.com/bw/palette/generalactivities"
+                            xmlns:json_1543246665258="http://tns.tibco.com/bw/json/1543246665258" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <activityConfig>
+                                <properties name="config" xsi:type="activityconfig:EMFProperty">
+                                    <type href="http://ns.tibco.com/bw/palette/generalactivities#//Mapper"/>
+                                    <value
+                                    inputQName="json_1543246665258:ErrorsOutElement" xsi:type="generalactivities:Mapper"/>
                                 </properties>
                             </activityConfig>
                         </bwext:BWActivity>

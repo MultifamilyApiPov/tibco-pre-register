@@ -150,6 +150,10 @@
                   <element maxOccurs="1" minOccurs="0" name="Management_Agreement__c" type="string"/>
                   <element maxOccurs="1" minOccurs="0" name="NCF_to_Lease_Ratio__c" type="integer"/>
                   <element maxOccurs="1" minOccurs="0" name="Operating_Lease__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Location__Latitude__s" type="double"/>
+                  <element maxOccurs="1" minOccurs="0" name="Location__Longitude__s" type="double"/>
+                  <element maxOccurs="1" minOccurs="0" name="Address_Latitude__c" type="string"/>
+                  <element maxOccurs="1" minOccurs="0" name="Address_Longitude__c" type="string"/>
                 </sequence>
               </complexType>
             </element>
